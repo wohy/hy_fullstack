@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrapBg">
+        <!-- 开始标题  -->
+        <div id="headTitle">
+            <img src="./img/bird0.png" alt="" id="headBird">
+        </div>
+        <!-- 开始按钮 -->
+        <button id="startBtn"></button>
+        <!-- 草地 -->
+        <div id="grassLand1"></div>
+        <div id="grassLand2"></div>
+    </div>
+
+    <script src="./js/baseObj.js"></script>
+    <script src="./js/bird.js"></script>
+    <script src="./js/block.js"></script>
+
+    <script>
+        //标题动画
+        //拿到这个标题的dom结构        
+        var jsWrapBg = document.getElementById('wrapBg')
+        var jsHeadTitle = document.getElementById('headTitle')
+        var jsHeadBird = document.getElementById('headBird')
+        
+        var blockArr = []  //将生成的管道存入其中，当数组长度达到一个量时再将数组清空
+        var blockDistance = baseObj.randomNum(150,300)
+
+        var Y = 3   //作为标题的摆动幅度
+        var index = 0
+        var imgArr = ['./img/bird0.png','./img/bird1.png']
+
+        var headWaveTimer = setInterval(headWave,200)//每200ms执行一次headWave函数
+        function headWave() {
+            Y *= -1;//反复执行，Y的值在3和-3之间变换，使jsHeadTitle可上下移动
+            //设置该dom结构的top值
+            jsHeadTitle.style.top = jsHeadTitle.offsetTop + Y +'px' //offsettop拿到该对象所在容器距离顶部的距离
+            //设置bird图片
+            jsHeadBird.src = imgArr[index++] //先为0，200ms后变为1
+            if (index == 2) {
+                index = 0;
+            }
+        }
+
+        //草地动画
+        var jsGrassLand1 = document.getElementById('grassLand1')
+        var jsGrassLand2 = document.getElementById('grassLand2')
+        var landTimer = setInterval(landRun, 30)
+        function landRun() {
+        if(jsGrassLand1.offsetLeft <= -343){
+            jsGrassLand1.style.left = "343px";
+        }
+        if(jsGrassLand2.offsetLeft <= -343){
+            jsGrassLand2.style.left = "343px";
+        }
+            jsGrassLand1.style.left = jsGrassLand1.offsetLeft - 3 +"px";
+            jsGrassLand2.style.left = jsGrassLand2.offsetLeft - 3 +"px";
+
+            //管道的移动
+            if (blockArr.length) {
+                for (var i = 0; i < blockArr.length; i++) {
+                    blockArr[i].moveBlock()  //相当于b.moveBlock()
+                    var x = baseObj.rectangleCrashExamine(blockArr[i].downDivWrap, bird.div)
+                    var y = baseObj.rectangleCrashExamine(blockArr[i].upDivWrap, bird.div)
+                    var z = bird.div.offsetTop >= 390  //三个条件一个为true，则游戏停止
+                    if (x || y || z) {
+                        clearInterval(landTimer)  //草地、管道停止
+                        jsWrapBg.onclick = null   //点击无效
+                        bird.fallSpeed = 0
+                    }
+                }
+                if (blockArr[blockArr.length - 1].downDivWrap.offsetLeft < (450 - blockDistance)) {  
+                //当最后根管道距离容器左端的距离小于450减两个管道之间额距离时，说明出现的最后一根管道走远了
+                    var newBlock = new Block()
+                 newBlock.createBlock()
+                    blockArr.push(newBlock)
+                }
+            }
+        }
+
+        //开始按钮
+        var jsStartBtn = document.getElementById('startBtn')
+        jsStartBtn.onclick = function() {
+            jsHeadTitle.style.display = 'none'
+            jsStartBtn.style.display = 'none'
+            clearInterval(headWaveTimer) //除去定时器
+            
+            // 插入小鸟到页面中
+            bird.showBird(jsWrapBg);
+            bird.flyBird();
+            bird.wingWave();
+
+            jsWrapBg.onclick = function() {
+                bird.fallSpeed = -8
+            }
+            //出现管道
+            var b = new Block() //实例化
+            b.createBlock()
+            blockArr.push(b)
+
+        }
+
+      
+    </script>
+</body>
+</html>
