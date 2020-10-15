@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_2109874_d35ie8ofjgi.css">
+  <title>Document</title>
+  <style>
+    /* 去掉默认样式 */
+    input{
+      -webkit-appearance: none;  /*appearance: none 把框默认为空，即不显示*/
+      -moz-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      border: none;  /*去除边框*/
+      outline: none; 
+      cursor: pointer; /*将鼠标箭头变成一只小手*/
+    }
+    .rate-content{     
+      display: flex;    /*flex将容器设置为弹性容器*/
+      flex-flow: row-reverse; /*元素反向排列*/
+    }
+    input[name="rate"] {      /*选中具备“name = rate”属性的input标签*/
+      font-family: "iconfont";  /*字体，需引用的link需要使用iconfont字体*/
+      font-size: 30px;  /*字体大小*/
+      padding-right: 10px; /*padding为内边距，magin为外边距*/
+      transition: all .4s ease;   /*transition过渡，all代表所有的星星，0.4S的延时，即会有一个过渡动画*/
+    }
+    input[name="rate"]::after{   /*after尾类*/
+      content: "\e61a"; /*\e61a*/
+      color: #999;
+    }
+    input[name="rate"]:checked::after{ /*还具备checked属性，即被点中后*/
+      content: "\e64d";  /*复制上面的link直接打开可以看到链接中星星的content代码\e64d*/
+      color: #ffa822;  /*变黄*/
+    }
+    input[name="rate"]:hover{
+      transform: scale(1.2); /*鼠标移上去时即具有“hover”属性时，星星变大*/
+    }
+    input[name="rate"]:hover::after{
+      content: "\e64d";
+      color: #ffa822;
+    }
+    input[name="rate"]:checked ~ input[name="rate"]::after { 
+      content: "\e64d";
+      color: #ffa822; /*将那个被点中的那个单选框的兄弟元素的为类变黄*/
+    }
+    input[name="rate"]:hover ~ input[name="rate"]::after {
+      content: "\e64d";
+      color: #ffa822;
+    }
+  </style>
+</head>
+<body>
+  <div class="rate-content">
+    <!-- 五个单选框 -->
+    <input type="radio" name="rate">  
+    <input type="radio" name="rate">
+    <input type="radio" name="rate">
+    <input type="radio" name="rate">
+    <input type="radio" name="rate">
+  </div>
+</body>
+</html>
