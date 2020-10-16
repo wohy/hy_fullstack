@@ -1,0 +1,42 @@
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /*最小高度，vh可视高度相对着设备屏幕的高度*/
+    background:#4c4c4c url('https://unsplash.it/1500/900?image=1021');
+    background-size: cover; /*背景图的大小，cover使图片去适应容器的大小，使其刚好覆盖满容器*/
+    display: flex; /*设置为弹性容器*/
+    justify-content: center; /*只有设置为弹性容器才有该属性，使容器中的子元素在x轴方向上居中显示*/
+    align-items: center;/*类似上面，是子元素在y轴居中显示*/
+}
+.wrapper{
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%); 使wrapper在body中居中*/
+
+    width: 850px;
+    display: flex; /*将父容器wrapper设置为弹性容器，则可使wrapper的子容器video和speed能在同一行显示*/
+}
+.speed{
+    background-color: #fff;
+    flex: 1; /*将父容器设置为弹性容器后，将子容器的flex设置为1，若wrapper中只有speed一个子容器时，
+    可100%继承wrapper的宽度，若有两个子容器且flex都设置为1时则将父容器宽度按1:1分配给各个子容器，flex设置的比为多少，这继承的宽度比为多少
+    而此例中video开始就已经占有了765px，所以父容器wrapper剩下的宽度再开始参与分配继承*/
+    margin: 10px; /*加一个外边距使其与video隔开，此时的10px也占用父容器的宽度，则又减少了speed继承到的宽度*/
+    border-radius: 50px;
+    /* text-align: center;   使文本1x居中显示 */
+    display: flex;
+    align-items: flex-start;/*从弹性开始的地方*/
+    overflow: hidden; /*超出则隐藏*/
+}
+.speed-bar{
+    /* width: 100%; 与speed宽度相同也可设置成 felx：1 当speed只有speed-bar一个子容器时即可*/
+    width: 100%;
+    height: 16.3%;
+    display: flex;
+    justify-content: center; /*x轴上居中*/
+    align-items: center; /*y轴上居中*/
+    background: linear-gradient(-170deg,#2376ae 0%, #c16ecf 100%); /*线性渐变,设置为0%的高度为蓝到100%的高度为紫色的渐变色*/
+    color: #fff;
+    cursor: pointer; /*鼠标显示变为一只小手*/
+}
