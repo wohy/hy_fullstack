@@ -27,9 +27,9 @@ Beverage.prototype.init = function() {
 
 var Tea = function() {
 } //原型继承
-Tea.prototype = new beverage();  //替换beverage的prototype
+Tea.prototype = new Beverage();  //替换beverage的prototype
 Tea.prototype.brew = function() {
-    console.log(' 用沸水浸泡茶叶');
+    console.log('用沸水浸泡茶叶');
 }
 Tea.prototype.pureInCup = function() {
     console.log('把茶水倒进杯子')
@@ -39,4 +39,4 @@ Tea.prototype.addCondiments = function() {
 }
 
 var oneTea = new Tea();
-onetea.init();
+oneTea.init();
