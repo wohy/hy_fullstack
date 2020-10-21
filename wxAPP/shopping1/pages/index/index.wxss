@@ -1,0 +1,34 @@
+/* pages/index/index.wxss */
+swiper {
+    height: 421rpx;   /*rpx为一半的px*/
+}
+.slide-image {
+    width: 100%;
+    height: 100%;
+}
+.selected-title{
+    width: 100%;
+    padding: 30rpx 0;
+    text-align: center;
+    color: #ab956d;
+}
+.select-bottom,
+.select-top{
+    width: 100%;
+    height: 375rpx;
+}
+
+.select-top-small{
+    width: 375rpx;
+    height: 375rpx;
+    float: left;
+
+}
+.select-top-small navigator,
+.select-bottom navigator,
+.select-bottom image,
+.select-top-small image{
+    display: block;
+    width: 100%;
+    height: 100%;
+}

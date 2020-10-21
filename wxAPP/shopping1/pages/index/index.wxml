@@ -1,0 +1,36 @@
+<!--pages/index/index.wxml-->
+<view class="main">
+    <swiper autoplay="{{true}}" interval="3000" circular="{{true}}" duration="{{duration}}" indicator-dots="{{true}}" indicator-active-color="#fff">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <!-- for+{{数组名}} 循环某个数组 -->
+            <swiper-item>
+                <image class="slide-image" src="{{item}}"/>   
+                <!-- 循环的imgUrls数组里的每一项 -->
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="selected">
+        <view class="selected-title">
+            <text>精选主题</text>
+        </view>
+        <view class="select-top">
+            <view class="select-top-small">
+                <navigator class="" url="../list/list">
+                 <image src="/image/s1.png" />
+                </navigator>
+            </view>
+             <view class="select-top-small">
+                <navigator class="" url="../list/list">
+                 <image src="/image/s2.png" />
+                </navigator>
+            </view>
+            <view class="select-bottom">
+                 <navigator class="" url="../list/list">
+                 <image src="/image/s3.png" />
+                </navigator>
+            </view>
+        </view>
+    </view>
+      
+</view>
+
