@@ -1,0 +1,28 @@
+/* pages/index/index.wxss */
+.wrapper{
+    margin-top: 16px;
+    overflow: hidden;
+}
+
+.group{
+    position: relative;
+    display: inline;    
+}
+
+.group-title{
+    border: 1px solid #000;
+    text-align: center;
+
+    position: absolute;
+    padding: 0;
+}
+.group-content{
+    height: 440rpx;
+
+}
+.group-content-item-img{
+    float: right;
+    padding-left: 30rpx;
+    height: 400rpx;
+    width: 500rpx;
+}
