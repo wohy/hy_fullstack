@@ -22,5 +22,5 @@
             </view>
         </view>
     </view>
-    <view class="no-more">暂时没有更多内容</view>
+    <view class="no-more">暂时没有更多内容...</view>
 </view>
