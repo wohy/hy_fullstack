@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // JS是一个单线程语言
+        // 代码从头执行到尾
+        // callback 是一个异步处理函数
+        // 事件需注册，放在事件池[]中  event loop
+        // 1. js是如何处理事件的？
+        // 2. 
+
+        document.body.addEventListener('click', function() {
+            alert(2);
+        },false);
+        document.body.addEventListener('click', function() {
+            alert(3);
+        },false);
+        document.body.addEventListener('click', function() {
+            alert(4);
+        },false);
+    </script>
+</body>
+</html>
