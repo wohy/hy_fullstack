@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const ages = [32, 15, 19, 12];
+        
+        // 在数组中找到大于18的元素
+        const adultPresent = ages.some(age => age >= 18)
+        console.log(adultPresent)
+
+        //判断一个数组中是否所有人都大于18
+        const allOldEnough = ages.every(age => age >= 18)
+        console.log(allOldEnough)
+    </script>
+</body>
+</html>
