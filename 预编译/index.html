@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // // let name = '蜗牛'
+        // // foo()   放在前时也可打印，函数声明也会使整体提升
+        // function foo() {
+        //     console.log(name);  //undefined
+        //     var name = '婷婷'    //var使name先到顶层(变量声明，声明提升)，可log在前，所以取不到name的赋值，只查询到name这个变量
+        // }
+        // foo()  
+
+        // var a = 1
+        // function fn(a) {
+        //     var a = 2
+        //     function a() {}
+        //     var b = a
+        //     console.log(a); //2
+        // }
+        // fn(3)
+
+        // function fn(a) {
+        //     console.log(a);   // function () {}
+        //     var a = 123;
+        //     console.log(a);  //123
+        //     function a() {};  //函数声明
+        //     console.log(a);  //123
+        //     var b = function() {};
+        //     console.log(b);   //function () {}
+        //     function d() {};
+        //     var d = a;
+        //     console.log(d); //123
+        // }
+        // fn(1)
+        // 预编译过程：AO:{
+        //             a: undefined ,1, function () {},123 
+        //             b: undefined 
+        //             d: undefined,function () {}
+        //           }
+        // 预编译后开始执行代码
+        
+        
+        // function test(a, b) {
+        //     console.log(a); //1
+        //     c = 0;
+        //     var c; //变量声明
+        //     a = 3;
+        //     b = 2;
+        //     console.log(b); //2
+        //     function b() {}
+        //     function d() {}
+        //     console.log(b); //2
+        // }      
+        // test(1) 
+        // AO:{
+        //     a: undefined, 1 ,3
+        //     b: undefined, function b() {}, 2
+        //     c: undefined, 0
+        //     d: function d() {}
+        // }
+
+
+        // var global = 100;
+        // function fn() {
+        //     console.log(global);
+        // }
+        // fn()
+        // 全局预编译：
+        // GO:{
+        //     global: undefined， 100
+        //     fn: function fn() {}
+        // }
+        // 函数执行前预编译：
+        // AO: {
+
+        // }
+        // 执行代码
+
+        global = 100;
+        function fn() {
+            console.log(global); //undefined
+            global = 200
+            console.log(global); //200
+            var global = 300
+        }
+        fn()
+        var global;
+       
+        // GO:{
+        //     global: undefined,  100
+        //     fn： function fn() {}
+        // }
+        // AO:{
+        //     global: undefined, 200 
+        // }
+        // 执行代码
+        // GO中的global变为100, 再开始执行fn()
+        // 先从AO中找，找不到再全局中找，第一个console.log(global);在AO中找到global为undefined则打印出undefined,不需继续向全局查找
+
+    </script>
+</body>
+</html>
