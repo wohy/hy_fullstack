@@ -17,16 +17,26 @@
     <!-- mouseDown mouseMove mouseUp -->
     <script>
         const drag = document.querySelector('.drag');
+        function dragEle(ele) {
+            
+        }
+
         drag.addEventListener('mousedown', () => {
             //箭头函数省略了function那个关键词改成了=>,其他参数大括号一样
             //若将事件绑定到drag上而不是document上，单鼠标移动到drag区域外时将无法拖动drag1
-            document.addEventListener('mousemove', (event) => {
+            
+            const onMove = (event) => {
                 // console.log()
                 let x = event.clientX, y = event.clientY;
                 drag.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            })
+            }
+            document.addEventListener('mousemove', onMove)
             //第一次按下鼠标后就将一直绑定在mousemove
-            
+
+            //第一次拖动完毕之后 把上一步事件取消掉
+            document.addEventListener('mouseup', () => {
+                document.removeEventListener('mousemove', onMove) //移除时，需传入取消事件的名字
+            })
         })
        
     </script>
