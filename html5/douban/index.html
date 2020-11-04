@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豆瓣</title>
+</head>
+<link rel="stylesheet" href="./index.css">
+<body>
+    <div id="anony-nav">
+        <div class="anony-nav-links">
+            <ui>
+                <li><a target="_blank" class="lnk-book" href="">豆瓣读书</a></li>
+                <li><a target="_blank" class="lnk-movie" href="">豆瓣电影</a></li>
+                <li><a target="_blank" class="lnk-music" href="">豆瓣音乐</a></li>
+                <li><a target="_blank" class="lnk-even" href="">豆瓣同城</a></li>
+                <li><a target="_blank" class="lnk-group" href="">豆瓣小组</a></li>
+                <li><a target="_blank" class="lnk-read" href="">豆瓣阅读</a></li>
+                <li><a target="_blank" class="lnk-fm" href="">豆瓣FM</a></li>
+                <li><a target="_blank" class="lnk-time" href="">豆瓣时间</a></li>
+                <li><a target="_blank" class="lnk-market" href="">豆瓣豆品</a></li>
+    
+            </ui>
+            
+        </div>
+        <h1>
+            <a href="https://www.douban.com">豆瓣</a>
+        </h1>
+        <div class="anony-srh">
+            <form action="https://www.douban.com/search" method="get">
+                <span class="inp"><input type="text" maxlength="60" size="12" 
+                    placeholder="书籍、电影、音乐、小组、小站、成员" name="q" autocomplete="off">
+                </span>
+                <span class="bn"><input type="submit" value="搜索"></span>
+            </form>
+        </div>
+    </div>
+    <div id="anony-reg-new" style="background-image: url(https://img9.doubanio.com/view/puppy_image/raw/public/16ad990ec23uwn790d4.jpg);">
+        <div class="wrapper">
+            ::before
+             <!-- <iframe style="height: 300px;width: 30px;" src="https://accounts.douban.com/passport/login_popup?login_source=anony" frameborder="0">
+                 #document
+                    <html>
+                        <head>
+                            <link type="text/css" rel="stylesheet" href="https://img3.doubanio.com/f/accounts/e54c1d250be79eb0aa52b8b8da82b7946183d6e8/passport/build/login/base.css">
+                        </head>
+                        <body>
+                            <div class="account-body login-wrap login-start account-anonymous">
+                                <div class="account-body-tabs">
+                                    <ul class="tab-start">
+                                        <li class="account-tab-phone on">短信登录/注册</li>
+                                        <li class="account-tab-account">密码登录</li>
+                                    </ul>
+                                    <ul class="tab-quick">
+                                        <li class="account-tab-scan">二维码登录</li>
+                                    </ul>
+                                    <div class="account-tab-switch">
+                                        <div class="account-tab-switch-icon">
+                                            <a class="quick icon-switch"></a>
+                                            <a class="start icon-switch"></a>
+                                        </div>
+                                        <div class="tab-switch-text">
+                                            <span class="quick">扫码登录</span>
+                                            <span class="start">短信登录/注册</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-tabcon-start">
+                                    <div class="account-from">
+                                        <div class="account-form-tips">
+                                            请仔细阅读
+                                            <a target= "_blank"href="https://accounts.douban.com/passport/agreement">豆瓣使用协议、隐私政策</a>
+                                        </div>
+                                        <div class="account-form-error">
+                                            <span class="hide"></span>
+                                        </div>
+                                        <div class="account-form-raw">
+                                            <label class="account-form-label">手机号：</label>
+                                            <div class="account-form-field account-form-field-phone">
+                                                <span class="icon clear-input hide">
+                                                </span>
+                                                <input type="phone"  name="phone" maxlength="13" class="account-form-input" placeholder="手机号" tabindex="1">
+                                                <div class="account-form-field-area-code">
+                                                    <div class="account-form-field-area-code-label js-choose-district">
+                                                        "+86"
+                                                        ::after
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+                                            ::after
+                                        </div>                                    
+                                        <div class="nation-select hide"></div>
+                                        <div class="account-form-raw">
+                                            <label class="account-form-label">验证码：</label>
+                                            <div class="account-form-field account-form-codes">
+                                                <input id="code" type="text" name="code" maxlength="6" class="account-form-input" placeholder="验证码" tabindex="2" autocomplete="off">
+                                                <div class="account-form-field-code">
+                                                    <a href="javascript:;">获取验证码</a>
+                                                  </div>
+                                            </div>
+                                            ::after
+                                        </div>
+                                        <div class="account-form-field-submit">
+                                            <a href="" class="btn btn-phone">登录豆瓣</a>
+                                        </div>
+                                    </div>
+                                    <div class="account-form-ft">
+                                            <p class="account-form-link">
+                                                <a href="https://help.douban.com/account?app=1#t1-q5" target="_blank" data-action="login_phone_nocode" class="help-link">收不到验证码</a>
+                                            </p>
+                                            ::after
+                                    </div>
+                                    <div class="account-form-3rd account-form-3rd-anonymous">
+                                            <div class="account-form-3rd-hd">第三方登录: </div>
+                                            <div class="account-form-3rd-bd">
+                                              
+                                              <a href="https://www.douban.com/accounts/connect/wechat/?from=&amp;redir=https%3A//www.douban.com/" class="link-3rd-wx link-3rd-wx-on" target="_top" title="用微信登录">wechat</a>
+                                              <a href="https://www.douban.com/accounts/connect/sina_weibo/?from=&amp;redir=https%3A//www.douban.com/&amp;fallback=" class="link-3rd-wb link-3rd-wb-on" target="_top" title="用微博登录">weibo</a>
+                                            </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </body>
+                    </html>
+                </iframe> -->
+            <div class="app">
+                <p class="app-title">
+                    "豆瓣"
+                    <span>6.0</span>
+                </p>
+                <p class="app-slogan">
+                    ::after
+                </p>
+                <a href="https://www.douban.com/doubanapp/app?channel=nimingye" class="lnk-app">
+                    下载豆瓣App
+                </a>
+                <div class="app-qr">
+                    <a href="javascript:void 0;" class="lnk-qr" id="expand-qr">
+                    <img src="https://img3.doubanio.com/f/sns/0c708de69ce692883c1310053c5748c538938cb0/pics/sns/anony_home/icon_qrcode_green.png" width="28" height="28">
+                    </a>
+                    <div class="app-qr-expand">
+                        <img src="https://img3.doubanio.com/f/sns/1cad523e614ec4ecb6bf91b054436bb79098a958/pics/sns/anony_home/doubanapp_qrcode.png" height="160" width="160">
+                        <p>IOS / Andriod 扫码直接下载</p>
+                    </div>
+                </div>
+            </div>
+            ::after
+        </div>
+    </div>
+</body>
+</html>
