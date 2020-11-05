@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 特殊情况1
+        // eval()  能够把不存在该词法作用域中的代码强行移入该域中并生效 ， 欺骗词法作用域
+        // function foo (str, a) {
+
+        //     eval(str) // var b = 3 
+        //     console.log(a, b);  // 1, 3
+        // }
+        // var b = 2
+        // foo('var b = 3', 1)
+
+        // 特殊情况2
+        // with 可以帮助修改对象的属性， 如果对象没有该属性，则给对象添加该属性， 并且将该属性完全隔离为一个词法作用域
+        // var obj = {
+        //     a : 1,
+        //     b : 2,
+        //     c : 3
+        // }
+        // //让对象中的各个属性值都加1
+        // with (obj) {
+        //     a = 2,
+        //     b = 3,
+        //     c = 4
+        // }
+
+        // function foo(obj) {
+        //     with (obj) {  //obj.a = 2
+        //         a = 2
+        //     }
+        // }
+        // var o1 = {
+
+        //     a : 3
+        // }
+        // var o2 = {
+        //     b : 3
+        // }
+        // foo(o1)   // 2
+        // foo(o2)   
+        // console.log(o2.a);  //undefined
+        // console.log(a);  //2
+
+    
+        function foo(a) {
+            var b = 2
+
+            return function bar() {
+                console.log(4);
+            }
+            var c = 3
+        }
+        var test = foo()  //此时test相当于bar函数
+        test()  //4
+        // foo()()  //4
+        
+    </script>
+</body>
+</html>
