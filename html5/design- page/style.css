@@ -53,3 +53,40 @@
     width: 100%;
   }
 }
+.text {
+  height: 7%;
+  width: 40%;
+  padding: 13% 50% 3% 10%;
+  background-color: #fff;
+}
+.t1 {
+  font-size: 16px;
+  line-height: 50px;
+  padding-bottom: 4%;
+  text-align: left;
+  color: rgba(255, 109, 109, 1);
+  letter-spacing: 3px;
+}
+.t2 {
+  font-size: 40px;
+  line-height: 50px;
+  text-align: left;
+  letter-spacing: 4px;
+  font-family: Exo-Medium;
+  color: rgba(40, 40, 40, 1);
+  line-height: 50px;
+  padding-bottom: 12%;
+}
+.t2 span {
+  color: rgba(255, 109, 109, 1);
+}
+.t3 {
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 1px;
+  color: rgba(40, 40, 40, 0.66);
+  /* padding-top: 22%; */
+}
+.t3 span {
+  /* padding-bottom: 11%; */
+}

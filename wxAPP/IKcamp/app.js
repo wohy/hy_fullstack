@@ -33,7 +33,11 @@ App({
       }
     })
   },
-  globalData: {
-    userInfo: null
+  globalData: {  //其中的变量能够全局所有的页面引用到
+    userInfo: null,
+    user: {
+      name: '',
+      avator: ''
+    }
   }
 })

@@ -10,7 +10,7 @@ Page({
 
   updataArrList() {
     let arr = this.data.arrList
-    arr.push(...this.createData()) /*...,为解构，将数组中的每一个成员都取出来 */
+    arr.push(...this.createData()) /*...,为解构，将数组中的每一个成员都取出来 ,这里放的是假数据，需在这里加上接口数据请求*/
     this.setData({
       arrList: arr
     })
