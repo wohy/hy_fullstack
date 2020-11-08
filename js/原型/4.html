@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //new 构造函数的三部曲
+        //在该构造函数中创建一个this = {}空对象，将空对象中的_proto_属性的值变为Person.prototype,返回该this对象
+        function Person() {
+
+        }
+        var person = new Person()
+        console.log(Person); //打印一个空对象，有一个_proto_对象原型
+
+    </script>
+</body>
+</html>
