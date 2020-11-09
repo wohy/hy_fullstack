@@ -7,13 +7,53 @@
 </head>
 <body>
     <script>
-        //new 构造函数的三部曲
-        //在该构造函数中创建一个this = {}空对象，将空对象中的_proto_属性的值变为Person.prototype,返回该this对象
+        // Person.prototype.name = 'wn'
+        // //new 构造函数的三部曲
+        // //在该构造函数中创建一个this = {}空对象，将空对象中的_proto_属性的值变为Person.prototype,返回该this对象
+        // function Person(name) {
+        //     // this.name = name  就相当于在下面的this空对象中加入一个值为‘wn’的属性
+        //     // var this = {
+        //     //     __proto__: Person.prototype
+        //     // }
+        //     // return this
+        // }
+        // var person = new Person()
+        // // console.log(Person); //打印一个空对象，有一个_proto_对象原型
+        // console.log(person.__proto__); //打印出一个对象 {name: "wn", constructor: f }
+
+        // var test = {} 
+
+        // // 创建一个对象相当于做了一个 var obj = new Object()操作
+        // var obj = {
+        //     name: '蜗牛'
+        // }
+        // // console.log(obj.__proto__);
+        // person.__proto__ = obj   //改变隐式原型的指向，指向obj
+        // console.log(person.name); //打印出：蜗牛
+        // // __proto__指向谁，就向谁那里找属性
+    </script>
+
+    <script>
+        //深浅拷贝
+
+        // var a = 1
+        // var b = a //将b的地址指针指向a为1的地址，b为1
+        // a = 2  //b此时还为1
+
+        // Person.prototype.name = 'wn'
+        Person.prototype = null
         function Person() {
 
         }
         var person = new Person()
-        console.log(Person); //打印一个空对象，有一个_proto_对象原型
+        // Person.prototype.name = '蜗牛'  //深拷贝，克隆，不会受原始对象变化的影响
+
+        Person.prototype = {
+            name: '蜗牛'             //浅拷贝
+        }
+        console.log(person.name);
+
+
 
     </script>
 </body>
