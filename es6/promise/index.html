@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getSong(callback) {
+            $.ajax({ //接口请求为异步的, 此时的getSong为异步函数
+                url: 'http://neteasecloudmusicapi.zhaoboy.com/top/list?idx=1',//请求接口路径
+                dataType: 'JSON',
+                success: function(res) {
+                    console.log(res.playlist.tracks[0].name);  //拿到的数据会以JSON的形式返回到res
+                    callback()
+                }
+            })
+        }
+        function singSong() {
+            console.log('sing...');
+        }
+
+
+        getSong(singSong) //取代callback(),此时方可先拿到歌再sing，若没有回调函数，直接将singSong放在外面执行，由于getSong是异步的，singSong为同步的，所以会先sing再拿到歌
+        //但若异步函数较多是则需大量的回调函数，则代码效率会很低，这时es6的promise对象可解决这一问题
+
+    </script>
+</body>
+</html>
