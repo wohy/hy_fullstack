@@ -31,7 +31,7 @@
             const img = document.getElementById('img');
             const preview = document.getElementById('preview');  //先拿到preview
             const ctx = preview.getContext('2d');    //拿到preview的上下文
-            ctx.drawImage(img, 0, 0, 290, 290);  //画出img图片 传入的img要是一个DOM节点
+            // ctx.drawImage(img, 0, 0, 290, 290);  //画出img图片 传入的img要是一个DOM节点
             file.addEventListener('change', (event) => {
                 let file = event.target.files[0];
                 console.log(file);
@@ -44,12 +44,17 @@
                 // ctx.drawImage(file, )
                 // 先预览 avatar(传入的图片)才能开始画 需先将图片的src填入
                 const avater = document.getElementById('avatar')
+                //异步执行
                 let fileReader = new FileReader();  //读取文件的接口 实例
-                fileReader.readAsDataURL(file)  //上传的图片读为data类型url，即读到图片的地址
                 fileReader.onload = function(result) {   //判断读完的API onload
                     // console.log(fileReader.result);  //传入一张图片后，此时打印的为  data://image/jpeg;base64,/xxxxxxxxx等一长串代码
-                    avater.src = fileReader.result;  //将读到的地址传给ID为avatar的那个img的src中
+                    avater.src = fileReader.result;  //将读到的地址传给ID为avatar的那个img的src中                  
                 }
+                avater.onload = function() {
+                    ctx.drawImage(avatar, 0, 0, 290, 290);
+                    ctx.drawImage(img, 0, 0, 290, 290);  //此时的avater和img会在一张画布上
+                }
+                fileReader.readAsDataURL(file)  //上传的图片读为data类型url，即读到图片的地址
             })  
         }
     </script>
