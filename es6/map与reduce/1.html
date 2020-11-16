@@ -1,0 +1,47 @@
+<script>
+    // es6 push map forEach filter reduce every some
+    // es6 map 映射作用
+    let arr = [{a: 1}, {a: 2}, {a: 3}]
+    // 拿到一个新的数组[1, 2，3]
+    let newArr = arr.map((item) => {
+        // console.log(item);
+        // arr 能循环每一项 并返回一个新的数组
+        return item.a * 2  //原返回一个数组[1, 2, 3] *2后返回[2, 4, 6]
+    })
+    // 使用forEach遍历实现时
+    let res = []
+    arr.forEach((item) => {
+        console.log(item);
+        res.push(item.a)
+    })
+
+    console.log(newArr);
+
+
+    // 要形成<li>1</li> <li>2</li> <li>3</li>效果
+    let arr1 = arr.map((item) => {
+        return `<li>${item.a}</li>`  //将返回的值 1,2,3 通过map依次映射到item接收，在将item中对应a的属性依次放入<li>标签中
+    })
+
+    // reduce实现 数组求和
+    let arr2 = [1, 2, 3, 4, 5, 6];
+    let sum = arr2.reduce((pre, item) => {
+        return pre + item;
+    }, 0) //0代表pre初始值 pre记录上一次的值，并能保留到下一次，item为当前的返回值，如此就实现了累加
+    console.log(sum);
+
+    let arr3 = [{a: 1}, {b: 2}, {c: 3}]
+    // 将arr3合成为一个{a: 1, b: 2, c:3}
+    //  实现步骤： 
+        //  1. pre: {}, item: {a: 1}  => {a: 1}
+        //  2. pre: {a: 1}, item: {b: 2}  => {a: 1, b:2}
+        //  1. pre: {a: 1, b: 2}, item: {c: 3}  => {a: 1, b: 2, c: 3}
+
+    let arr4 = arr3.reduce((pre, item) => {
+        return{
+            ...pre,
+            ...item   
+        }   // 将pre item解构后连接 返回一个对象， 或直接使用object.assign()实现对象的连接
+
+    }, {})  // pre初始为{}
+</script>
