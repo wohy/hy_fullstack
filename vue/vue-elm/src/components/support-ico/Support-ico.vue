@@ -6,87 +6,83 @@
 export default {
   props: {
     size: {
-      type: Number,
+      type: Number
     },
     type: {
-      type: Number,
-    },
+      type: Number
+    }
   },
   computed: {
     iconCls() {
-      const classMap = [
-        "decrease",
-        "discount",
-        "special",
-        "invoice",
-        "guarantee",
-      ];
-      return `icon-${this.size} ${classMap[this.type]}`;
-    },
-  },
-};
+      const classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+      return `icon-${this.size} ${classMap[this.type]}`
+    }
+  }
+}
 </script>
 
-  
 <style lang='stylus' scoped>
 @import '../../common/stylus/mixin.styl';
-.support-icon 
+.support-ico
   display inline-block
   background-repeat no-repeat
-.icon-1 
+.icon-1
   width 12px
   height 12px
   background-size 12px 12px
-  &.decrease 
+  &.decrease
     bg-image('decrease_1')
-  &.discount 
+  &.discount
     bg-image('discount_1')
-  &.special 
+  &.special
     bg-image('special_1')
-  &.invoice 
+  &.invoice
     bg-image('invoice_1')
-  &.guarantee 
+  &.guarantee
     bg-image('guarantee_1')
+
 .icon-2
   width 16px
   height 16px
   background-size 16px 16px
-  &.decrease 
+  &.decrease
     bg-image('decrease_2')
-  &.discount 
+  &.discount
     bg-image('discount_2')
-  &.special 
+  &.special
     bg-image('special_2')
-  &.invoice 
+  &.invoice
     bg-image('invoice_2')
-  &.guarantee 
+  &.guarantee
     bg-image('guarantee_2')
-.icon-3 
+
+.icon-3
   width 12px
   height 12px
   background-size 12px 12px
-  &.decrease 
+  &.decrease
     bg-image('decrease_3')
-  &.discount 
+  &.discount
     bg-image('discount_3')
-  &.special 
+  &.special
     bg-image('special_3')
-  &.invoice 
+  &.invoice
     bg-image('invoice_3')
-  &.guarantee 
+  &.guarantee
     bg-image('guarantee_3')
+
 .icon-4
   width 16px
   height 16px
   background-size 16px 16px
-  &.decrease 
+  &.decrease
     bg-image('decrease_4')
-  &.discount 
+  &.discount
     bg-image('discount_4')
   &.special
     bg-image('special_4')
-  &.invoice 
+  &.invoice
     bg-image('invoice_4')
-  &.guarantee 
+  &.guarantee
     bg-image('guarantee_4')
 </style>
