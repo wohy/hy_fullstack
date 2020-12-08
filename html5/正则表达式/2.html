@@ -1,0 +1,29 @@
+<script>
+  let html = `
+  <div>
+    {{name}}
+    <p>
+      {{age}}
+    </p>
+  </div>
+  `
+  let obj = {
+    name: '小米',
+    age: 19
+  }
+
+  function compiler(str, obj) {
+    // 需找到{{}} 将里面的内容提取出来
+    let reg = /{{([a-z]{1,})}}/g;
+    let info = /{{([a-z]{1,})}}/g.exec(str);
+    while(info) {
+      // console.log(info);
+      let k = info[1]  //拿到{{}}里面的内容
+      let v = obj[k];
+      str = str.replace(info[0],v)
+      info = /{{([a-z]{1,})}}/g.exec(str);
+    }
+    return str
+  }
+  compiler(html, obj) // 会返回<div>小米<p>19</p></div>
+</script>
