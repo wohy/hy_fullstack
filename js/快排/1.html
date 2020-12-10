@@ -1,0 +1,42 @@
+<script>
+  // 若数组中的元素为对象时
+  let arr2 = [{age: 18}, {age: 19}, {age: 1}]
+  // 只需
+  arr2.sort((a, b) => {
+    return a.age - b.age
+  })
+
+  // 数组的快速排序
+  function cb(a, b) {
+    return a - b;   //通过控制 a - b 或 b - a来控制降序升序
+  }
+  function partition(arr, left, right) {
+    if (left >= right) return;
+    let privt = arr[left];
+    let i = left, j = right;
+    while(i < j) {
+      // 在右边找到 < 基准值的数
+      // arr[j] <= privt 等同于 cb(arr[j], privt) <= 0
+      while(cb(arr[j], privt) <= 0 && i < j) {
+        j --;
+      }
+      arr[i] = arr[j];
+      // 在左边找到 > 基准值的数
+      // arr[i] >= privt 等同于 cb(arr[i], privt) >= 0
+      while(cb(arr[i], privt) >= 0 && i < j) {
+        i ++;
+      }
+      arr[j] = arr[i];
+    }
+    // 由于值的交换使基准值会丢失，基准值的位置即为此时i指向的位置
+    arr[i] = privt;
+    // 递归基准值左右区间
+    partition(arr, left, i - 1);
+    partition(arr, i + 1, right);
+  }
+  function sort(arr) {
+    partition(arr, 0, arr.length - 1);
+    return arr;
+  }
+  console.log(sort([-1, -2, -4, -6, 9, -9]));
+</script>
