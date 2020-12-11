@@ -11,7 +11,9 @@
     </p>
 
     <!-- 路由入口 -->
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -31,6 +33,20 @@ export default {
 </script>
 
 <style>
+.fade-enter{
+  opacity: 0;
+}
+.fade-leave{
+  opacity: 1;
+}
+.fade-enter-active{
+  /* transition 过渡 某个属性发生变化时 给点时间去过渡 */
+  transition: opacity 1s;
+}
+.fade-leave-active{
+  opacity: 0;
+  /* transition: opacity 1s; */
+}
 .page{
   text-align: center;
 }

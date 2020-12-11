@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 长按 点(click) 滑动 
+  长按：计时器 mouseUp(leave)
+  移动click
+  -->
+  <div class="wrap">
+  </div>
+  <script>
+    const wrap = document.querySelector('.wrap');
+    let timeout = null;
+    function start() {
+      timeout = setTimeout(() => {
+        console.log('press 发生了');
+      }, 500)
+    }
+    wrap.addEventListener('touchstart', () => {
+      start();
+    })
+    function end() {
+      clearTimeout(timeout);
+    }
+    wrap.addEventListener('touchend', () => {
+      end();
+    })
+  </script>
+</body>
+</html>

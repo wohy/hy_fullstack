@@ -30,8 +30,36 @@
 5. 开始在router的index.js中开始配置router, 指定好其path、component，path设为'/'即为该根目录，打开不做任何操作显示的页面，设置为什么路径，路由入口所在页面的to''就会跳到那个页面
 6. 配置某个路由的子路由，在index.js中的某个路由配置children属性，属性值这为该路由下的子路由，子路由路口引入到该路由的.vue下
 
+7. 路由传参：
+  - 通过route的name属性进行路由跳转，设置其params对其传参
+  ```
+  <router-link :to="{name:'Detail', params:{username: '张三'}}">张三</router-link>
+  ```
+  to为router-link的一个属性，会动态的改变，所以需要通过':',即'v-bind'进行绑定
+  在页面上通过{{$route.params.username}}进行展示
+  
+  - 通过在路由配置时在path后加上一个参数xxx，如path:'/detail:xxx'，传参时，只需在       name:'Detailxxx',此时的xxx会自动认为是传入的参数
+  在页面上通过{{$route.params.xxx}}取到id进行展示
 
 
+8. 路由的重定向
+  - 在路由配置中加一个redirect属性，值为重定向的路径
+  ```redirect: '/login'``
+  加载失败，页面跳到根路径下的login页面
+9. 路由别名
+  - alias属性
+  配置时加上，如alias:'/hello', 实际上是Detail，没有hello这个路径，但to='/hello',也会跳到hello页面
+10. 路由跳转动画
+  transition组件
+  将路由入口标签放在transition标签内部，并给transition一个name属性值为xxx
+  在通过样式来实现跳转动画
+  - .xxx-enter 为动画进入前的状态
+  - .xxx-leave 为动画离开后的状态
+  - .xxx-enter-active 动画进入的时候 
+  - .xxx-leave-active 动画离开的时候
+  CSS样式里的transition 指过渡 某个属性发生变化时 给点时间去过渡
+11. 路由的钩子函数
+  1小时01分处
 
 ## Project setup
 ```
