@@ -39,7 +39,15 @@
   在页面上通过{{$route.params.username}}进行展示
   
   - 通过在路由配置时在path后加上一个参数xxx，如path:'/detail:xxx'，传参时，只需在       name:'Detailxxx',此时的xxx会自动认为是传入的参数
-  在页面上通过{{$route.params.xxx}}取到id进行展示
+  在页面上通过{{$route.params.xxx}}取到参数xxx进行展示
+
+  - this.$router.push({path: '/', query: { id: 123 }})
+  完成页面的跳转，并可转入一个query参数，在首页页面上{{$route.query.id}}即可拿到传入的参数进行展示，点击刷新，页面上接收的参数依然会显示
+  然而，此时跳往的页面地址后会加上?id='123'的后缀，而暴露出来，不够安全
+  所以需用name属性来完成指定页面的跳转，这里跳转到Home页面，使用params来传递参数
+    - this.$router.push({name:'Home', params: { id: 1234 }})、
+    此时接收时使用{{$route.params.id}
+    可点击刷新后，页面上接收到的参数将消失
 
 
 8. 路由的重定向
@@ -59,7 +67,17 @@
   - .xxx-leave-active 动画离开的时候
   CSS样式里的transition 指过渡 某个属性发生变化时 给点时间去过渡
 11. 路由的钩子函数
-  1小时01分处
+  - beforeEnter: (to, from, next) => { 
+      console.log(to);
+      console.log(from);
+      next()
+    }  //回调函数  
+
+12. vue中的this
+- main.js中的
+render: h => h(App),
+使每一个.vue界面都有了一个Vue的实例
+所以面向对象的方法中的this会指向Vue实例 
 
 ## Project setup
 ```
