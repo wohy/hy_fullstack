@@ -7,6 +7,7 @@
           <h1 class="name">{{seller.name}}</h1>
           <div class="star-wrapper">
             <!-- 星星 -->
+            <i class="el-icon-star-off"></i>
           </div>
 
           <div class="title">
@@ -15,10 +16,10 @@
             <div class="line"></div>
           </div>
 
-          <ul class="supports">
-            <li class="supports-item">
-              <support-ico :size=1 :type=0></support-ico>
-              <span class="text">在线支付满28减5</span>
+          <ul class="supports" v-if="seller.supports">
+            <li class="supports-item" v-for="(item, index) in seller.supports" :key="index">
+              <support-ico :size=1 :type=item.type></support-ico>
+              <span class="text">{{item.description}}</span>
             </li>
           </ul>
 
@@ -29,11 +30,11 @@
           </div>
 
           <div class="bulletin">
-            <p class="content">粥品香坊其烹饪粥料的秘方源于中国千年古法，在融和现代制作工艺，由世界烹饪大师屈浩先生领衔研发。坚守纯天然、0添加的良心品质深得消费者青睐，发展至今成为粥类的引领品牌。是2008年奥运会和2013年园博会指定餐饮服务商。</p>
+            <p class="content">{{seller.bulletin}}</p>
           </div>
         </div>
       </div>
-      <div class="detail-close">
+      <div class="detail-close" @click.stop="hide">
         <i class="icon-close"></i>
       </div>
     </div>
@@ -49,6 +50,11 @@ export default {
       default() {
         return {}
       }
+    }
+  },
+  methods:{
+    hide() {
+      this.$emit('hide', false)
     }
   },
   components: {
@@ -92,6 +98,12 @@ export default {
         margin-top 8px
         padding 2px 0
         text-align center
+        width 30px
+        height 30px
+        display flex
+        .el-icon-star-off
+          flex 1
+          color yellow 
       .title
         display flex
         width 80%
