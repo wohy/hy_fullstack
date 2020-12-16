@@ -66,6 +66,7 @@
 
 - Vue中处理异步
   this.$nextTick()方法, 执行一个回调，将需要在dom渲染完成后, 才能正常进行的异步步骤放入到函数体中
+
 ## Project setup
 ```
 npm install

@@ -1,3 +1,9 @@
+## 运行mongo
+- 打开cmd
+- 输入 :d
+- cd D:\mongodb\Server\4.4\bin
+- mongo 运行mongo
+
 ## mongo 的交互语句
 - show dbs;
 - use tutorial; db中没有，会自动创建一个tutorial数据库
