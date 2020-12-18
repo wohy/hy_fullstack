@@ -21,4 +21,3 @@
   - request-promise http模块
   - superagent  发起请求
   - superagent-charset  防止乱码
-

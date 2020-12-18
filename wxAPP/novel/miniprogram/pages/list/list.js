@@ -1,17 +1,33 @@
 // miniprogram/pages/list/list.js
+const db = wx.cloud.database()
+const app = getApp()
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    bookItem: []
   },
+
+  // navTo(e) {
+  //   console.log(e);
+  //   let url = e.currentTarget.dataset.url
+  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(options);
+    db.collection('book').get().then(res => {
+      // console.log(res);
+      this.setData({
+        bookItem: res.data
+      })
+    })
 
   },
 
