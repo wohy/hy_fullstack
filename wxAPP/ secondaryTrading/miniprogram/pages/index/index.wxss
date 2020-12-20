@@ -1,0 +1,84 @@
+/* miniprogram/pages/index/index.wxss */
+.swiper{
+  margin-top: 10rpx;
+  height: 300rpx;
+  width: 96%;
+  margin-left: 2%;
+  /* border-radius: 5%; */
+  overflow: hidden;
+}
+.slide-image{
+  height: 100%;
+  width: 100%;
+  border-radius: 5%;
+}
+.icon{
+  margin-top: 10rpx;
+  display: flex;
+  height: 300rpx;
+  width: 100%;
+  flex-direction: column;
+  background-color: rgb(226, 226, 220);
+  border-radius: 8%;
+}
+.bottom, .top{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+.home, .electronic, .book, .clothes, .shooes, .phone{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.icon image{
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+.icon text{
+  color: darkgray;
+}
+
+.homeShopping{
+  padding-top: 20rpx;
+  width: 96%;
+  margin-left: 2%;
+  /* flex-direction: row; */
+  /* height: 800rpx; */
+}
+.homeShopping .title{
+  color: darkgray;
+  background-color: rgb(241, 236, 236);
+  height: 40rpx;
+  width: 96%;
+  margin-left: 2%; 
+}
+.Shopping{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20rpx;
+}
+.shopItem{
+  display: flex;
+  flex-direction: column;
+  /* width: 200rpx; */
+  /* height: 250rpx; */
+  justify-content: center;
+  align-items: center;
+}
+.shopItem .imageUrl{
+  /* flex: 1; */
+  margin-right: 20rpx;
+  width: 80%;
+  height: 300rpx;
+}
+.shopItem .shopName{
+  color: rgb(161, 161, 161);
+}
+.shopItem .price{
+  color: rgb(214, 63, 63);
+}

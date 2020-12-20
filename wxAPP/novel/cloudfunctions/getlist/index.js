@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
   const data = result.text || ''
   // 用cheerio读取整个html文件，定义为一个$符，此时$代表的是整个html文件
   const $ = cheerio.load(result.text)
-  // jquary 语法 找到类名为hot下的image标签  此时的hotList为一个数组
+  // jquary 语法 找到类名为hot下的类名为image的标签  此时的hotList为一个数组
   let hotList = $('.hot').find('.image')
   let hotData = []  // 热榜
   for (let i = 0; i < hotList.length; i++) {

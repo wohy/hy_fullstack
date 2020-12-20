@@ -1,0 +1,63 @@
+<!-- miniprogram/pages/index/index.wxml -->
+<view class="searchBar">
+  <van-search value="{{ value }}" shape="round" background="#be3948" placeholder="请输入搜索关键词" />
+</view>
+<view class="Swiper">
+  <swiper class="swiper" circular="true" indicator-dots="true" indicator-color="rgba(0,0,0,.3)" autoplay="true" interval="3000" duration="500">
+    <block wx:for="{{backGroundImg}}" wx:key="index">
+      <swiper-item>
+        <image class="slide-image" src="{{item}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class="icon">
+  <view class="top">
+    <view class="home">
+      <image class="" src="../../images/home.png" bindload="" />
+      <text>家用电器</text>
+    </view>
+    <view class="electronic">
+      <image class="" src="../../images/electronic.png" bindload="" />
+      <text>电子/数码</text>
+    </view>
+    <view class="book">
+      <image class="" src="../../images/book.png" bindload="" />
+      <text>书籍</text>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="clothes">
+      <image class="" src="../../images/clothes.png" bindload="" />
+      <text>服饰</text>
+    </view>
+    <view class="shooes">
+      <image class="" src="../../images/shooes.png" bindload="" />
+      <text>潮鞋</text>
+    </view>
+    <view class="phone">
+      <image class="" src="../../images/phone.png" bindload="" />
+      <text>手机</text>
+    </view>
+  </view>
+</view>
+<view class="homeShopping">
+  <view class="title">家用电器</view>
+  <view class="Shopping">
+    <view class="shopItem" wx:for="{{homeImageUrl}}" wx:key="index">
+      <image class="imageUrl" src="{{item.imageUrl}}"/>
+      <text class="shopName">{{item.shopName}}</text>
+      <text class="price"><text>￥</text>{{item.price}}</text>
+    </view>
+  </view>
+</view>
+<view class="Shopping">
+  <view class="title">家用电器</view>
+  <view class="Shopping">
+    <view class="shopItem" wx:for="{{homeImageUrl}}" wx:key="index">
+      <image class="imageUrl" src="{{item.imageUrl}}"/>
+      <text class="shopName">{{item.shopName}}</text>
+      <text class="price"><text>￥</text>{{item.price}}</text>
+    </view>
+  </view>
+</view>
