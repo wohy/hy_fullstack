@@ -41,20 +41,31 @@
     </view>
   </view>
 </view>
-<view class="homeShopping">
+
+<view class="hotShoppingItem">
+  <view class="lines"></view>
+  <image src="../../images/hot.png"></image>
+  <view class="hotShopping">
+    热卖商品
+  </view>
+  <image src="../../images/hot.png"></image>
+  <view class="lines"></view>
+</view>
+
+<view class="shoppingInfo">
   <view class="title">家用电器</view>
   <view class="Shopping">
-    <view class="shopItem" wx:for="{{homeImageUrl}}" wx:key="index">
+    <view class="shopItem" wx:for="{{homeImageUrl}}" wx:key="index" data-url="{{item.imageUrl}}" data-price="{{item.price}}" data-shopName="{{item.shopName}}">
       <image class="imageUrl" src="{{item.imageUrl}}"/>
       <text class="shopName">{{item.shopName}}</text>
       <text class="price"><text>￥</text>{{item.price}}</text>
     </view>
   </view>
 </view>
-<view class="Shopping">
-  <view class="title">家用电器</view>
+<view class="shoppingInfo">
+  <view class="title">电子/数码/电脑</view>
   <view class="Shopping">
-    <view class="shopItem" wx:for="{{homeImageUrl}}" wx:key="index">
+    <view class="shopItem" wx:for="{{eleImageUrl}}" wx:key="index">
       <image class="imageUrl" src="{{item.imageUrl}}"/>
       <text class="shopName">{{item.shopName}}</text>
       <text class="price"><text>￥</text>{{item.price}}</text>

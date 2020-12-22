@@ -43,26 +43,63 @@
   color: darkgray;
 }
 
-.homeShopping{
+.hotShoppingItem{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin-top: 20rpx;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.hotShoppingItem .lines{
+  background-color: red;
+  height: 6rpx;
+  width: 200rpx;
+}
+
+.hotShopping{
+  width: 200rpx;
+  height: 50rpx;
+  background: red;
+  text-align: center;
+  font-weight: bolder;
+  color: aliceblue;
+}
+.hotShoppingItem image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+
+
+.shoppingInfo{
   padding-top: 20rpx;
   width: 96%;
   margin-left: 2%;
-  /* flex-direction: row; */
-  /* height: 800rpx; */
 }
-.homeShopping .title{
+
+.shoppingInfo .title{
   color: darkgray;
   background-color: rgb(241, 236, 236);
   height: 40rpx;
   width: 96%;
   margin-left: 2%; 
 }
+/* .shoppingInfo .title::before{
+  width: 40rpx;
+  height: 40rpx;
+  background-color: rgb(243, 62, 62);
+} */
+
 .Shopping{
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 20rpx;
 }
 .shopItem{
+  margin-top: 10rpx;
   display: flex;
   flex-direction: column;
   /* width: 200rpx; */

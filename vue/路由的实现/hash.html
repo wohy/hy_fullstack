@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- #/  -->
+  <ul>
+    <li><a href="#/home">home</a></li>
+    <li><a href="#/about">about</a></li>
+  </ul>
+
+  <!-- 渲染对应的url -->
+  <div id="routeView"></div>
+
+  <script>
+    let routeView = document.getElementById('routeView')
+
+    window.addEventListener('hashchange', () => {
+      let hash = location.hash
+      // console.log(hash);
+      routeView.innerHTML = hash
+    })
+    // DOMContentLoaded 监听页面初次渲染，就要监听到hash的改变，及在初次加载时就可以渲染hash对应的页面
+    window.addEventListener('DOMContentLoaded', () => {
+      if(!location.hash) {
+        // 如果没有hash，则定位到根目录下
+        localtion.hash = '/'
+      }else {
+        // 有的话对该hash值对应的页面进行渲染
+        let hash = location.hash
+        routeView.innerHTML = hash
+      }
+    })
+  </script>
+</body>
+</html>

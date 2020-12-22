@@ -38,29 +38,56 @@ Page({
         shopName: '双开门冰箱',
         price: '2999'
       },
+    ],
+    eleImageUrl: [
+      {
+        imageUrl: '../../images/ele1.jpg',
+        shopName: '显示器',
+        price: '2400'
+      },
+      {
+        imageUrl: '../../images/ele2.jpg',
+        shopName: '劳力士手表',
+        price: '30000'
+      },
+      {
+        imageUrl: '../../images/ele3.jpg',
+        shopName: 'IWC手表',
+        price: '40000'
+      },
+      {
+        imageUrl: '../../images/ele4.jpg',
+        shopName: 'GENEVE手表',
+        price: '43380'
+      },
+      {
+        imageUrl: '../../images/ele5.jpg',
+        shopName: '照相机',
+        price: '3000'
+      },
     ]
   },
 
-  getShopList() {
-    wx.showLoading({
-      title: '正在加载'
-    })
-    wx.cloud.callFunction({
-      name: 'getShopList',
-      data: {}
-    }).then(res => {
-      console.log(res);
-      wx.hideLoading();
-    })
+  // getShopList() {
+  //   wx.showLoading({
+  //     title: '正在加载'
+  //   })
+  //   wx.cloud.callFunction({
+  //     name: 'getShopList',
+  //     data: {}
+  //   }).then(res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //   })
       
-  },
+  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // this.getShopList()
-    console.log(options);
+    // console.log(options);
   },
 
   /**
