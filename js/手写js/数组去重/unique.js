@@ -20,6 +20,7 @@ let array2 = [1, 1, '1', 2, 2, 'a', 'b', 'A']
 // }
 
 
+// 'A' 'a'去重  underscore的_uniq API接口实现
 function unique(array, isSorted, iteratee) {
   let res = [];
   let seen = [];
