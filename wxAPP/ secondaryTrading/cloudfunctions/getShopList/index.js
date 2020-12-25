@@ -11,22 +11,23 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   let serverUrl = "https://2.jd.com/"
-  const result = await superagent.get(serverUrl).charset('gb2312')
+  const result = await superagent.get(serverUrl).charset('utf-8')
   const data = result.text || ''
   const $ = cheerio.load(data, { decodeEntities: false })
-  // let hotShop = $('#app').find('.o2_page mod_container').find('.o2_floor').find('.grid_c1').find('.o2-row-flex')
-  // let hotList = []
-  // for(let i = 0; i < hotShop.length; i++) {
-  //   let obj = {}
-  //   // obj['shopTitle'] = $(hotShop[i]).find('.o2_tab_header').find('li').text()
-  //   obj['shopImgUrl'] = $(hotShop[i]).find('img').attr('src')
-  //   obj['price'] = $(hotShop[i]).find('.o2_tab_goods_item_price').text()
-  //   obj['shopName'] = $(hotShop[i]).find('.o2_tab_goods_item_name').text()
-  //   obj['shopUrl'] = $(hotShop[i]).next().attr('href')
-  //   hotList.push(obj)
-  // }
+  let hotShop = $('#app').find('.o2_page mod_container').find('.o2_floor').find('.grid_c1').find('.o2-row-flex')
+  let hotList = []
+  for(let i = 0; i < hotShop.length; i++) {
+    let obj = {}
+    // obj['shopTitle'] = $(hotShop[i]).find('.o2_tab_header').find('li').text()
+    obj['shopImgUrl'] = $(hotShop[i]).find('img').attr('src')
+    obj['price'] = $(hotShop[i]).find('.o2_tab_goods_item_price').text()
+    obj['shopName'] = $(hotShop[i]).find('.o2_tab_goods_item_name').text()
+    obj['shopUrl'] = $(hotShop[i]).next().attr('href')
+    hotList.push(obj)
+  }
   return{
-    result
+    result,
+    hotList
     // hotShop
   }
 }

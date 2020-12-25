@@ -68,26 +68,26 @@ Page({
     ]
   },
 
-  // getShopList() {
-  //   wx.showLoading({
-  //     title: '正在加载'
-  //   })
-  //   wx.cloud.callFunction({
-  //     name: 'getShopList',
-  //     data: {}
-  //   }).then(res => {
-  //     console.log(res);
-  //     wx.hideLoading();
-  //   })
+  getShopList() {
+    wx.showLoading({
+      title: '正在加载'
+    })
+    wx.cloud.callFunction({
+      name: 'getShopList',
+      data: {}
+    }).then(res => {
+      console.log(res);
+      wx.hideLoading();
+    })
       
-  // },
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.getShopList()
-    // console.log(options);
+    this.getShopList()
+    console.log(options);
   },
 
   /**
