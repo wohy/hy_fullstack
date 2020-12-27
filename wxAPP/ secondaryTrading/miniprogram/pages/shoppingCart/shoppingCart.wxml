@@ -1,10 +1,26 @@
-<!--miniprogram/pages/shoppingCart/shoppingCart.wxml-->
-<van-submit-bar
-  price="{{ 0 }}"
-  button-text="提交订单"
-  bind:submit="onClickButton"
-  tip="{{ true }}"
->
-  <van-checkbox value="{{ checked }}" bind:change="onChange">全选</van-checkbox>
-  <view slot="tip">您的收货地址不支持同城送, <text>修改地址</text></view>
+<!-- miniprogram/pages/shoppingCart/shoppingCart.wxml -->
+<view class="head">购物车</view>
+<view class="list" wx:for="{{listArray}}" wx:if="{{listNum !== 0}}" wx:key="index">
+  <view class="card">
+    <van-checkbox value="{{item.check}}" data-index="{{index}}" data-checked="{{checked}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" bind:change="Change">
+      <!-- <van-checkbox name='{{item}}'></van-checkbox> -->
+    </van-checkbox>
+    <image class="shopImage" src="{{item.imageURL}}"/>
+    <view class="shopInfo">
+      <view class="shopName">{{item.shopName}}</view>
+      <view class="shopPrice"><text>￥</text>{{item.price}}</view>
+    </view>
+    <view class="cardBottom" data-index="{{index}}" catchtap="Hidden">
+      <image src="../../images/add.png" wx:if="{{item.hidden}}" bindtap="add" data-index="{{index}}" data-num="{{item.num}}" data-priceSum="{{priceSum}}" data-check="{{item.check}}" data-price="{{item.price}}"/>
+      <text class="shopNum">x{{item.num}}</text>
+      <image src="../../images/reduce.png" wx:if="{{item.hidden}}" bindtap="reduce" data-index="{{index}}" data-num="{{item.num}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" data-check="{{item.check}}"/>
+      <image src="../../images/closs.png" size="mini" color="red" wx:if="{{item.hidden}}" catchtap="reHidden" data-hidden="{{item.hidden}}" data-price="{{priceSum}}" data-index="{{index}}"/>
+    </view>
+  </view>
+</view>
+<view class="list" wx:if="{{listNum == 0}}">
+  <text class="listNone">购物车空空如也~</text>
+</view>
+<van-submit-bar price="{{ priceSum * 100 }}" button-text="提交订单" bind:submit="onClickButton" tip="{{ true }}">
+  <van-checkbox value="{{ checked }}" bind:change="onChange" data-checked="{{checked}}" data-price="{{priceSum}}">全选</van-checkbox>
 </van-submit-bar>

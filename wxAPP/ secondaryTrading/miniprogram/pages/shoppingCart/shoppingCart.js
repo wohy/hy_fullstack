@@ -5,21 +5,156 @@ Page({
    * 页面的初始数据
    */
   data: {
+    priceSum: 0,
     checked: false,
+    listNum: 1,
+    listArray: [
+      {
+        imageURL: '../../images/ele1.jpg',
+        shopName: '显示器',
+        price: 2400,
+        num: 1
+      },
+      {
+        imageURL: '../../images/ele3.jpg',
+        shopName: '手表',
+        price: 31800,
+        num: 1
+      }
+    ]
   },
 
 
   onChange(event) {
+    const listArray = this.data.listArray
+    // let price = this.data.priceSum
+    let price = event.currentTarget.dataset.price
+    let checked = event.currentTarget.dataset.checked
+    checked = event.detail
+    // console.log(event);
+    for(let i = 0; i < listArray.length; i++) {
+      // console.log(checked);
+      if( checked === true && listArray[i].check !== event.detail) {
+        price += listArray[i].price
+        // console.log(price);
+      }
+      listArray[i].check = event.detail
+      if(listArray[i].check === false && checked === false) {
+        price -= listArray[i].price
+      }
+    }
+
     this.setData({
+      priceSum: price,
+      // priceSum: priceSum,
       checked: event.detail,
+      listArray
     });
+  },
+
+  Change(event) {
+    const listArray = this.data.listArray
+    let checked = event.currentTarget.dataset.checked
+    let priceSum = this.data.priceSum
+    let price = event.currentTarget.dataset.price
+    listArray[event.currentTarget.dataset.index].check = event.detail
+    // console.log(event);
+    if(event.detail === true) {
+      priceSum += price
+    }
+    if(event.detail === false) {
+      priceSum -= price
+    }
+    // console.log(price);
+    // console.log(priceSum);
+    if(checked === true && event.detail === false) {
+      this.setData({checked: event.detail})
+    }
+    // checked = event.detail
+    // console.log(checked);
+    // console.log(this.data.checked);
+    this.setData({
+      priceSum: priceSum,
+      listArray
+    })
+  },
+
+  Hidden(e) {
+    const listArray = this.data.listArray
+    listArray[e.currentTarget.dataset.index].hidden = 'true' 
+    this.setData({
+      listArray
+    })
+  },
+
+  reHidden(e) {
+    // console.log(e);
+    const listArray = this.data.listArray
+    listArray[e.currentTarget.dataset.index].hidden = !e.currentTarget.dataset.hidden
+    this.setData({
+      listArray
+     })
+  },
+
+  add(e) {
+    // console.log(e);
+    const listArray = this.data.listArray
+    let price = e.currentTarget.dataset.price
+    let priceSum = this.data.priceSum 
+    let check = e.currentTarget.dataset.check
+    let num = e.currentTarget.dataset.num
+    price = (price/num)*(++num);
+    // console.log(priceSum);
+    // console.log(this.data.priceSum);
+    // console.log(check);
+    if(check === true) {
+      this.setData({
+        priceSum: priceSum += (price - listArray[e.currentTarget.dataset.index].price)
+      })
+    }
+    e.currentTarget.dataset.priceSum = priceSum
+    listArray[e.currentTarget.dataset.index].num = num
+    listArray[e.currentTarget.dataset.index].price = price
+    // console.log(price, num);
+    
+    this.setData({
+      listArray
+    })
+  },
+
+  reduce(e) {
+    // console.log(e);
+    const listArray = this.data.listArray
+    let priceSum = this.data.priceSum 
+    let check = e.currentTarget.dataset.check
+    let price = e.currentTarget.dataset.price 
+    let num = e.currentTarget.dataset.num
+    if(num > 1) {  
+      price = (price/num)*(--num)
+      if(check === true) {
+        this.setData({
+          priceSum:  priceSum -= (listArray[e.currentTarget.dataset.index].price - price)
+        })
+      }
+      e.currentTarget.dataset.priceSum = priceSum
+      listArray[e.currentTarget.dataset.index].num = num
+      listArray[e.currentTarget.dataset.index].price = price
+      // console.log(price, num);
+    }
+    this.setData({
+      listArray
+    })    
+  },
+
+  onClickButton(e) {
+    // console.log(e);
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**

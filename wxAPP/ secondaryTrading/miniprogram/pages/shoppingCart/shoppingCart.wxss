@@ -1,1 +1,68 @@
 /* miniprogram/pages/shoppingCart/shoppingCart.wxss */
+.head {
+  /* position: absolute; */
+  font-size: larger;
+  font-weight: bolder;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.card {
+  width: 92%;
+  height: 250rpx;
+  display: flex;
+  flex-direction: row;
+  margin-left: 4%;
+  text-align: center;
+  border-radius: 10rpx;
+  background-color: rgb(234, 245, 245);
+  border: 2rpx solid rgb(186, 192, 192);
+  align-items: center;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+.card van-checkbox {
+  margin-left: 20rpx;
+  margin-right: 10rpx;
+}
+.card .shopImage {
+  width: 180rpx;
+  height: 180rpx;
+  margin-right: 20rpx;
+}
+.shopInfo {
+  position: relative;
+  width: 250rpx;
+  height: 180rpx;
+  margin-right: 20rpx;
+  margin-top: 40rpx;
+}
+.shopName {
+  position: absolute;
+  height: 110rpx;
+  color: rgb(161, 161, 161);
+}
+.shopPrice {
+  position: absolute;
+  bottom: 40rpx;
+  color: rgb(214, 63, 63);
+}
+.cardBottom {
+  position: absolute;
+  right: 25rpx;
+  bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+.cardBottom image {
+  height: 50rpx;
+  width: 50rpx;
+  margin-right: 5rpx;
+  margin-left: 5rpx;
+}
+.cardBottom .shopNum {
+  color:rgb(161, 161, 161);
+  border: solid 2rpx;
+  border-radius: 10rpx;
+}
