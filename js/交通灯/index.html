@@ -54,23 +54,23 @@
     // green() 间隔1s yellow() 间隔2s red() 间隔3秒
 
     // 定时器setTimeout完成
-    function light(time) {
-      if(time > 4) return;
-      green();
-      setTimeout(() => {
-        yellow();
-        setTimeout(() => {
-          red();
-          setTimeout(() => {
-            console.log('done');
-            light(time + 1)
-          }, 3000)
-        }, 2000)
-      }, 1000)
-    }
-    light(0);
+    // function light(time) {
+    //   if(time > 4) return;
+    //   green();
+    //   setTimeout(() => {
+    //     yellow();
+    //     setTimeout(() => {
+    //       red();
+    //       setTimeout(() => {
+    //         console.log('done');
+    //         light(time + 1)
+    //       }, 3000)
+    //     }, 2000)
+    //   }, 1000)
+    // }
+    // light(0);
 
-    // Promise 实现
+    // Promise 
     // pending fullfilled rejected
     // 如下例子
     let url = 'https://img11.360buyimg.com/babel/s1482x646_jfs/t1/146206/19/20028/63568/5fe5a665Ed88296e6/491d70ad10f9bcc3.jpg!cc_1482x646'
@@ -93,6 +93,47 @@
       console.log('加载异常');
     })
 
+
+    // Promise 实现
+    let time = (t) => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, t);
+    })
+    
+    
+    function light2() {
+      green();
+
+      //  1s  
+      time(1000)
+      .then(() => {
+        yellow();
+        return time(2000)
+      })
+      .then(() => {
+        red();
+        return time(3000)
+      })
+      .then(() => {
+
+      })
+    }
+
+    // es7 async + await
+    async function light3() {
+      green();
+      await time(1000);  //await 使后面的代码停下来 后接一个Promise
+      yellow()
+      await time(2000);
+      red()
+      await time(3000);
+      for (let i = 0; i < 5; i++) {
+        await time(1000)
+        console.log(i);
+      }
+    }
+    light3()
   </script>
 </body>
 </html>
