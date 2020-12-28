@@ -1,1 +1,27 @@
 /* miniprogram/pages/mine/mine.wxss */
+.head-container{
+  width: 100%;
+  padding-top: 0;
+  height: 300rpx;
+  background-color: rgb(214, 63, 63);
+  border-bottom-right-radius:60rpx;
+  border-bottom-left-radius:60rpx;
+}
+.user-info{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 50rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  margin-top: 5rpx;
+  color: #ffffff;
+  background-color: rgb(214, 63, 63);
+}

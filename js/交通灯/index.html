@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    background-color: grey;
+    display: inline-block;
+    margin: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
+  .green.light {
+    background-color: green;
+  }
+  .yellow.light{
+    background-color: yellow;
+  }
+  .red.light {
+    background-color: red;
+  }
+</style>
+<body>
+  <div class="green"></div>
+  <div class="yellow"></div>
+  <div class="red"></div>
+
+  <script>
+    function green() {
+      var lights = document.getElementsByTagName('div');
+      for(var i = 0; i < 3; i++) {
+        lights[i].classList.remove('light')
+      }
+      document.querySelector('.green').classList.add('light')
+    }
+    function red() {
+      var lights = document.getElementsByTagName('div');
+      for(var i = 0; i < 3; i++) {
+        lights[i].classList.remove('light')
+      }
+      document.querySelector('.red').classList.add('light')
+    }
+    function yellow() {
+      var lights = document.getElementsByTagName('div');
+      for(var i = 0; i < 3; i++) {
+        lights[i].classList.remove('light')
+      }
+      document.querySelector('.yellow').classList.add('light')
+    }
+    // green() 间隔1s yellow() 间隔2s red() 间隔3秒
+
+    // 定时器setTimeout完成
+    function light(time) {
+      if(time > 4) return;
+      green();
+      setTimeout(() => {
+        yellow();
+        setTimeout(() => {
+          red();
+          setTimeout(() => {
+            console.log('done');
+            light(time + 1)
+          }, 3000)
+        }, 2000)
+      }, 1000)
+    }
+    light(0);
+
+    // Promise 实现
+    // pending fullfilled rejected
+    // 如下例子
+    let url = 'https://img11.360buyimg.com/babel/s1482x646_jfs/t1/146206/19/20028/63568/5fe5a665Ed88296e6/491d70ad10f9bcc3.jpg!cc_1482x646'
+    // 等图片加载完成 输出123
+    let p1 = new Promise((resolve, reject) => {
+      let img = new Image();
+      img.src = url;
+      img.onload = function() {
+        resolve();  // 状态变化 pending -> fullfilled 成功
+      }
+      img.onerror = function() {
+        reject();   // 状态变化 pending -> rejected 失败
+      }
+    })
+    // 当加载成功是.then中的回调就会执行，失败会执行.catch()
+    p1.then(() => {
+      console.log('123');
+    })
+    .catch(() => {
+      console.log('加载异常');
+    })
+
+  </script>
+</body>
+</html>

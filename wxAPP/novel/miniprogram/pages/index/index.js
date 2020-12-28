@@ -12,7 +12,6 @@ Page({
   },
 
   onGetUserInfo(e) {
-    // console.log(e);
     if (e.detail.userInfo) {
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
@@ -27,7 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
