@@ -5,14 +5,51 @@ Page({
    * 页面的初始数据
    */
   data: {
+    value: '',
+    message: '',
+    fileList: [],
+    show: true,
+    showlocal: false,
+    localtion: ''
+  },
 
+  getLocaltion() {
+    let localtion = ''
+    wx.getLocation({
+      type: 'wgs84',
+      altitude: false,
+      success: (res) => {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        wx.chooseLocation({
+          latitude,
+          longitude,
+          success: (result) => {
+            if(result.name) {
+              this.setData({
+                localtion: result.name,
+                show: false,
+                showlocal: true
+              })
+              // console.log(result.name);
+            }            
+          }
+        });
+      },
+      fail: () => { console.log('定位出错了'); },
+    });
+  },
+
+  onChange(event) {
+    // event.detail 为当前输入的值
+    console.log(event.detail);
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**

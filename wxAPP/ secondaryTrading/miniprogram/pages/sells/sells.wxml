@@ -1,2 +1,30 @@
 <!--miniprogram/pages/sells/sells.wxml-->
-<text>miniprogram/pages/sells/sells.wxml</text>
+<van-cell-group>
+  <van-field
+    value="{{ value }}"
+    placeholder="标题"
+    border="{{ true }}"
+    bind:change="onChange"
+  />
+</van-cell-group>
+<view class="deacription">
+  <van-cell-group class="input-class">
+    <van-field
+      value="{{ message }}"
+      type="textarea"
+      placeholder="商品描述"
+      autosize
+      border="{{ false }}"
+    />
+  </van-cell-group>
+  <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" />
+  <view class="local">
+    <image src="../../images/localtion.png" bindtap="getLocaltion"></image>
+    <text wx:if="{{showlocal}}">{{localtion}}</text>
+    <text wx:if="{{show}}">点击logo获取地址</text>
+  </view>
+</view>
+<view class="explanation">
+  <text></text>
+</view>
+  

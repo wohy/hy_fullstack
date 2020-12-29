@@ -5,11 +5,17 @@
     "pages/mine/mine",
     "pages/sells/sells"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息可方便区域性交易和上门验货"
+    }
+  },
+  "requiredBackgroundModes": ["location"],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#be3948",
-    "navigationBarTitleText": "MALL",
+    "navigationBarTitleText": "二手闲置帮",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
