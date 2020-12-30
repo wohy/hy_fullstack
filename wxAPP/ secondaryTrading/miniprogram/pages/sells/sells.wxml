@@ -1,30 +1,32 @@
-<!--miniprogram/pages/sells/sells.wxml-->
+<!-- miniprogram/pages/sells/sells.wxml -->
+<van-cell title="选择商品类型" is-link value="{{typeOfShopping}}" bindtap="openPicker" />
+<van-popup show="{{ showpop }}" round position="bottom">
+  <van-picker show-toolbar title="商品类型" bind:cancel="onCancel" bind:confirm="onConfirm" columns="{{ columns }}" />
+</van-popup>
 <van-cell-group>
-  <van-field
-    value="{{ value }}"
-    placeholder="标题"
-    border="{{ true }}"
-    bind:change="onChange"
-  />
+  <van-field model:value="{{ shoppingName }}" placeholder="商品名称" bind:change="onChange" />
 </van-cell-group>
 <view class="deacription">
   <van-cell-group class="input-class">
-    <van-field
-      value="{{ message }}"
-      type="textarea"
-      placeholder="商品描述"
-      autosize
-      border="{{ false }}"
-    />
+    <van-field model:value="{{ message }}" type="textarea" placeholder="商品描述(可指明原价、出售原因)" autosize border="{{false}}" />
   </van-cell-group>
-  <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" />
+  <view class="price">
+    <van-cell-group>
+      <van-field model:value="{{ price }}" left-icon="after-sale" placeholder="请输入商品出售价格" bind:change="onChange" />
+    </van-cell-group>
+  </view>
+  <view class="pictureUp">
+    <van-uploader file-list="{{ fileList }}"  max-count="3" upload-text="最多3张" deletable="{{ true }}" bind:after-read="afterRead"/>
+  </view>
   <view class="local">
     <image src="../../images/localtion.png" bindtap="getLocaltion"></image>
     <text wx:if="{{showlocal}}">{{localtion}}</text>
     <text wx:if="{{show}}">点击logo获取地址</text>
   </view>
-</view>
-<view class="explanation">
-  <text></text>
-</view>
   
+</view>
+<view class="upLoader">
+  <van-button size="large" disabled="{{complete}}" bindtap="sells" color="linear-gradient(to right, #ff4501, #DC143C)">
+    售出
+  </van-button>
+</view>

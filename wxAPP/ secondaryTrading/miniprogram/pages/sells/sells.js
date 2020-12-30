@@ -1,20 +1,25 @@
 // miniprogram/pages/sells/sells.js
+const db = wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    value: '',
+    typeOfShopping: '',
+    shoppingName: '',
     message: '',
     fileList: [],
     show: true,
     showlocal: false,
-    localtion: ''
+    localtion: '',
+    complete: false,
+    columns: ['家用电器', '服饰', '潮鞋', '手机', '电子/数码', '书籍'],
+    showpop: false
   },
 
   getLocaltion() {
-    let localtion = ''
     wx.getLocation({
       type: 'wgs84',
       altitude: false,
@@ -39,6 +44,64 @@ Page({
       fail: () => { console.log('定位出错了'); },
     });
   },
+
+  onConfirm(e) {
+    this.setData({
+      typeOfShopping: e.detail.value,
+      showpop: false
+    })
+  },
+  onCancel() {
+      this.setData({
+        showpop: false
+      })
+  },
+
+  openPicker() {
+    this.setData({
+      showpop: true
+    })
+  },
+
+  afterRead(e) {
+    console.log(e);
+    const {file} = e.detail;
+    if(file.type === "image"){
+      wx.uploadFile({
+        url: '',
+        name: '',
+        filePath: file.url,
+        success(res) {
+          // 上传完成需要更新 fileList
+          const { fileList = [] } = this.data;
+          fileList.push({ ...file, url: res.data });
+          this.setData({ fileList });
+        },
+      }); 
+    }     
+  },
+
+  sells() {
+    if(this.data.fileList !== '' && typeOfShopping !== '' && shoppingName !== '' && message !== '' && localtion !== '') {
+      this.setData({
+        complete: true
+      })
+      db.collection('sellsShopping').add({
+        data: {
+          typeOfShopping: this.data.typeOfShopping,
+          shoppingName: this.data.shoppingName,
+          price: 0,
+          shopImage: this.data.fileList,
+          localtion: this.data.localtion,
+          description: this.ata.message
+        }
+      }).then({
+        
+      }) 
+    }
+  },
+
+
 
   onChange(event) {
     // event.detail 为当前输入的值

@@ -5,9 +5,13 @@
   background-color: #fff;
   margin-bottom: 100rpx;
 }
+
+.title-class {
+  color: rgb(214, 211, 211);
+}
 .deacription {
   margin-top: 30rpx;
-  height: 700rpx;
+  height: 750rpx;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,4 +30,18 @@
   width: 50rpx;
   height: 50rpx;
   margin-right: 10rpx;
+}
+.price{
+  margin-bottom: 10rpx;
+}
+.pictureUp{
+  margin-left: 30rpx;
+}
+.upLoader {
+  width: 40%;
+  height: 100rpx;
+  margin-left: 30%;
+}
+.upLoader {
+  margin-top: 20rpx;
 }
