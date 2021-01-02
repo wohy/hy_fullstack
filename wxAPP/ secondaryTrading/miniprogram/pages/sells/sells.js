@@ -16,7 +16,8 @@ Page({
     localtion: '',
     complete: false,
     columns: ['家用电器', '服饰', '潮鞋', '手机', '电子/数码', '书籍'],
-    showpop: false
+    showpop: false,
+    price: ''
   },
 
   getLocaltion() {
@@ -46,6 +47,7 @@ Page({
   },
 
   onConfirm(e) {
+    console.log(e);
     this.setData({
       typeOfShopping: e.detail.value,
       showpop: false
@@ -67,45 +69,64 @@ Page({
     console.log(e);
     const {file} = e.detail;
     if(file.type === "image"){
-      wx.uploadFile({
-        url: '',
-        name: '',
+      let randString = + new Date() + '' + Math.floor(Math.random()*1000000) + '.jpg';
+      wx.cloud.uploadFile({
+        cloudPath: randString, 
         filePath: file.url,
-        success(res) {
+        success: (res => {
           // 上传完成需要更新 fileList
+          console.log(res);
           const { fileList = [] } = this.data;
-          fileList.push({ ...file, url: res.data });
-          this.setData({ fileList });
-        },
+          fileList.push({ ...file, url: res.fileID});
+          this.setData({ fileList });  
+          console.log(this.data.fileList); 
+        })
       }); 
     }     
   },
 
   sells() {
-    if(this.data.fileList !== '' && typeOfShopping !== '' && shoppingName !== '' && message !== '' && localtion !== '') {
+    // if(this.data.fileList !== '' && typeOfShopping !== '' && shoppingName !== '' && message !== '' && localtion !== '') {
       this.setData({
         complete: true
       })
+      // console.log(this.data);
       db.collection('sellsShopping').add({
         data: {
-          typeOfShopping: this.data.typeOfShopping,
+          // typeOfShopping: this.data.typeOfShopping,
           shoppingName: this.data.shoppingName,
-          price: 0,
+          price: this.data.price,
           shopImage: this.data.fileList,
           localtion: this.data.localtion,
-          description: this.ata.message
+          description: this.data.message
         }
-      }).then({
-        
+      }).then(res => {
+        wx.showToast({
+          title: '上传成功',
+          icon: 'success'
+        })
       }) 
-    }
+    // }
   },
 
+  onChangePrice(e) {
+    this.setData({
+      price: e.detail
+    })
+  },
 
-
-  onChange(event) {
+  onChange(e) {
     // event.detail 为当前输入的值
-    console.log(event.detail);
+    // console.log(event.detail);
+    this.setData({
+      shoppingName: e.detail
+    })
+  },
+
+  onChangedescrip(e) {
+    this.setData({
+      message: e.detail
+    })
   },
 
   /**

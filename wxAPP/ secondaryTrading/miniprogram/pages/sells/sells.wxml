@@ -1,5 +1,5 @@
 <!-- miniprogram/pages/sells/sells.wxml -->
-<van-cell title="选择商品类型" is-link value="{{typeOfShopping}}" bindtap="openPicker" />
+<van-cell title="选择商品类型" is-link value="{{ typeOfShopping }}" bindtap="openPicker" />
 <van-popup show="{{ showpop }}" round position="bottom">
   <van-picker show-toolbar title="商品类型" bind:cancel="onCancel" bind:confirm="onConfirm" columns="{{ columns }}" />
 </van-popup>
@@ -8,11 +8,11 @@
 </van-cell-group>
 <view class="deacription">
   <van-cell-group class="input-class">
-    <van-field model:value="{{ message }}" type="textarea" placeholder="商品描述(可指明原价、出售原因)" autosize border="{{false}}" />
+    <van-field model:value="{{ message }}" type="textarea" placeholder="商品描述(可指明原价、出售原因)" bind:change="onChangedescrip" autosize border="{{false}}" />
   </van-cell-group>
   <view class="price">
     <van-cell-group>
-      <van-field model:value="{{ price }}" left-icon="after-sale" placeholder="请输入商品出售价格" bind:change="onChange" />
+      <van-field model:value="{{ price }}" left-icon="after-sale" placeholder="请输入商品出售价格" bind:change="onChangePrice" />
     </van-cell-group>
   </view>
   <view class="pictureUp">
