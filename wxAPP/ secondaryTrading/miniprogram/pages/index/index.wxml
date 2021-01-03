@@ -13,30 +13,30 @@
 </view>
 <view class="icon">
   <view class="top">
-    <view class="home">
-      <image class="" src="../../images/home.png" bindload="" />
+    <view class="home" bindtap="toHome" >
+      <image class="" src="../../images/home.png"/>
       <text>家用电器</text>
     </view>
-    <view class="electronic">
-      <image class="" src="../../images/electronic.png" bindload="" />
+    <view class="electronic" bindtap="toElectronic">
+      <image class="" src="../../images/electronic.png"/>
       <text>电子/数码</text>
     </view>
-    <view class="book">
-      <image class="" src="../../images/book.png" bindload="" />
+    <view class="book" bindtap="toBook">
+      <image class="" src="../../images/book.png"/>
       <text>书籍</text>
     </view>
   </view>
   <view class="bottom">
-    <view class="clothes">
-      <image class="" src="../../images/clothes.png" bindload="" />
+    <view class="clothes" bindtap="toClothes">
+      <image class="" src="../../images/clothes.png"/>
       <text>服饰</text>
     </view>
-    <view class="shooes">
-      <image class="" src="../../images/shooes.png" bindload="" />
+    <view class="shooes" bindtap="toShooes">
+      <image class="" src="../../images/shooes.png"/>
       <text>潮鞋</text>
     </view>
-    <view class="phone">
-      <image class="" src="../../images/phone.png" bindload="" />
+    <view class="phone" bindtap="toPhone">
+      <image class="" src="../../images/phone.png"/>
       <text>手机</text>
     </view>
   </view>

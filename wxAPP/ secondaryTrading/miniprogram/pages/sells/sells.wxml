@@ -1,5 +1,5 @@
 <!-- miniprogram/pages/sells/sells.wxml -->
-<van-cell title="选择商品类型" is-link value="{{ typeOfShopping }}" bindtap="openPicker" />
+<van-cell title="选择商品类型" is-link model:value="{{ typeOfShopping }}" bindtap="openPicker" />
 <van-popup show="{{ showpop }}" round position="bottom">
   <van-picker show-toolbar title="商品类型" bind:cancel="onCancel" bind:confirm="onConfirm" columns="{{ columns }}" />
 </van-popup>
@@ -26,7 +26,7 @@
   
 </view>
 <view class="upLoader">
-  <van-button size="large" disabled="{{complete}}" bindtap="sells" color="linear-gradient(to right, #ff4501, #DC143C)">
+  <van-button size="large" disabled="{{ complete }}" bindtap="sells" color="linear-gradient(to right, #ff4501, #DC143C)">
     售出
   </van-button>
 </view>

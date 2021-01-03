@@ -82,6 +82,37 @@ Page({
       
   },
 
+  toHome() {
+    wx.navigateTo({
+      url: '../home/home'
+    })
+  },
+  toElectronic() {
+    wx.navigateTo({
+      url: '../electronic/electronic'
+    })
+  },
+  toBook() {
+    wx.navigateTo({
+      url: '../book/book',
+    })
+  },
+  toClothes() {
+    wx.navigateTo({
+      url: '../clothes/clothes',
+    })
+  },
+  toShooes() {
+    wx.navigateTo({
+      url: '../shooes/shooes',
+    })
+  },
+  toPhone() {
+    wx.navigateTo({
+      url: '../phone/phone',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

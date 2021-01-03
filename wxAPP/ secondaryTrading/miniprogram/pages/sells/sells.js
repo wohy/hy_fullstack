@@ -14,10 +14,10 @@ Page({
     show: true,
     showlocal: false,
     localtion: '',
-    complete: false,
+    complete: true,
     columns: ['家用电器', '服饰', '潮鞋', '手机', '电子/数码', '书籍'],
     showpop: false,
-    price: ''
+    price: '',
   },
 
   getLocaltion() {
@@ -35,7 +35,8 @@ Page({
               this.setData({
                 localtion: result.name,
                 show: false,
-                showlocal: true
+                showlocal: true,
+                complete: false
               })
               // console.log(result.name);
             }            
@@ -52,6 +53,7 @@ Page({
       typeOfShopping: e.detail.value,
       showpop: false
     })
+    // console.log(this.data.typeOfShopping);
   },
   onCancel() {
       this.setData({
@@ -82,18 +84,31 @@ Page({
           console.log(this.data.fileList); 
         })
       }); 
-    }     
+    }   
+    
+    // const { file } = e.detail;
+    // // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+    // wx.uploadFile({
+    //   url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
+    //   filePath: file.url,
+    //   name: 'file',
+    //   formData: { user: 'test' },
+    //   success(res) {
+    //     // 上传完成需要更新 fileList
+    //     const { fileList = [] } = this.data;
+    //     fileList.push({ ...file, url: res.data });
+    //     this.setData({ fileList });
+    //   },
+    // });
+
   },
 
   sells() {
-    // if(this.data.fileList !== '' && typeOfShopping !== '' && shoppingName !== '' && message !== '' && localtion !== '') {
-      this.setData({
-        complete: true
-      })
+    if(this.data.fileList !== '' && this.data.typeOfShopping !== '' && this.data.shoppingName !== '' && this.data.message !== '' && this.data.localtion !== '') {
       // console.log(this.data);
       db.collection('sellsShopping').add({
         data: {
-          // typeOfShopping: this.data.typeOfShopping,
+          typeOfShopping: this.data.typeOfShopping,
           shoppingName: this.data.shoppingName,
           price: this.data.price,
           shopImage: this.data.fileList,
@@ -105,8 +120,18 @@ Page({
           title: '上传成功',
           icon: 'success'
         })
+        this.setData({
+          complete: true,
+          typeOfShopping: '',
+          shoppingName: '',
+          message: '',
+          price: '',
+          fileList: [],
+          description: '',
+          localtion: ''
+        })
       }) 
-    // }
+    }
   },
 
   onChangePrice(e) {
@@ -133,7 +158,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**

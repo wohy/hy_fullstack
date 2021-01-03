@@ -1,0 +1,11 @@
+<!--miniprogram/pages/home/home.wxml-->
+<view class="listNull" wx:if="{{shopList.length === 0}}">
+  <text>暂时没有该类商品~</text>
+</view>
+<view class="shopList">
+  <view class="shopItem" wx:for="{{shopList}}" wx:key="index" data-url="{{item.imageUrl}}" data-price="{{item.price}}" data-shopName="{{item.shopName}}">
+    <image class="imageUrl" src="{{item.imageUrl}}"/>
+    <text class="shopName">{{item.shopName}}</text>
+    <text class="price"><text>￥</text>{{item.price}}</text>
+  </view>
+</view>
