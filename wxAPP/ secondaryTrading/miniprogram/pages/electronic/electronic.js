@@ -1,18 +1,55 @@
-// miniprogram/pages/electronic/electronic.js
+// miniprogram/pages/home/home.js
+const db = wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    shopList: []
+  },
 
+  getShopList() {
+    wx.showLoading({
+      title: '正在加载'
+    })
+    const shopList = []
+    db.collection('sellsShopping').where({
+      typeOfShopping: '电子/数码'
+    }).get()
+      .then(res => {
+        wx.hideLoading();
+        const shopping = res.data
+        for (let i = 0; i < shopping.length; i++) {
+          shopList.push({
+            price: shopping[i].price,
+            shopName: shopping[i].shoppingName,
+            imageUrl: shopping[i].shopImage[0].thumb,
+            _id: shopping[i]._id
+          })
+        }
+        // console.log(shopList);
+        this.setData({
+          shopList: shopList
+        })
+      })
+  },
+
+  toShopItem(e) {
+    console.log(e);
+    let shoppingId = e.currentTarget.dataset.shoppingid
+    wx.navigateTo({
+      url: `../shopItem/shopItem?shoppingId=${shoppingId}`,
+    });
+      
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getShopList()
   },
 
   /**

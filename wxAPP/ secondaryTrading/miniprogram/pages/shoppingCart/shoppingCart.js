@@ -1,4 +1,7 @@
 // miniprogram/pages/shoppingCart/shoppingCart.js
+const db = wx.cloud.database()
+const app = getApp()
+
 Page({
 
   /**
@@ -8,20 +11,7 @@ Page({
     priceSum: 0,
     checked: false,
     listNum: 1,
-    listArray: [
-      {
-        imageURL: '../../images/ele1.jpg',
-        shopName: '显示器',
-        price: 2400,
-        num: 1
-      },
-      {
-        imageURL: '../../images/ele3.jpg',
-        shopName: '手表',
-        price: 31800,
-        num: 1
-      }
-    ]
+    listArray: []
   },
 
 
@@ -150,11 +140,34 @@ Page({
     // console.log(e);
   },
 
+
+  getShopping() {
+    db.collection('shopCart').where({
+      _openid: app.globalData.openid
+    }).get().then(res => {
+      console.log(res);
+      const shopList = res.data
+      let shopping = this.data.listArray
+      for(let i = 0; i < shopList.length; i++) {
+        shopping.push({
+          imageURL: shopList[i].imageUrl.thumb,
+          shopName: shopList[i].shoppingName,
+          price: parseInt(shopList[i].price),
+          num: shopList[i].num,
+          _id: shopList[i]._id
+        })
+      }
+      this.setData({
+        listArray: shopping
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getShopping()
   },
 
   /**

@@ -18,6 +18,9 @@
     </view>
   </view>
 </view>
+<view class="bottom">
+  没有更多了~
+</view>
 <view class="list" wx:if="{{listNum == 0}}">
   <text class="listNone">购物车空空如也~</text>
 </view>

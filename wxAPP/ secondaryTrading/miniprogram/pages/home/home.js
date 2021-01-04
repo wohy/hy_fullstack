@@ -25,7 +25,8 @@ Page({
           shopList.push({
             price: shopping[i].price,
             shopName: shopping[i].shoppingName,
-            imageUrl: shopping[i].shopImage[0].thumb
+            imageUrl: shopping[i].shopImage[0].thumb,
+            _id: shopping[i]._id
           })
         }
         // console.log(shopList);
@@ -33,6 +34,15 @@ Page({
           shopList: shopList
         })
       })
+  },
+
+  toShopItem(e) {
+    console.log(e);
+    let shoppingId = e.currentTarget.dataset.shoppingid
+    wx.navigateTo({
+      url: `../shopItem/shopItem?shoppingId=${shoppingId}`,
+    });
+      
   },
 
   /**

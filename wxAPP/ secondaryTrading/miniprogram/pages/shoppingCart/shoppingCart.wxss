@@ -66,3 +66,15 @@
   border: solid 2rpx;
   border-radius: 10rpx;
 }
+.list:last-child {
+margin-bottom: 20rpx;
+}
+.bottom {
+  padding-top: 20rpx;
+  background-color: #fff;
+  height: 200rpx;
+  color: rgb(161, 161, 161);
+  width: 100%;
+  text-align: center;
+
+}

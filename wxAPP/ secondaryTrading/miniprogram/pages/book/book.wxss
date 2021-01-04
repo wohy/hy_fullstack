@@ -1,1 +1,36 @@
-/* miniprogram/pages/book/book.wxss */
+.listNull {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  right: 25%;
+  text-align: center;
+}
+.listNull text {
+  color: rgb(161, 161, 161);
+}
+.shopList{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20rpx;
+}
+.shopItem{
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: column;
+  /* width: 200rpx; */
+  /* height: 250rpx; */
+  justify-content: center;
+  align-items: center;
+}
+.shopItem .imageUrl{
+  /* flex: 1; */
+  margin-right: 20rpx;
+  width: 80%;
+  height: 300rpx;
+}
+.shopItem .shopName{
+  color: rgb(161, 161, 161);
+}
+.shopItem .price{
+  color: rgb(214, 63, 63);
+}

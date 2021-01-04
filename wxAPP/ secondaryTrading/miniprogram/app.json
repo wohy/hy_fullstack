@@ -9,7 +9,8 @@
     "pages/book/book",
     "pages/clothes/clothes",
     "pages/shooes/shooes",
-    "pages/phone/phone"
+    "pages/phone/phone",
+    "pages/shopItem/shopItem"
   ],
   "permission": {
     "scope.userLocation": {

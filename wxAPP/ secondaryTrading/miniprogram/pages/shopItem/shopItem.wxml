@@ -1,0 +1,30 @@
+<!--miniprogram/pages/shopItem/shopItem.wxml-->
+<view class="Swiper">
+  <swiper class="swiper" circular="true" indicator-dots="true" indicator-color="rgba(0,0,0,.3)" autoplay="true" interval="3000" duration="500">
+    <block wx:for="{{imageList}}" wx:key="index">
+      <swiper-item>
+        <image class="slide-image" src="{{item.thumb}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class="shoppingDes">
+  <view class="price">￥{{price}}</view>
+  <view class="description">{{description}}</view>
+</view>
+<view class="localtion">
+  <text class="Ship">发货地址</text>
+  <image src="../../images/localtion.png"></image>
+  <text class="local">{{localtion}}</text>
+</view>
+
+<van-goods-action>
+  <van-goods-action-icon icon="chat-o" text="客服" bind:click="Service" />
+  <van-goods-action-icon icon="cart-o" text="购物车" bind:click="shopCart" />
+  <van-goods-action-button
+    text="加入购物车"
+    type="warning"
+    bind:click="insertCart"
+  />
+  <van-goods-action-button text="立即购买" bind:click="Buy" />
+</van-goods-action>
