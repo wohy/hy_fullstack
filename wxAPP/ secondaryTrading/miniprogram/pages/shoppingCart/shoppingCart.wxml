@@ -1,8 +1,8 @@
 <!-- miniprogram/pages/shoppingCart/shoppingCart.wxml -->
 <view class="head">购物车</view>
 <view class="list" wx:for="{{listArray}}" wx:if="{{listNum !== 0}}" wx:key="index">
-  <view class="card">
-    <van-checkbox value="{{item.check}}" data-index="{{index}}" data-checked="{{checked}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" bind:change="Change">
+  <view class="card" data-shoppingid="{{item._id}}" catchtap="toShopping">
+    <van-checkbox value="{{item.check}}" data-index="{{index}}" data-checked="{{item.checked}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" bind:change="Change">
       <!-- <van-checkbox name='{{item}}'></van-checkbox> -->
     </van-checkbox>
     <image class="shopImage" src="{{item.imageURL}}"/>

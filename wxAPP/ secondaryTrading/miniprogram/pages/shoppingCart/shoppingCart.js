@@ -140,6 +140,16 @@ Page({
     // console.log(e);
   },
 
+  toShopping(e) {
+    console.log(e);
+    let shoppingId = e.currentTarget.dataset.shoppingid
+
+    wx.navigateTo({
+      url: `../shopItem/shopItem?shoppingId=${shoppingId}`,
+    });
+    
+  },
+
 
   getShopping() {
     db.collection('shopCart').where({

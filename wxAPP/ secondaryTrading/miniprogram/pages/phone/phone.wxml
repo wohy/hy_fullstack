@@ -1,5 +1,4 @@
 <!--miniprogram/pages/phone/phone.wxml-->
-<!--miniprogram/pages/home/home.wxml-->
 <view class="listNull" wx:if="{{shopList.length === 0}}">
   <text>暂时没有该类商品~</text>
 </view>

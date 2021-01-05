@@ -1,5 +1,8 @@
 // miniprogram/pages/shopItem/shopItem.js
 const db = wx.cloud.database()
+let app =  getApp();
+
+  
 
 Page({
 
@@ -57,9 +60,10 @@ Page({
     console.log(options);
     db.collection('sellsShopping').where({
       _id: options.shoppingId
+      // _openid: app.globalData.openid
     }).get()
     .then(res => {
-      // console.log(res);
+      console.log(res);
       let shopImage = res.data[0].shopImage
       this.setData({
         imageList: shopImage,
