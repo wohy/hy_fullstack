@@ -59,8 +59,8 @@ Page({
   onLoad: function (options) {
     console.log(options);
     db.collection('sellsShopping').where({
-      _id: options.shoppingId
-      // _openid: app.globalData.openid
+      _id: options.shoppingId,
+      _openid: app.globalData.openid
     }).get()
     .then(res => {
       console.log(res);
