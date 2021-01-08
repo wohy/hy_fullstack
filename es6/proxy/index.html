@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" id="input">
+    <span id="span">hello</span>
+  </div>
+  <script>
+    const data = {
+      _text: 'hello world'
+    }
+    const input = document.getElementById('input')
+    const span = document.getElementById('span')
+    // input.addEventListener('change', (res) => {
+    //   span.innerHTML = res.target.value
+    // })
+
+    // 数据劫持方式实现
+    Object.defineProperty(data, 'text', { //三个参数为 数据劫持作用的对象、属性、劫持想要进行的操作
+      get () {  //要进行取值操作需要进过get的允许 规定需将该属性前加一个_
+        // console.log('获取数据');
+        return data._text
+      },
+      set (newVal, oldVal) {  // 必须经过set来改变劫持的该属性 外部想要做出改变，则newVal可接收到想要做出改变后的新值
+        // console.log(newVal);
+        span.innerHTML = newVal //将新值替换掉span原来的hello，此处可实时做出反应，类似于小程序中的watch
+      }
+    })
+
+    // 但key起来时则将改变text的值
+    input.addEventListener('keyup', function(e) {
+      data.text = e.target.value // 通过set才能改变_text的值
+      console.log(data._text);   // 通过get才能拿到_text的值 打印hello world
+    })
+  </script>
+</body>
+</html>

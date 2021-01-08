@@ -26,10 +26,11 @@ Page({
             price: shopping[i].price,
             shopName: shopping[i].shoppingName,
             imageUrl: shopping[i].shopImage[0].thumb,
-            _id: shopping[i]._id
+            _id: shopping[i]._id,
+            shopImage: shopping[i].shopImage
           })
         }
-        // console.log(shopList);
+        console.log(shopList);
         this.setData({
           shopList: shopList
         })
@@ -39,8 +40,9 @@ Page({
   toShopItem(e) {
     console.log(e);
     let shoppingId = e.currentTarget.dataset.shoppingid
+    let shoppingImage = e.currentTarget.dataset.imagelist
     wx.navigateTo({
-      url: `../shopItem/shopItem?shoppingId=${shoppingId}`,
+      url: `../shopItem/shopItem?shoppingId=${shoppingId}&shoppingImage=${shoppingImage}`,
     });
       
   },

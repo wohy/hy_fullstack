@@ -23,12 +23,13 @@ Page({
     const _ = db.command
     db.collection('shopCart').where({
       _openid: this.data._openid,
-      shoppingName: this.data.shoppingName
+      _id: this.data._id
     }).get().then(res => {
-      console.log(res);
+      // console.log(res);
       if(res.data.length === 0) {
         db.collection('shopCart').add({
           data: {
+            _id: this.data._id,
             price: this.data.price,
             imageUrl: this.data.imageList[0],
             shoppingName: this.data.shoppingName,
@@ -37,7 +38,7 @@ Page({
         })
       }else {
         this.setData({
-          _id: res.data[0]._id,
+          // _id: res.data[0]._id,
           num: res.data[0].num
         })
         db.collection('shopCart').doc(this.data._id).update({
@@ -61,12 +62,13 @@ Page({
     db.collection('sellsShopping').where({
       _id: options.shoppingId,
       _openid: app.globalData.openid
+      // shopImage: options.shoppingImage
     }).get()
     .then(res => {
       console.log(res);
-      let shopImage = res.data[0].shopImage
+      let shopimage = res.data[0].shopImage
       this.setData({
-        imageList: shopImage,
+        imageList: shopimage,
         price: res.data[0].price,
         description: res.data[0].description,
         localtion: res.data[0].localtion,
