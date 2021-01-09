@@ -1,5 +1,7 @@
 # 数据结构 typescripe
 
+- tsc + 文件路径 运行ts文件会将该文件编译生成js文件
+
 数据结构
 栈  Stack
 FILO  first in last out

@@ -2,9 +2,11 @@
 <view class="head">购物车</view>
 <view class="list" wx:for="{{listArray}}" wx:if="{{listNum !== 0}}" wx:key="index">
   <view class="card" data-shoppingid="{{item._id}}" catchtap="toShopping">
-    <van-checkbox value="{{item.check}}" data-index="{{index}}" data-checked="{{item.checked}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" bind:change="Change">
+    <view class="van-checkbox">
+      <van-checkbox value="{{item.check}}" data-index="{{index}}" data-checked="{{item.checked}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" bind:change="Change">
       <!-- <van-checkbox name='{{item}}'></van-checkbox> -->
-    </van-checkbox>
+      </van-checkbox>
+    </view>
     <image class="shopImage" src="{{item.imageURL}}"/>
     <view class="shopInfo">
       <view class="shopName">{{item.shopName}}</view>

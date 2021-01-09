@@ -36,18 +36,28 @@ Page({
             num: 1
           }
         })
-      }else {
-        this.setData({
-          // _id: res.data[0]._id,
-          num: res.data[0].num
+        .then(res => {
+          wx.showToast({
+            title: '上传成功',
+            icon: 'success'
+          })
         })
+      }else {
+        const priceOne = res.data[0].price/res.data[0].num
+        // console.log(res.data[0].num);
+        // console.log(priceOne);
         db.collection('shopCart').doc(this.data._id).update({
           data: {
-            num: _.inc(1)
+            num: _.inc(1),
+            price: _.inc(priceOne)
           }
         })
         .then(res => {
           console.log(res);
+          wx.showToast({
+            title: '加入购物车成功',
+            icon: 'success'
+          })
         })
       }
     })
@@ -69,7 +79,7 @@ Page({
       let shopimage = res.data[0].shopImage
       this.setData({
         imageList: shopimage,
-        price: res.data[0].price,
+        price: parseInt(res.data[0].price),
         description: res.data[0].description,
         localtion: res.data[0].localtion,
         shoppingName: res.data[0].shoppingName,

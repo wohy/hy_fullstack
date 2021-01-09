@@ -16,8 +16,8 @@ function debounce(fn, delay) {
 
     //当不使用箭头函数时，需防止this的指向发生更改
     timer = setTimeout(function() {
-        fn.apply(context, arg)
-      }, delay)  
+      fn.apply(context, arg)
+    }, delay)  
   }
 
 }

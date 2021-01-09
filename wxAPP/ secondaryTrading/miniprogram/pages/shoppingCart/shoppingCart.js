@@ -119,21 +119,30 @@ Page({
     let check = e.currentTarget.dataset.check
     let price = e.currentTarget.dataset.price 
     let num = e.currentTarget.dataset.num
+    let shoppingIndex = e.currentTarget.dataset.index
     if(num > 1) {  
       price = (price/num)*(--num)
       if(check === true) {
         this.setData({
-          priceSum:  priceSum -= (listArray[e.currentTarget.dataset.index].price - price)
+          priceSum:  priceSum -= (listArray[shoppingIndex].price - price)
         })
       }
       e.currentTarget.dataset.priceSum = priceSum
-      listArray[e.currentTarget.dataset.index].num = num
-      listArray[e.currentTarget.dataset.index].price = price
+      listArray[shoppingIndex].num = num
+      listArray[shoppingIndex].price = price
       // console.log(price, num);
+
+      db.collection('shopCart').where({
+        _openid: app.globalData.openid,
+      }).get().then(res => {
+        console.log(res.data[shoppingIndex]);
+      })
+      
     }
     this.setData({
       listArray
-    })    
+    })
+    
   },
 
   onClickButton(e) {
