@@ -1,4 +1,8 @@
 /* miniprogram/pages/shoppingCart/shoppingCart.wxss */
+page{
+  background-color: #fff;
+}
+
 .head {
   /* position: absolute; */
   font-size: larger;
@@ -33,7 +37,7 @@
 }
 .shopInfo {
   position: relative;
-  width: 250rpx;
+  width: 350rpx;
   height: 180rpx;
   margin-right: 20rpx;
   margin-top: 40rpx;
@@ -71,7 +75,7 @@ margin-bottom: 20rpx;
 }
 .bottom {
   padding-top: 20rpx;
-  background-color: #fff;
+  /* background-color: #fff; */
   height: 200rpx;
   color: rgb(161, 161, 161);
   width: 100%;

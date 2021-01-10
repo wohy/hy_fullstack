@@ -16,8 +16,50 @@ Page({
     localtion: '',
     shoppingName: '',
     _openid: '',
-    _id: ''
+    _id: '',
+    openAnswer: false,
+    openicon:'../../images/openUp.png',
+    comment: [
+      {
+        avator: '../../images/ele3.jpg',
+        nickname: '蜗牛大帅哥',
+        content: '这个用了多久了？',
+        answerContent: [
+          {
+            text: '180天了'
+          }
+        ]
+      }
+    ]
   },
+
+  navToComment(e) {
+    let shoppingId = e.currentTarget.dataset.shoppingid
+    wx.navigateTo({
+      url: `../comment/comment?shoppingid=${shoppingId}`
+    })
+  },
+
+  answer() {
+
+  },
+
+  openAnswer() {
+    let openStatus = this.data.openAnswer
+    this.setData({
+      openAnswer: !openStatus
+    })
+    if (this.data.openAnswer) {
+      this.setData({
+        openicon: '../../images/closeUp.png'
+      })
+    } else {
+      this.setData({
+        openicon: '../../images/openUp.png'
+      })
+    }
+  },
+
 
   insertCart() {
     const _ = db.command
@@ -38,7 +80,7 @@ Page({
         })
         .then(res => {
           wx.showToast({
-            title: '上传成功',
+            title: '加入购物车成功',
             icon: 'success'
           })
         })

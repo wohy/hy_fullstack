@@ -18,6 +18,36 @@
   <text class="local">{{localtion}}</text>
 </view>
 
+
+
+<view class="header">
+  <text class="before"></text>
+  咨询及评论
+</view>
+<van-cell-group>
+  <van-cell
+    is-link
+    title="去提问或评论"
+    bind:click="navToComment"
+    data-shoppingid = "{{_id}}"
+  />
+</van-cell-group>
+
+<view class="comment" wx:for="{{comment}}" wx:key="index">
+  <view class="commentor">
+    <image class="avator" src="{{item.avator}}"></image>
+    <text class="nickname">{{item.nickname}}</text>
+  </view>
+  <text class="content">{{item.content}}</text>
+  <view class="answerContent" wx:if="{{openAnswer}}" wx:for="{{item.answerContent}}" wx:key="index" wx:for-item="answer">
+    <text class="answerNum">回复：</text>
+    <text>{{answer.text}}</text>
+  </view>
+  <image class="answer" catchtap="answer" src="../../images/answer.png"></image>
+  <image class="openUp" catchtap="openAnswer" src="{{openicon}}"/>
+</view>
+<view class="bottom">没有更多了~</view>
+
 <van-goods-action>
   <van-goods-action-icon icon="chat-o" text="客服" bind:click="Service" />
   <van-goods-action-icon icon="cart-o" text="购物车" bind:click="shopCart" />
@@ -28,3 +58,4 @@
   />
   <van-goods-action-button text="立即购买" bind:click="Buy" />
 </van-goods-action>
+

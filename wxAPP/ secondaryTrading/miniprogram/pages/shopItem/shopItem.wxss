@@ -54,6 +54,90 @@
   height: 30rpx;
   margin-right: 10rpx;
 }
-.localtion .local {
+.header {
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+  width: 300rpx;
+  height: 50rpx;
+  font-weight: 400;
+  font-size: medium;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+}
+.header .before {
+  background: red;
+  height: 30rpx;
+  width: 10rpx;
+  margin-right: 10rpx;
+  margin-top: 5rpx;
+}
 
+.comment {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 20rpx;
+  margin-left: 5%;
+  border: 3rpx solid rgb(226, 238, 240);
+}
+
+.commentor {
+  /* position: absolute; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.commentor .avator {
+  border-radius: 50%;
+  height: 60rpx;
+  width: 60rpx;
+  margin-right: 10rpx;
+}
+.commentor .nickname {
+  font-size: medium;
+  font-weight: 600;
+}
+.comment .content {
+  /* position: absolute; */
+  /* left: 70rpx; */
+  /* top: 60rpx; */
+  margin-left: 45rpx;
+  margin-top: 10rpx;
+  width: 80%;
+}
+.answerContent {
+  /* position: absolute;
+  top: 0rpx;
+  left: 70rpx; */
+  margin-top: 15rpx;
+  display: flex;
+  margin-left: 40rpx;
+  flex-direction: row;
+  width: 70%;
+}
+.answerNum {
+  margin-right: 5rpx;
+  color: rgb(194, 188, 188);  
+}
+.answer {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 15rpx;
+  bottom: 10rpx;
+}
+.openUp {
+  width: 40rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 60rpx;
+  bottom: 10rpx;
+}
+.bottom {
+  margin-top: 50rpx;
+  height: 100rpx;
+  text-align: center;
 }

@@ -1,4 +1,7 @@
 /* miniprogram/pages/index/index.wxss */
+page {
+  background-color: #fff;
+}
 .swiper{
   margin-top: 10rpx;
   height: 300rpx;
@@ -18,8 +21,9 @@
   height: 300rpx;
   width: 100%;
   flex-direction: column;
-  background-color: rgb(226, 226, 220);
+  background-color: #ffffff;
   border-radius: 8%;
+  border: 2rpx solid rgb(226, 238, 240);
 }
 .bottom, .top{
   display: flex;
@@ -33,6 +37,7 @@
   flex: 1;
   justify-content: center;
   align-items: center;
+  /* border: 2rpx solid #f0ecec; */
 }
 .icon image{
   width: 80rpx;

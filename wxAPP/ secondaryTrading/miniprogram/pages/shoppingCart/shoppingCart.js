@@ -161,6 +161,9 @@ Page({
 
 
   getShopping() {
+    wx.showLoading({
+      title: '正在加载'
+    })
     db.collection('shopCart').where({
       _openid: app.globalData.openid
     }).get().then(res => {
@@ -179,6 +182,7 @@ Page({
       this.setData({
         listArray: shopping
       })
+      wx.hideLoading();
     })
   },
 
