@@ -93,6 +93,7 @@ Page({
     let priceSum = this.data.priceSum 
     let check = e.currentTarget.dataset.check
     let num = e.currentTarget.dataset.num
+    let shoppingIndex = e.currentTarget.dataset.index
     price = (price/num)*(++num);
     // console.log(priceSum);
     // console.log(this.data.priceSum);
@@ -103,10 +104,25 @@ Page({
       })
     }
     e.currentTarget.dataset.priceSum = priceSum
-    listArray[e.currentTarget.dataset.index].num = num
-    listArray[e.currentTarget.dataset.index].price = price
+    listArray[shoppingIndex].num = num
+    listArray[shoppingIndex].price = price
     // console.log(price, num);
     
+    db.collection('shopCart').where({
+      _openid: app.globalData.openid,
+    }).get().then(res => {
+      let data = res.data[shoppingIndex]
+      // console.log(data);
+      if(data.price) {
+        db.collection('shopCart').doc(data._id).update({
+          data: {
+            num: num,
+            price: price
+          }
+        })
+      }
+    })
+
     this.setData({
       listArray
     })
@@ -135,7 +151,16 @@ Page({
       db.collection('shopCart').where({
         _openid: app.globalData.openid,
       }).get().then(res => {
-        console.log(res.data[shoppingIndex]);
+        let data = res.data[shoppingIndex]
+        // console.log(data);
+        if(data.num > 1) {
+          db.collection('shopCart').doc(data._id).update({
+            data: {
+              num: num,
+              price: price
+            }
+          })
+        }
       })
       
     }
