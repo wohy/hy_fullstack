@@ -102,8 +102,7 @@ Page({
           })
         })
       }
-    })
-     
+    })   
   },
 
   /**
@@ -113,7 +112,7 @@ Page({
     console.log(options);
     db.collection('sellsShopping').where({
       _id: options.shoppingId,
-      _openid: app.globalData.openid
+      // _openid: app.globalData.openid
       // shopImage: options.shoppingImage
     }).get()
     .then(res => {
@@ -121,11 +120,11 @@ Page({
       let shopimage = res.data[0].shopImage
       this.setData({
         imageList: shopimage,
-        price: parseInt(res.data[0].price),
+        price: parseFloat(res.data[0].price),
         description: res.data[0].description,
         localtion: res.data[0].localtion,
         shoppingName: res.data[0].shoppingName,
-        _openid: res.data[0]._openid,
+        // _openid: res.data[0]._openid,
         _id: res.data[0]._id
       })
       // console.log(this.data.imageList);

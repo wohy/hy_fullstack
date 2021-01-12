@@ -199,7 +199,7 @@ Page({
         shopping.push({
           imageURL: shopList[i].imageUrl.thumb,
           shopName: shopList[i].shoppingName,
-          price: parseInt(shopList[i].price),
+          price: parseFloat(shopList[i].price),
           num: shopList[i].num,
           _id: shopList[i]._id
         })
