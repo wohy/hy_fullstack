@@ -1,2 +1,4 @@
 <!--miniprogram/pages/comment/comment.wxml-->
-
+<van-cell-group class="input-class">
+    <van-field model:value="{{ message }}" type="textarea" placeholder="请输入您的评论或问题" bind:change="onChangedescrip" autosize border="{{false}}" />
+  </van-cell-group>
