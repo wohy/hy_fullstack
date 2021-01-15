@@ -1,1 +1,11 @@
 /* miniprogram/pages/comment/comment.wxss */
+.comment {
+  background: #fff;
+  height: 700rpx;
+}
+.upLoader {
+  width: 40%;
+  height: 100rpx;
+  margin-top: 20rpx;
+  margin-left: 30%;
+}

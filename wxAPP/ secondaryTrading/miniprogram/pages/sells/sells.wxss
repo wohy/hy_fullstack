@@ -40,8 +40,6 @@
 .upLoader {
   width: 40%;
   height: 100rpx;
-  margin-left: 30%;
-}
-.upLoader {
   margin-top: 20rpx;
+  margin-left: 30%;
 }

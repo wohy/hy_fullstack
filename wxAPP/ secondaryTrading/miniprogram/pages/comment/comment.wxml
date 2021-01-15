@@ -1,4 +1,11 @@
 <!--miniprogram/pages/comment/comment.wxml-->
-<van-cell-group class="input-class">
+<view class="comment">
+  <van-cell-group class="input-class">
     <van-field model:value="{{ message }}" type="textarea" placeholder="请输入您的评论或问题" bind:change="onChangedescrip" autosize border="{{false}}" />
   </van-cell-group>
+</view>
+<view class="upLoader">
+  <van-button size="large" disabled="{{ complete }}" bindtap="sells" color="linear-gradient(to right, #ff4501, #DC143C)">
+    售出
+  </van-button>
+</view>
