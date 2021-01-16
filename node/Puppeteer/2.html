@@ -1,0 +1,49 @@
+<script>
+  let p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 3000)
+  })
+  async function run() {
+    await p; //等待p执行完，返回true
+    return true;
+  }
+  
+  // run 是 async 执行完返回一个Promise
+  // run().then((r) => {
+  //   console.log(r); //三秒后打印r，r为run执行完返回的true
+  // })
+
+  async function bar() {
+    let r = await run()
+    console.log(1, r); //等3秒输出一个1 和 true
+  }
+
+  // Promise.all([run(), bar(), p]).then() //当run、bar、p都执行完后才执行then中的代码
+  // Promise.race([run(), bar(), p]) //以最快的为准
+
+  // 给你5个厂商，一张图片，你怎么测出5个CDN厂商哪个比较快
+  // 比较图片加载速度 onLoad加载完时间 date获取开始加载与加载完的时间戳
+  // 将请求封装成一个函数
+  function req(url) {
+    return Promise((resolve, reject) => {
+      let img = new Image();
+      img.src = url;
+      img.onload = function() {
+        resolve(url);
+      }
+      img.onerror = function() {
+        reject();
+      }
+    })
+  }
+  let arr = [
+    req('https://img.alicdn.com/tfs/TB1FjZ7VWL7gK0jSZFBXXXZZpXa-520-280.png'),
+    req('https://img12.360buyimg.com/pop/s590x470_jfs/t1/123551/25/18955/90317/5fb48dfeEc54fbc44/a9d52bea957c466b.jpg.webp')
+  ]
+  Promise.race(arr).then(r => {
+    console.log(r);
+  })
+
+
+</script>

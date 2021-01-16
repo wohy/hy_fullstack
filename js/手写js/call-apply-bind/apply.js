@@ -11,8 +11,6 @@ Function.prototype.myapply = function (obj, thisArg) {
     throw new TypeError('Error')
   }
   const fn = Symbol('fn')
-  // console.log(arguments);
-  // console.log(Arg);
   obj[fn] = this
   const result = obj[fn](...thisArg)
   delete obj[fn]

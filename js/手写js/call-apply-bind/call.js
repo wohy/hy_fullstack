@@ -1,5 +1,5 @@
 // a.call(b, arguments...) 
-// a能访问到b上的属性 即a的在b中生效了， a中的参数接在b后面，逐个传入，若不传如参数这会指向window
+// a能访问到b上的属性 即a的在b中生效了， a中的参数接在b后面，逐个传入，若不传如参数则会指向window
 
 // 当一个函数定义出来就会具有该mycall方法
 Function.prototype.mycall = function(thisArg) {
