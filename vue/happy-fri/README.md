@@ -1,4 +1,5 @@
 # happy-fri
+- 移动端 兼容单位 rem 相对html的 
 
 ## Project setup
 ```

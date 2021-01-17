@@ -14,24 +14,24 @@
   <script>
     console.log(
       document.getElementById('wrap').childNodes
-    )
+    )// wrap中的子节点
     const observer = new MutationObserver(() => {
       console.log(1)
     })
     // DOM 节点种类：
     // document.createElement
     // 文本节点
-    // '1' Number('1')
-    const textNode = document.createTextNode(String(1))
+    // '1' Number('1') 强制转换为number类型
+    const textNode = document.createTextNode(String(1))  //创建一个文本节点
     observer.observe(textNode, {
       characterData: true
     })
     textNode.data = String(2);
     // SyntaxError: Invalid or unexpected token
     console.log(1.1)
-    // 歧义  对象.key  小数点
+    // 这个'.' 歧义  对象.key  小数点
     console.log((1).toString());  
-    console.log('2'.toString());
+    console.log('2'.toString()); //引擎默认会对其进行装箱操作 new String 所以拥有了 toString方法
     // 
     // 装箱  '2'  -> new String('2')
     // 1  -> new Number('1')

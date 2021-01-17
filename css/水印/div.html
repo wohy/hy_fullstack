@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,14 @@
     #watermark {
       z-index: -1;
       position: fixed;
-      left: 0;top: 0;right: 0;bottom: 0;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
       display: flex;
       flex-wrap: wrap;
     }
+
     .item {
       position: relative;
       width: 100px;
@@ -20,6 +25,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .text {
       /* 相对于 包含块 来定位 */
       position: absolute;
@@ -29,7 +35,8 @@
     }
   </style>
 </head>
-<body>
+
+<body style="">
 
   <div id="button">
     按钮
@@ -58,22 +65,24 @@
     function callBack(list) {
       console.log(list);
       list.forEach(x => {
-        if (x.type === 'childList' && 
-        x.removedNodes.length &&
-        x.removedNodes[0] === wm
-        ) {
+        if (x.type === 'childList' &&
+          x.removedNodes.length &&
+          x.removedNodes[0] === wm
+        ) {  //如果删除的为这个wm（水印）则自动加上水印
           document.body.appendChild(wm);
         }
       })
     }
+    // 监听API
     observer.observe(document.body, {
       childList: true, //子节点
       attributes: true, //属性
-      subtree: true
+      subtree: true     //整棵子树
     })
     // event-loop
     // 微任务：promise MutationObser  
     // 宏任务
   </script>
 </body>
+
 </html>

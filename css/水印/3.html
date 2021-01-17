@@ -9,13 +9,13 @@
   <script>
     const div = document.createElement('div');
     const observer = new MutationObserver((list) => {
-      console.log(0, list);
+      console.log(0, list);  // 这个是异步的 会进入到微任务队列中
     })
     observer.observe(document.body, {
       childList: true
     })
-    document.body.appendChild(div);
-    console.log(2);
+    document.body.appendChild(div); //MutationObserver监听到变动，执行回调函数
+    console.log(2); //由于MutationObserver中的回调为异步的，所以会先打印2
   </script>
 </body>
 </html>

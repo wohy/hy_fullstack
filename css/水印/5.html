@@ -16,23 +16,24 @@
   <h2></h2>
   <script>
     const app = document.getElementById('app');
-    // app 里面 h2 标签 有几个
-    // app 里面 以 h 开头 的标签 有几个
     let nodes = app.querySelectorAll('h2');
+    // app 里面 h2 标签 有几个
     console.log(nodes);
+
+    // app 里面 以 h 开头 的标签 有几个
     // html -> 字符串  -> 正则
     // console.log(app.innerHTML)
-    let str = app.innerHTML;
+    let str = app.innerHTML; 
     // str = '<haaaaaaa'
     let reg = /(<h)/g;
-    console.log(1, ...str.matchAll(reg));
+    console.log(1, ...str.matchAll(reg)); //matchAll把所有满足条件的东西都一个数组的形式输出出来，通过解构将其逐个输出
 
     // app.childNodes
     findH(app);
     function findH(parent) {
       console.log(parent.tagName);  
-      // app 下面的每个节孙点都能拿到
-      if (parent.childNodes) {
+      // app 下面的每个子孙节点都能拿到
+      if (parent.childNodes) { //如果还有子节点，就递归
         for (let child of parent.childNodes) {
           findH(child);
         }

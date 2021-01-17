@@ -2,7 +2,7 @@
 - 用来管理数据源，定义公共数据源
 - 将定义公共数据源的js，与main.js结合
   类似路由的引入
-  在main.jsz中引入
+  在main.js中引入
   引入时，名称只能为store
   ```import store from './vuex/store'```
   再直接将store传入new Vue 中
