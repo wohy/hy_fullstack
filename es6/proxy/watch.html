@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">0</div>
+  <button id="button">add</button>
+
+  <script>
+    // 为了让外面能够访问到watch 可以将该内部的watch函数返回出来 有一个变量来接收 内部就形成了一个闭包
+    (function() {
+      function watch(target, func) {
+        let proxy = new Proxy(target, {
+          get: function(target, prop) {
+            return target[prop]
+          },
+          set: function(target, prop, value) {
+            target[prop] = value
+            func(prop, value)
+          }
+        })
+        return proxy
+      }
+      this.watch = watch //此时的自执行函数在window下执行 则此时的watch能在该IIFE外调用
+    })()
+
+    let button = document.getElementById('button');
+    let container = document.getElementById('container')
+    
+    let obj = {
+      value: 0
+    }
+
+    let newObj = watch(obj, function(key, newValue) {
+      if (key === 'value') {
+        container.innerHTML = newValue
+      }
+    })
+
+    button.addEventListener('click', function(){
+      newObj.value += 1
+    })
+  </script>
+</body>
+</html>
