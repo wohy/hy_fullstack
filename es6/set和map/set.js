@@ -17,6 +17,7 @@ let newArr = [...new Set(arr)] //Set 处理 arr, 会返回一个不包含重复�
 // }
 // console.log(test('yellow'));
 
+
 // const fruitColor = {
 //   red: ['apple', 'straberry'],   //对象的key值只能是字符串类型
 //   yellow: ['banana', 'pear'],
