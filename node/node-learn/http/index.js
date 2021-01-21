@@ -1,7 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 
-http.createServer(function(req, res) {  //运行成一个进程 启动3000端口 进行监听 让3000端口提供http服务 分别request response
+http.createServer(function(req, res) {  //运行成一个进程 启动3000端口 进行监听 让3000端口提供http服务 分别request response客户端请求和服务端响应
   console.log(req.url);
   if (req.url === '/favicon.ico') {
     res.writeHead(200);

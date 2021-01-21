@@ -41,7 +41,6 @@ function run(gen) {
       next(data)
     })
   }
-
   next()
 }
 run(gen)
