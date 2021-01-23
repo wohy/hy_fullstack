@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async defer src="vue.js">
+    // async 异步的
+  </script>
+  <title>Document</title>
+  <style>
+    /* 尽量保持层级的扁平化，不要嵌套过深，这回让递归CSSOM树变得开销更大，html中加上容易区分的类名较好，并减少没有意义的标签*/
+    div > a > span{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <a href="#">
+      <span>hello</span>
+    </a>
+  </div>
+</body>
+
+<script>
+  // script 最好能放在此处
+</script>
+</html>
