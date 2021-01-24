@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div id="wrapper">
+      <button id="btn">click</button>
+    </div>
+  </div>
+
+  <script>
+    let wrapper = document.getElementById('wrapper')
+    let btn = document.getElementById('btn')
+
+    wrapper.addEventListener('click', function() {
+      console.log('wrapper');
+    }) //addEventListener有第三个参数，默认为false，不开启捕获，开启冒泡，冒泡向外
+
+    btn.addEventListener('click', function(event) {
+      console.log('btn');
+      event.stopPropagation() // 可阻止默认事件的进一步传播，只会执行click上的事件，打印btn btn2
+      // event.stopImmediatePropagation() //功能比上面的更强大，还能阻止该事件目标进行别的同类型的事件，只会执行打印btn
+    },true) //true, 开启捕获，不进行冒泡 捕获由window向内延续
+    btn.addEventListener('click', function(event) {
+      console.log('btn2');
+    })
+  </script>
+</body>
+</html>

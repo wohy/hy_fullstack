@@ -1,0 +1,32 @@
+<script>
+  // 原型式继承
+  function createObj(o) {
+    function F() {
+      F.prototype = o
+      return new F()
+    }
+  }
+
+  function Parent() {
+    this.name = 'jiushen'
+  }
+
+  let person = {
+    name: 'jiushen',
+    friends: ['ceo', 'cong']
+  }
+
+  let person1 = createObj(person)
+  let person2 = createObj(person)
+
+  person1.name = 'zhou' 
+  //没有修改到原型上的name，而是给person1添加一个name属性值为'zhou'，
+  // 添加属性时，若本身没有该属性，就直接创建这个属性，而不会再到原型链上去查找
+  console.log(person2.name); // 一般类型正常 打印 jiushen
+
+  person1.friends.push('yao') 
+  //person1中本身没有friends，则会到原型链上去找
+  // 在原型上找到了该属性，则向该属性中加入一个'yao'
+  // 此时person1 与 person2 继承的同一个原型就发生了改变
+  console.log(person2.friends); //引用类型 两个person的friends都会变
+</script>
