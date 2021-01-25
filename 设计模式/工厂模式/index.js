@@ -44,7 +44,7 @@ function Factory(name, age, career) {
       work = ['订会议室', '写PRD', '催更']
       break;
     case 'boss':
-      work = ['喝茶', '看报', '见客户']  //此处将boss的信息录入了，导致Bug
+      work = ['喝茶', '看报', '见客户']  //此处将boss的信息录入了，导致Bug，而封闭的不应随意修改
     // ......
   }
   return new User(name, age, career, work)

@@ -1,4 +1,4 @@
-class OS {
+class OS { //操作系统
   controlHardWare() {
     throw new Error('抽象工厂方法不允许直接调用，你需要将我重学！')
   }
@@ -16,7 +16,8 @@ class AppleOS extends OS {
 }
 
 // ---------------------
-class HardWare {
+
+class HardWare { //硬件
   oprateByOrder() {
     throw new Error('抽象工厂方法不允许直接调用，你需要将我重学！')
   }
@@ -55,5 +56,6 @@ myHardWare.oprateByOrder()
 
 
 class newStarFactory extends MobilePhoneFactory{
-  
+  // 此处又可创建其他的手机
+  // 易拓展
 }
