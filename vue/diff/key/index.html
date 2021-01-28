@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <!-- <li v-for="item in list">{{item}}</li> -->
+      <li v-for="(item, key) in list" :key="index">{{item}}</li>
+    </ul>
+    <button @click="change">改变</button>
+  </div>
+</body>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        list: [1, 2, 3]
+      }
+    },
+    methods: {
+      change() {
+        this.list.reverse()
+      }
+    }
+  })
+
+
+  // 虚拟DOM 
+  // 若 是使用Index作为key时，reverse后 生成的 新的 children 的 key 会与 初始的key相同 而其对应的val不同
+  // 本来可直接将DOM节点进行reverse，可还需再向深层匹配到val 发生不同，这事val不同，则需重新配置那些key及其对应的val，删除原来的旧节点，增加新节点配置好之后，再交换节点的位置
+  // 本来匹配到key的时候就可以reserve直接交换节点位置，而用Index做key要匹配到val，这个时候那些节点就要重新变动，浪费性能
+  // 则产生了更多的开销
+  
+  // 原始的 children 
+  [
+    {
+      tag: 'li',
+      key: 0,
+      props: {
+        val: 1
+      }
+    },
+    {
+      tag: 'li',
+      key: 1,
+      props: {
+        val: 2
+      }
+    },
+    {
+      tag: 'li',
+      key: 2,
+      props: {
+        val: 3
+      }
+    }
+  ]
+
+
+  // 新的
+  [
+    {
+      tag: 'li',
+      key: 0,
+      props: {
+        val: 3
+      }
+    },
+    {
+      tag: 'li',
+      key: 1,
+      props: {
+        val: 2
+      }
+    },
+    {
+      tag: 'li',
+      key: 2,
+      props: {
+        val: 1
+      }
+    }
+  ]
+
+</script>
+</html>
