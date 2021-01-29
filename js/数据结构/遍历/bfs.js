@@ -22,3 +22,28 @@ function BFS(root) {
     queue.shift() //访问完毕
   }
 }
+
+
+// 层序
+var levelOrder = function(root) {
+  if(!root) return [];
+  let qeueu = [], res = [];
+  qeueu.push(root)
+  while(qeueu.length > 0) {
+      let len = qeueu.length
+      let arr = []
+      while(len) {
+          const current = qeueu.shift()   
+          arr.push(current.val)
+          if(current.left) {
+              qeueu.push(current.left)
+          }
+          if(current.right) {
+              qeueu.push(current.right)
+          }
+          len--;
+      }
+      res.push(arr)
+  }
+  return res
+};
