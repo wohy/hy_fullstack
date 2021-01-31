@@ -11,7 +11,9 @@
     return a - b;   //通过控制 a - b 或 b - a来控制降序升序
   }
   function partition(arr, left, right) {
+    // 递归出口
     if (left >= right) return;
+
     let privt = arr[left];
     let i = left, j = right;
     while(i < j) {
