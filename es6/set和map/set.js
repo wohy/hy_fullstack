@@ -1,6 +1,8 @@
 let arr = [1, 2, 3, 2, 4, 1]
 
-let newArr = [...new Set(arr)] //Set 处理 arr, 会返回一个不包含重复项的arr，此时的newArr这会为arr去重后的数组
+let newArr = [...new Set(arr)] 
+//Set 处理 arr, 会返回一个不包含重复项的arr
+//此时的newArr这会为arr去重后的数组
 
 
 // function test(color) {
@@ -28,8 +30,10 @@ let newArr = [...new Set(arr)] //Set 处理 arr, 会返回一个不包含重复�
 // }
 // console.log(test('yellow'));
 
+
 // const fruitColor = new Map()
 // console.log(fruitColor);
+
 
 // let obj = new Map()
 // let  a = 1  
