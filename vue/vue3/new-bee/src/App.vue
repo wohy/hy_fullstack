@@ -17,6 +17,7 @@ export default {
     })
 
     return {
+      // state 解构出来
       ...toRefs(state)
     }
   }

@@ -17,9 +17,12 @@
 import { ref, reactive, toRefs } from 'vue'
 import { useRouter } from 'vue-router' 
 export default {
+  // 抛出 title 和 goods 由 父组件 传入 决定
   props: {
     title: {
+      // 类型
       type: String,
+      // 属性值
       default: ''
     },
     goods: {
@@ -29,6 +32,7 @@ export default {
       }
     }
   },
+  // 接收 父组件 传入的 参数 
   setup(props) {
     const router = useRouter()
     const myTitle = ref(props.title)

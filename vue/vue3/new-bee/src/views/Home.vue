@@ -131,7 +131,7 @@ export default {
       });
       const { data } = await getHome();
       console.log(data);
-      state.swiperList = data.carousels;
+      state.swiperList = data.carousels; // 轮播图
       state.newGoodses = data.newGoodses;
       state.hotGoodses = data.hotGoodses;
       state.recommendGoodses = data.recommendGoodses;
