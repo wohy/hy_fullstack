@@ -15,27 +15,29 @@ export default {
       height: 40,
       imgCode: ''
     })
+
     onMounted(() => {
       state.imgCode = draw()
     })
+
     // 随机数
     const randomNum = (min, max) => {
       return parseInt(Math.random() * (max - min) + min)
     }
-    // 生成随即色
+    // 生成随机色
     const randomColor = (min, max) => {
       const r = randomNum(min, max)
       const g = randomNum(min, max)
       const b = randomNum(min, max)
       return `rgb(${r}, ${g}, ${b})`
     }
-    // 绘制图片
+    // 绘制图片函数
     const draw = () => {
       // 拿到画布
       const ctx = verify.value.getContext('2d')
       // 填充背景色
       ctx.fillStyle = randomColor(180, 230)
-      // 填充的位置
+      // 填充的位置 整个矩形 填充满颜色
       ctx.fillRect(0, 0, state.width, state.height)
       // 定义内容
       let imgCode = ''
@@ -47,11 +49,17 @@ export default {
         const fontSize = randomNum(18, 40)
         // 字体随机旋转角度
         const deg = randomNum(-30, 30)
+        // 字体 加上单位
         ctx.font = fontSize +  'px Simhei'
+        // 字符 位置偏上
         ctx.textBaseline = 'top'
+        // 文字填充颜色
         ctx.fillStyle = randomColor(80, 150)
+        // 保持当前状态
         ctx.save() // 保存，入栈
+        // 随机平移
         ctx.translate(30 * i + 15, 15)
+        // 旋转
         ctx.rotate((deg * Math.PI) / 180)
         // 文字绘制到画布上
         ctx.fillText(text, -10, -15)

@@ -37,3 +37,10 @@ router-view这个路由入口中，允许你再放组件进来
 
 - 封装一个 商品列表 组件  GoodsList.vue
   三个模块的结构都相同 考虑将其封装成组件使用
+
+- 登录页面 Login.vue
+  - 头部 功能 写成组件 SimpleHeader.vue
+  - 验证码做成了组件 VueImgVerify.vue
+  使用 canvas 实现
+
+- axios 封装 注册账号

@@ -121,6 +121,7 @@ export default {
     });
 
     onMounted(async () => {
+      // utils.js 用于获取本地存储的函数
       const token = getLocal('token')
       if (token) {
         state.isLogin = true
@@ -138,11 +139,12 @@ export default {
       Toast.clear();
     });
 
-    // 滚动页面事件
+    // 滚动页面事件  nextTick API 该事件只会在页面渲染完成后才能执行
     nextTick(() => {
       // 保证页面渲染完成才会执行
       window.addEventListener("scroll", () => {
         // console.log(123);
+        // 兼容各个浏览器 取得滚动后 距离顶部的距离
         let scrollTop =
           window.pageYOffset ||
           document.documentElement.scrollTop ||

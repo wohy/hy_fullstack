@@ -28,6 +28,7 @@
           placeholder="输入验证码"
         >
           <template #button>
+            <!-- 通过ref拿到这段dom结构 -->
             <vue-img-verify ref="verifyRef"/>
           </template>
         </van-field>
@@ -88,12 +89,15 @@ export default {
     vueImgVerify
   },
   setup() {
+    // 定义一个 useRouter 用push方法来进行路由跳转
     const router = useRouter()
     const verifyRef = ref(null)
     const state = reactive({
       username: '',
       password: '',
+      // 验证码
       verify: '',
+      // 判断当前类型来 更改header
       type: 'login',
       username1: '',
       password1: '',
@@ -116,9 +120,10 @@ export default {
       if (state.type == 'login') { // 登录
         const { data } = await login({
           'loginName': values.username,
+          // md5 加密 密码
           'passwordMd5': md5(values.password)
         })
-        // token（data）保存在本地
+        // token（data）保存在本地 本地的application中 存入了一个key为token的字段
         setLocal('token', data)
         router.push('/home')
       } else { // 注册
@@ -127,6 +132,8 @@ export default {
           "loginName": values.username1,
           "password": values.password1
         })
+        // await 导致 后面的代码 进入到微任务队列中 
+        // 如果register函数执行不成功 这整个async就会终止 其后的代码将无法执行
         Toast.success('注册成功')
         state.type = 'login'
         state.verify = ''

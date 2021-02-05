@@ -11,6 +11,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 export default {
+  // props 中接收到的值 可以直接拿到页面上去用 不用经过setup
   props: {
     name: {
       type: String,
