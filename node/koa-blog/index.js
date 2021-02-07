@@ -2,10 +2,16 @@ const Koa = require('koa')
 const path = require('path')
 const bodyParser = require('koa-bodyparser')
 const config = require('./config/default.js')
+
+// 进行数据库操作
 const session = require('koa-session-minimal')
 const MysqlStore = require('koa-mysql-session')
+
+// 缓存插件 缓存一些静态资源
 const staticCache = require('koa-static-cache')
+
 const views = require('koa-views')
+
 const app = new Koa()
 
 // app.use((ctx) => {
@@ -35,11 +41,12 @@ app.use(staticCache(path.join(__dirname, './images'), { dynamic: true }, {
 }))
 
 
-// 配置服务端的模版引擎中间件
+// 配置服务端的模版引擎中间件 读取views中的所有的ejs文件
 app.use(views(path.join(__dirname, './views'), {
   extension: 'ejs'
 }))
 
+// 限制表单 1mb
 app.use(bodyParser({
   formLimit: '1mb'
 }))

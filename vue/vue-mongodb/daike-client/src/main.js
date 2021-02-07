@@ -4,9 +4,12 @@ import router from './router'
 import store from './store'
 import Vant from 'vant'
 import 'vant/lib/index.css'
+import api from './../axios/index'
+
 
 Vue.config.productionTip = false
-Vue.use(Vant)
+Vue.use(Vant);
+Vue.use(api)
 
 new Vue({
   router,

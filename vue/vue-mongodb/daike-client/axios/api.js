@@ -1,16 +1,22 @@
 import axios from 'axios'
 import config from './config.js'
+import qs from 'qs' //序列化请求操作 服务端要求的
+import router from 'vue-router'
+import { Toast } from 'vant'
 
 export default function $axios(options) {
   return new Promise((resolve, reject) => {
-    const instance = axios.create({
+    const instance = axios.create({ //instance 就为配置好路径的接口请求
       baseURL: config.baseURL
     })
 
     // 请求拦截
     instance.interceptors.request.use(
-      config => {
+      // 请求成功
+      config => { // use 中的两个参数 config error
+        // 接口请求的方式
         if (config.method.toLocaleUpperCase() === 'POST' || config.method.toLocaleUpperCase() === 'PUT' || config.method.toLocaleUpperCase() === 'DELETE') {
+          // qs 序列化
           config.data = qs.stringify(config.data)
         }
         return config
@@ -30,18 +36,22 @@ export default function $axios(options) {
         }
       }
     )
+
+    // 响应拦截
     instance.interceptors.response.use(
+      // 响应成功
       response => {
         let data;
-        if (response.data == undefined) {
+        if (response.data == undefined) { // 响应成功可 没拿到数据 则需兼容一下浏览器
           data = response.request.responseText
         } else {
           data = response.data
         }
-
-        data = JSON.parse(data)
+        // 将数据转为 JSON 格式
+        // data = JSON.parse(data)
         const message = data.msg || 'Error'
         switch (data.code) {
+          // 0 时 响应的东西不是想要的
           case 0:
             Toast.fail({
               message,
@@ -106,5 +116,14 @@ export default function $axios(options) {
       }
     )
 
+    // 请求处理
+    instance(options)
+      .then(res => {
+        resolve(res)
+        return false
+      })
+      .catch(error => {
+        reject(error)
+      })
   })
 }

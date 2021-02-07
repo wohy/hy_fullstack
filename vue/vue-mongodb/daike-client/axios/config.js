@@ -1,4 +1,4 @@
-export default {
+export default { //配置好
   method: 'post',
   baseURL: 'http://localhost:3000',
   headers: {

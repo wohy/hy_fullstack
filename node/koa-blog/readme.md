@@ -5,3 +5,9 @@
   123456
 - show databases;
   注意分号
+
+当运行后 访问 localhost:3000/signup
+
+- mysql 可视化工具
+ MAC下载 sequel pro
+ 都可以下载 Navicat
