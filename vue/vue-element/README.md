@@ -79,25 +79,3 @@ render: h => h(App),
 使每一个.vue界面都有了一个Vue的实例
 所以面向对象的方法中的this会指向Vue实例 
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

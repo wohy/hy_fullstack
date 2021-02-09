@@ -1,7 +1,11 @@
 <template>
   <div id="app">
+    <!--路由入口 v-slot 定义一个插槽 允许放入组件 -->
+    <!-- 路由中的每一个页面要出现都要经过路由路口 -->
     <router-view class="router-view" v-slot="{Component}">
       <transition :name="transitionName">
+        <!-- 放入组件 为插槽中接收到的Component -->
+        <!-- 则页面将添加上动画效果 -->
         <component :is="Component" />
       </transition>
     </router-view>

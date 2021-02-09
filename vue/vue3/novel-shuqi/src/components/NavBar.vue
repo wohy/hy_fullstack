@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar">
     <ul class="nav-list">
-      <router-link tag="li" class="nav-list-item active" to="bookCity">
+      <router-link tag="li" class="nav-list-item active" to="/">
         <i class="iconfont icon-shuchengpress"></i>
         <span>书城</span>
       </router-link>
@@ -22,45 +22,44 @@
 </template>
 
 <script>
-
+export default {
+  setup() {
+    
+  }
+}
 </script>
 
-<style lang="less" scoped >
+<style lang="less">
 @import "../common/style/mixin";
 .nav-bar {
-  position: fixed;
-  left: 0;
+  position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 5px 0;
+  height: 70px;
   z-index: 1000;
-  background: #fff;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  background-color: #fff;
   .nav-list {
-    width: 100%;
-    .fj();
+    display: flex;
+    margin: 10px;
+    height: 50px;
     flex-direction: row;
-    padding: 0;
+    justify-content: center;
+    align-items: center;
     .nav-list-item {
       display: flex;
       flex: 1;
       flex-direction: column;
       text-align: center;
-      color: #666;
+      color: @icon;
       &.router-link-active {
         color: @primary;
       }
       i {
         text-align: center;
-        font-size: 22px;
+        font-size: 25px;
       }
       span {
-        font-size: 12px;
-      }
-      .van-icon-shopping-cart-o {
-        margin: 0 auto;
-        margin-bottom: 2px;
+        font-size: 15px;
       }
     }
   }

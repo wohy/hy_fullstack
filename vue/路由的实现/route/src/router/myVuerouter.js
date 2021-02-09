@@ -42,6 +42,7 @@ class Vue {
     _installedPlugins: ''
   }
 }
+
 // use的源码
 Vue.use = function(plugin) {
   const installedPlugins = (this._installedPlugins || (this._installedPlugins = []))
