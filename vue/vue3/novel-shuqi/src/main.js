@@ -9,4 +9,5 @@ import './common/style/base.less'
 
 
 
+
 createApp(App).use(store).use(router).use(Vant).mount('#app')

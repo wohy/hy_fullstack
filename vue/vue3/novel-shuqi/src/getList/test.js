@@ -1,5 +1,5 @@
 // const cors = require('koa2-cors');
-let getHotBooks = async function(url) {
+async function getHotBooksasync(url) {
   const https = require('https')
   const cheerio = require('cheerio')
 
@@ -7,7 +7,7 @@ let getHotBooks = async function(url) {
 
   await (function get(url) {
     return new Promise((resolve, reject) => {
-      https.get(`/api/${url}/`, (res) => {
+      https.get(`https://xs.sogou.com/${url}/`, (res) => {
         let html = '';
         res.on('data', (chunk) => {
           html = html + chunk;
@@ -28,12 +28,18 @@ let getHotBooks = async function(url) {
       })
     })
   })(url)
+  
   return allFilms
 }
 
-getHotBooks('nansheng').then(res => {
-  console.log(res);
-})
+function getList(arr) {
+  getHotBooksasync('nansheng').then(res => {
+    arr = res
+  })
+  return arr
+}
+
+
 
 // module.exports = {
 //   getHotBooks

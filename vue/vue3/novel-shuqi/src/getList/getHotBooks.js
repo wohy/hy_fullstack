@@ -1,4 +1,3 @@
-
 const getHotBooks = function (url) {
   const https = require('https')
   const cheerio = require('cheerio')
@@ -26,6 +25,13 @@ const getHotBooks = function (url) {
 }
 
 
-export default {
-  getHotBooks
-}
+let bookList = getHotBooks('nansheng')
+
+// console.log(bookList);
+setTimeout(() => {
+  console.log(bookList[1].auth);
+}, 3000)
+
+// export default {
+//   getHotBooks
+// }

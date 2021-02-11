@@ -12,8 +12,9 @@
     <div class="serchIcon">
       <p class="iconfont icon-search" @click="search"/>
     </div>
-    <input :class="serchInput" type="text" v-show="show"> 
-    <van-popup v-model:show="show" position="top" :style="{ height: '10%' }" :teleport="myContainer" />  
+    <van-popup v-model:show="show" position="top" class="popup" :teleport="myContainer">
+      <input class="serchInput" type="text" v-show="show"> 
+    </van-popup> 
   </div>
   <navbar />
   <router-view></router-view>
@@ -25,7 +26,7 @@
 
 <script>
 import navbar from "@/components/Navbar.vue";
-import { reactive, toRefs } from "vue";
+import { reactive, ref, toRefs } from "vue";
 export default {
   components: {
     navbar
@@ -55,13 +56,14 @@ export default {
           path: "/newNovel",
         },
       ],
+
       active: '',
       popSearch: false,
       show: false,
       // serchInput: ''
     });
 
-    const myContainer = document.querySelector('.my-container');
+    const myContainer = ref(document.querySelector('.serchInput'))
 
 
     const search = function() {
@@ -104,6 +106,19 @@ export default {
       height: 44px;
       .icon-search {
         color: white;
+      }
+    }
+    .popup {
+      height: 44px;
+      opacity: 0;
+      text-align: center;
+      
+      .serchInput {
+        height: 40px;
+        margin-right: 5%;
+        width: 90%;
+        border: 3px solid red;
+        background-color: #000;
       }
     }
   }
