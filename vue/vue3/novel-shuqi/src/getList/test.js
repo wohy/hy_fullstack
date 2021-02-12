@@ -32,12 +32,8 @@ async function getHotBooksasync(url) {
   return allFilms
 }
 
-function getList(arr) {
-  getHotBooksasync('nansheng').then(res => {
-    arr = res
-  })
-  return arr
-}
+
+
 
 
 

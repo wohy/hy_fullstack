@@ -1,7 +1,7 @@
 <template>
   <van-swipe class="my-swipe" :autoplay="3000">
     <van-swipe-item v-for="image in images" :key="image">
-      <img :src="image" />
+      <img :src="image" @click="goTo"/>
     </van-swipe-item>
   </van-swipe>
 
@@ -14,7 +14,7 @@
       :v-lazy="item.cover"
       :key="item.href"
     >
-      <img :src="item.cover" alt="" />
+      <img :src="item.cover" alt="" @click="goToBook(item.href)"/>
       <div class="bookInfo">
         <div class="title">{{ item.title }}</div>
         <div class="desc">{{ item.desc }}</div>
@@ -26,10 +26,22 @@
 </template>
 
 <script>
+// import { useRouter } from 'vue-router'
 export default {
   props: {
     images: Array,
     bookList: Array
+  },
+  setup() {
+    const goTo = function() {
+      
+    }
+
+    const goToBook = function(e) {
+
+    }
+
+    return { goTo, goToBook}
   }
 }
 </script>
