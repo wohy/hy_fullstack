@@ -7,9 +7,6 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.5",
-    "core-js": "^3.6.5",
-    "koa2-cors": "^2.0.6",
     "lib-flexible": "^0.3.2",
     "vant": "^3.0.6",
     "vue": "^3.0.0",

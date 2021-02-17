@@ -1,12 +1,12 @@
-let getHotBooks = async function(url) {
+// const cors = require('koa2-cors');
+async function getHotBooksasync(url) {
   const https = require('https')
   const cheerio = require('cheerio')
 
   let allFilms = [];
-
   await (function get(url) {
     return new Promise((resolve, reject) => {
-      https.get(`/api/${url}/`, (res) => {
+      https.get(`https://xs.sogou.com/${url}/`, (res) => {
         let html = '';
         res.on('data', (chunk) => {
           html = html + chunk;
@@ -26,16 +26,12 @@ let getHotBooks = async function(url) {
         })
       })
     })
-  })(url)
-  
+  })(url) 
   return allFilms
 }
 
-// getHotBooks('nansheng').then(res => {
-//   console.log(res);
-// })
 
 module.exports = {
-  getHotBooks
+  getHotBooksasync
 }
 

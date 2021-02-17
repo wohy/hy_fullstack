@@ -30,7 +30,7 @@ const routes = [
         path: '/newNovel',
         name: 'newNovel',
         component: () => import('@/views/newNovel.vue')
-      },
+      }
     ]
   },
   {
@@ -47,6 +47,11 @@ const routes = [
     path: '/user',
     name: 'user',
     component: () => import('@/views/user.vue')
+  },
+  {
+    path: '/booksItem',
+    name: 'booksItem',
+    component: () => import('@/views/booksItem.vue')
   }
 ]
 

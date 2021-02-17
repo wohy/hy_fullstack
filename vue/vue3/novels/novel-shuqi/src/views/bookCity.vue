@@ -12,8 +12,8 @@
     <div class="serchIcon">
       <p class="iconfont icon-search" @click="search"/>
     </div>
-    <van-popup v-model:show="show" position="top" class="popup" :teleport="myContainer">
-      <input class="serchInput" type="text" v-show="show"> 
+    <van-popup v-model:show="show" position="top" class="popup">
+      <van-field v-model="value" placeholder="输入搜索内容" /> 
     </van-popup> 
   </div>
   <navbar />
@@ -38,7 +38,7 @@ export default {
         {
           id: "recommend",
           title: "推荐",
-          path: "/recommend",
+          path: "/",
         },
         {
           id: "girls",
@@ -63,14 +63,12 @@ export default {
       // serchInput: ''
     });
 
-    const myContainer = ref(document.querySelector('.serchInput'))
-
 
     const search = function() {
       state.show =  true
     }
 
-    return { ...toRefs(state), search, myContainer};
+    return { ...toRefs(state), search };
   },
 };
 </script>
@@ -109,16 +107,9 @@ export default {
       }
     }
     .popup {
-      height: 44px;
-      opacity: 0;
-      text-align: center;
-      
-      .serchInput {
-        height: 40px;
-        margin-right: 5%;
-        width: 90%;
+      height: 52px;
+      .van-cell {
         border: 3px solid red;
-        background-color: #000;
       }
     }
   }
