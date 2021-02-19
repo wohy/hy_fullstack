@@ -124,8 +124,6 @@ export default {
       ]
     })
 
-    $refs
-
     const goTo = function(e) {
       
     }

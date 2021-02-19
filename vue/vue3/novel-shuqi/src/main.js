@@ -6,6 +6,7 @@ import 'lib-flexible/flexible'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import './common/style/base.less'
+// import api from './../axios/index'
 
 
 

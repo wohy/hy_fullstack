@@ -51,6 +51,6 @@ const UserSchema = new Schema({
   collections: {
     type: Array
   } 
-}, { collection: 'user', versionKey: false});
+}, { collection: 'user', versionKey: false });
 
 module.exports = mongoose.model('user', UserSchema);
