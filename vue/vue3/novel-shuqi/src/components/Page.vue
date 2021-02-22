@@ -185,8 +185,6 @@ export default {
       .desc {
         color: rgb(226, 224, 221);
         margin-bottom: 10px;
-        // height: 40px;
-        // overflow: hidden;
       }
       .auth {
         width: 70px;
