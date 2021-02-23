@@ -57,4 +57,12 @@
         安装
         import PropType from 'prop-types' 引入
   
-- 
+  - 生命周期
+    当数据组件发生更新时，会触发两次render操作
+    优化：
+      - shouldComponentUpdate 返回为false时 就只出现一次render，但该方法过于暴力，需要的步骤也会少掉
+      - shouldComponentUpdate(nextProps, preProps)
+        能够接收两个参数
+        需要让之前就有的部分，不需变化的部分，就不再去重复render了
+    - 接口的数据请求最好放在
+      componentDidMount 中

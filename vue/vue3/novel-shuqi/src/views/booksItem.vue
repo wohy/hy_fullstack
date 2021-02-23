@@ -1,113 +1,283 @@
 <template>
-  <div class="bookItems">
-    <div class="bookImage">
-      <img src="https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg" alt="">
+  <div class="detailed">
+    <div class="bookItems">
+      <div class="bookImage">
+        <img
+          src="https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg"
+          alt=""
+        />
+      </div>
+      <div class="bookField">
+        <div class="bookTitle">{{ booKItem.bookTitle }}</div>
+        <div class="auth">作者：{{ booKItem.auth }}</div>
+        <div class="fontNum">字数：{{ booKItem.fontNum }}</div>
+        <div class="bookType">类型：{{ booKItem.bookType }}</div>
+      </div>
     </div>
-    <div class="bookField">
-      <div class="bookTitle">{{booKItem.bookTitle}}</div>
-      <div class="auth">作者：{{booKItem.auth}}</div>
-      <div class="fontNum">字数：{{booKItem.fontNum}}</div>
-      <div class="bookType">类型：{{booKItem.bookType}}</div>
+    <div class="bookDesc">
+      <div class="evaluation">
+        <div class="rating">
+          <span class="rate">8.4</span>
+          评分
+        </div>
+        <div class="favorites">
+          <span class="fNum"
+            >7
+            <p>万</p></span
+          >
+          收藏
+        </div>
+        <div class="praise">
+          <span class="pNum"
+            >10
+            <p>万</p></span
+          >
+          赞赏
+        </div>
+      </div>
+
+      <div class="desc">{{ booKItem.desc }}</div>
     </div>
-  </div>
-  <div class="bookDesc">
-    <div class="favorites">
-      <span class="fNum">7</span>
-      <span class="fUnit">万</span>
-      收藏
-    </div>
-    <div class="rating">
-      <span>评分</span>
-    </div>
-    <div class="praise">
-      <span class="pNum">10</span>
-      <span class="pUnit">万</span>
-    </div>
-    <div class="desc">{{booKItem.desc}}</div>  
   </div>
   <div class="comment">
     <div class="cHeader">书友圈评</div>
-    <div class="avator">
-      <img src="https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg" alt="">
-      <div class="name">蜗牛</div>
-      <div class="commentC">
-        这也太好看了
+    <div class="commentor" v-for="cm in booKItem.commentArr" :key="cm">
+      <div class="avator">
+        <img
+          src= 'cm.avatorUrl'
+          alt=""
+        />
+        <div class="name">{{cm.name}}</div>
       </div>
+      <div class="commentC">{{cm.content}}</div>
     </div>
   </div>
-  
+  <van-button type="primary" size="large" @click="goToRead">开始阅读</van-button>
+
 </template>
 
 <script>
-import { onMounted, reactive, toRefs } from 'vue'
+import { onMounted, reactive, toRefs } from "vue";
 // import getBooksItem from '../../novel-serve/getList/getBooksItem'
-import { useRouter,useRoute } from 'vue-router'
+import { useRouter, useRoute } from "vue-router";
 export default {
   setup() {
-    const route = useRoute()
-    const a = route.query
+    const route = useRoute();
+    const a = route.query;
     console.log(a);
 
     const state = reactive({
-      booKItem:{
-        bookTitle: '顶级高手',
-        auth: '天下',
-        imageUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
-        desc: '兵王之王受伤退伍回归都市，与冰山总裁未婚妻同住一个屋檐下，拉手，不准，接吻，不许，那就一起来吧。§和未婚妻闺蜜暧昧，和主妇谈人生，冒充白领丽人男朋友，扮猪吃老虎。§各路高手蜂拥而来，本想过平凡日子的叶轩很无奈，为亲人，为爱人，为兄弟，狂战天下，无所畏惧！§且看一代杀神如何纵横都市，泡妞杀人，破除阴谋，成就无上威名，美女全收，走上人生巅峰！',
-        fontNum: '100000',
-        bookType: '玄幻小说',
+      booKItem: {
+        bookTitle: "顶级高手",
+        auth: "天下",
+        imageUrl:
+          "https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg",
+        desc:
+          "兵王之王受伤退伍回归都市，与冰山总裁未婚妻同住一个屋檐下，拉手，不准，接吻，不许，那就一起来吧。§和未婚妻闺蜜暧昧，和主妇谈人生，冒充白领丽人男朋友，扮猪吃老虎。§各路高手蜂拥而来，本想过平凡日子的叶轩很无奈，为亲人，为爱人，为兄弟，狂战天下，无所畏惧！§且看一代杀神如何纵横都市，泡妞杀人，破除阴谋，成就无上威名，美女全收，走上人生巅峰！",
+        fontNum: "100000",
+        bookType: "玄幻小说",
         newCapter: [],
-        allCapter: []
-      }
-    })
+        allCapter: [],
+        commentArr: [
+          {
+            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
+            name: 'wn',
+            content: '这也太好看了吧'
+          },
+          {
+            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
+            name: '蜗牛',
+            content: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+          },
+          {
+            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
+            name: '蜗牛',
+            content: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+          },
+          {
+            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
+            name: '蜗牛',
+            content: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+          }
+        ]
+      },
+    });
 
     // onMounted(() => {
     //   getBooksItem(a.ID).then((res) => {
     //     console.log(res);
     //     state.booKItem = res
     //   })
-      
-    // })
 
-    return { ...toRefs(state) }
-  }
-}
+    // })
+    function goToRead() {
+
+    }
+
+    return { ...toRefs(state), goToRead };
+  },
+};
 </script>
 
 <style lang="less" scoped>
-.bookItems {
-  padding: 10px;
+.detailed {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  background-color: rgb(150, 214, 223);
-  img{
-    width: 90px;
-    height: 120px;
-    margin-right: 10px;  
-    border-radius: 8%;
-  }
-  .bookField {
+  flex-direction: column;
+  background-color: rgb(212, 246, 250);
+  .bookItems {
+    width: 100%;
+    padding: 20px 10px;
     display: flex;
-    flex-direction: column;
-    // justify-content: space-between;
-    // align-items: center;
-    .bookTitle {
-      font-size: 150;
-      font-weight: bold;
+    flex-direction: row;
+    img {
+      width: 90px;
+      height: 120px;
+      margin-right: 10px;
+      border-radius: 8%;
     }
-    .auth {
-      font-size: small;
-      color: rgb(218, 214, 209);
-    }
-    .fontNum {
-      font-size: small;
-      color: rgb(218, 214, 209);
-    }
-    .bookType {
-      font-size: small;
-      color: rgb(218, 214, 209);
+    .bookField {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      // align-items: center;
+      .bookTitle {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .auth,
+      .fontNum,
+      .bookType {
+        font-size: 10px;
+        color: rgb(163, 160, 157);
+      }
     }
   }
+  .bookDesc {
+    background-color: #fff;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    padding: 20px 10px 10px 10px;
 
+    .evaluation {
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      .rating {
+        display: flex;
+        flex-direction: column;
+        margin-right: 30px;
+        color: rgb(196, 200, 201);
+        font-size: 10px;
+        height: 100%;
+        .rate {
+          font-weight: bold;
+          font-size: 20px;
+          color: black;
+          margin-bottom: 5px;
+        }
+      }
+      .favorites {
+        display: flex;
+        flex-direction: column;
+        margin-right: 30px;
+        color: rgb(196, 200, 201);
+        font-size: 10px;
+        height: 100%;
+        .fNum {
+          display: flex;
+          flex-direction: row;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 100%;
+          color: black;
+          margin-bottom: 5px;
+          p {
+            font-weight: bold;
+            font-size: 15px;
+            color: black;
+            // line-height: 100%;
+            margin: 0;
+          }
+        }
+      }
+      .praise {
+        display: flex;
+        flex-direction: column;
+        margin-right: 30px;
+        color: rgb(196, 200, 201);
+        font-size: 10px;
+        height: 100%;
+        .pNum {
+          display: flex;
+          flex-direction: row;
+          font-weight: bold;
+          font-size: 20px;
+          // line-height: 100%;
+          color: black;
+          margin-bottom: 5px;
+          p {
+            font-weight: bold;
+            font-size: 15px;
+            color: black;
+            // line-height: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
+    .desc {
+      margin-top: 10px;
+      font-size: 125%;
+      color: rgb(163, 160, 157);
+    }
+  }
 }
+.comment {
+  height: 250px;
+  margin-top: 10px;
+  padding: 20px 10px 10px 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .cHeader {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .commentor {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5%;
+    border: 1px solid rgb(163, 160, 157);;
+    .avator {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 10px;
+      img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+      .name {
+        font-weight: bold;
+        font-size: 120%;
+        color: rgb(163, 160, 157);
+      }
+    }
+    .commentC {
+      background-color: #fff;
+      margin-left: 40px;
+      color: rgb(163, 160, 157);
+      font-size: 125%;
+      margin-bottom: 20px;
+      word-wrap:break-word;
+      word-break:normal;
+    }
+  }
+}
+
 </style>

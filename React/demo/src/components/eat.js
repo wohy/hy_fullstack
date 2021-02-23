@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 // import PropType from 'prop-types'
 import '../style/eat.css'
 import EatItem from './eatItem'
+import axios from 'axios'
 
 class Eat extends Component {
   constructor(props) {
@@ -13,8 +14,8 @@ class Eat extends Component {
     
   }
 
-  inputChange(e) {
-    console.log(e.target.value);
+  inputChange() {
+    // console.log(e.target.value);
     // 此处的 this 为undefined，inputChange的调用是input执行的
     // 所以需要 通过bind() 方法 将 inputChange拿到 Eat 构造函数中, 此时this才能访问到Eat的成员属性
     // 而此时react依然不会对组件中的数据源进行改变
@@ -22,7 +23,7 @@ class Eat extends Component {
 
     // 正确的操作 实现数据源中 inputValue 的双向绑定
     this.setState({
-      inputValue: e.target.value
+      inputValue: this.input.value
     })
   }
 
@@ -43,13 +44,26 @@ class Eat extends Component {
     })
   }
 
+  componentDidMount() {
+    axios.get('https://web-api.juejin.im/v3/web/wbbr/bgeda')
+      .then((res) => {
+        console.log(res);
+      })
+  }
+
   render() {
     return (
       <Fragment>
         <div>
           <div>
             {/* <label for="addGoods">加菜：</label> */}
-            <input id="addGoods" className="input" value={this.state.inputValue} onChange={this.inputChange.bind(this)}></input>
+
+            <input id="addGoods" 
+              className="input" 
+              value={this.state.inputValue} 
+              onChange={this.inputChange.bind(this)}
+              ref={(input) => {this.input = input}}
+            ></input>
             <button onClick={this.addList.bind(this)}>下单</button>
           </div>
           <ul>
