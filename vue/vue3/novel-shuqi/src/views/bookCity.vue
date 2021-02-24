@@ -28,13 +28,15 @@
 
 <script>
 import navbar from "@/components/Navbar.vue";
-import { reactive, ref, toRefs } from "vue";
+import { onMounted, reactive, ref, toRefs } from "vue";
+import { useRouter } from 'vue-router';
 export default {
   components: {
     navbar,
   },
 
   setup() {
+    const router = useRouter()
     const state = reactive({
       bookCityArea: [
         {
@@ -63,6 +65,10 @@ export default {
       show: false,
       // serchInput: ''
     });
+
+    onMounted(() => {
+      router.push('/')
+    })
 
     const search = function () {
       state.show = true;

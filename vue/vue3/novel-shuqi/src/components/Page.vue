@@ -28,6 +28,7 @@
 <script>
 import { onMounted, reactive, toRefs } from "vue";
 import { useRouter } from "vue-router";
+import { Toast } from 'vant';
 export default {
   props: {
     images: Array,
@@ -40,7 +41,7 @@ export default {
     });
 
     onMounted(() => {
-      // console.log(props);
+      
     })
 
     const goTo = function (e) {
@@ -105,7 +106,7 @@ export default {
         color: rgb(226, 224, 221);
         margin-bottom: 10px;
         line-height: 20px;
-        max-height: 70px;
+        // max-height: 70px;
         overflow: hidden;
       }
       .auth {

@@ -1,4 +1,6 @@
 <template>
+  <myheader :name="'详情'" />
+
   <div class="detailed">
     <div class="bookItems">
       <div class="bookImage">
@@ -44,7 +46,7 @@
     <div class="commentor" v-for="cm in booKItem.commentArr" :key="cm">
       <div class="avator">
         <img
-          src= cm.avatorUrl
+          :src= "cm.avatorUrl"
           alt=""
         />
         <div class="name">{{cm.name}}</div>
@@ -58,9 +60,13 @@
 
 <script>
 import { onMounted, reactive, toRefs } from "vue";
+import myheader from '@/components/header'
 // import getBooksItem from '../../novel-serve/getList/getBooksItem'
 import { useRouter, useRoute } from "vue-router";
 export default {
+  components:{
+    myheader
+  },
   setup() {
     const route = useRoute();
     const a = route.query;
@@ -121,6 +127,7 @@ export default {
 
 <style lang="less" scoped>
 .detailed {
+  margin-top: 50px;
   width: 100%;
   display: flex;
   flex-direction: column;
