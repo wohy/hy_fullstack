@@ -44,7 +44,7 @@
     <div class="commentor" v-for="cm in booKItem.commentArr" :key="cm">
       <div class="avator">
         <img
-          src= 'cm.avatorUrl'
+          src= cm.avatorUrl
           alt=""
         />
         <div class="name">{{cm.name}}</div>

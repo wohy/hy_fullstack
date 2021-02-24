@@ -1,6 +1,6 @@
 import axios from '../api'
 
-const login = (data) => {
+const tologin = (data) => {
   return axios({
     url: '/login',
     method: 'post',
@@ -9,5 +9,5 @@ const login = (data) => {
 }
 
 export default {
-  login
+  tologin
 }

@@ -1,223 +1,139 @@
 <template>
-  <div class="login">
-    <!-- 头部 -->
-    <!-- <s-header :name="type == 'login' ? '登录' : '注册'"></s-header> -->
-    <img class="logo" src="@/assets/logo.png" alt="">
-    <!-- 登录 -->
-    <div v-if="type == 'login'" class="login-body login">
-      <van-form @submit="onSubmit">
-        <van-field
-          v-model="username"
-          name="username"
-          label="用户名"
-          placeholder="用户名"
-          :rules="[{ required: true, message: '请填写用户名' }]"
-        />
-        <van-field
-          v-model="password"
-          type="password"
-          name="password"
-          label="密码"
-          placeholder="密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
-        />
-        <van-field
-          v-model="verify"
-          name="验证码"
-          label="验证码"
-          placeholder="输入验证码"
-        >
-          <template #button>
-            <!-- 通过ref拿到这段dom结构 -->
-            <vue-img-verify ref="verifyRef"/>
-          </template>
-        </van-field>
-        <div style="margin: 16px;">
-          <div class="link-register" @click="toggle('register')">立即注册</div>
-          <van-button round block color="#1baeae" type="info" native-type="submit">登录</van-button>
-        </div>
-      </van-form>
-    </div>
-    <!-- 注册 -->
-    <div v-else class="login-body register">
-      <van-form @submit="onSubmit">
-        <van-field
-          v-model="username1"
-          name="username1"
-          label="用户名"
-          placeholder="用户名"
-          :rules="[{ required: true, message: '请填写用户名' }]"
-        />
-        <van-field
-          v-model="password1"
-          type="password"
-          name="password1"
-          label="密码"
-          placeholder="密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
-        />
-        <van-field
-          v-model="verify"
-          label="验证码"
-          placeholder="输入验证码"
-        >
-          <template #button>
-            <vue-img-verify ref="verifyRef"/>
-          </template>
-        </van-field>
-        <div style="margin: 16px;">
-          <div class="link-login" @click="toggle('login')">已有登录账号</div>
-          <van-button round block color="#1baeae" type="info" native-type="submit">注册</van-button>
-        </div>
-      </van-form>
-    </div>
+  <div class="login-container">
+    <myheader :name="isLogin == true ? '登录' : '注册'"></myheader>
+    <img src="@/assets/logo.png" alt="" class="logo" />
+
+    <van-cell-group class="box">
+      <van-field v-model="username" label="用户名" placeholder="请输入用户名" />
+      <van-field
+        v-model="password"
+        label="密码"
+        placeholder="请输入密码"
+        type="password"
+      />
+      <van-field
+        v-show="!isLogin"
+        v-model="rePassword"
+        label="重复密码"
+        placeholder="请再次输入密码"
+        type="password"
+      />
+    </van-cell-group>
+
+    <van-row>
+      <van-button size="small" type="default" @click="handleRegister">{{
+        isLogin ? "注册" : "已有账号"
+      }}</van-button>
+      <van-button
+        size="small"
+        type="primary"
+        class="btn-login"
+        @click="handleLogin"
+        >{{ isLogin ? "登录" : "注册并登录" }}</van-button
+      >
+    </van-row>
   </div>
 </template>
 
 <script>
-// import sHeader from '@/components/header'
-import { reactive, toRefs, ref, getCurrentInstance } from 'vue'
-import vueImgVerify from '@/components/verify'
-import { Toast } from 'vant'
-import login from '../../axios/interface/login'
-import register from '../../axios/interface/register'
-// import { register, login } from '@/service/user'
-import md5 from 'js-md5'
-import { setLocal } from '@/common/js/utils'
-import { useRouter } from 'vue-router'
+import myheader from "@/components/header";
+import myverify from "@/components/verify";
+import { Toast } from "vant";
+import  register from "../../axios/interface/register";
+import  tologin from "../../axios/interface/login";
+import { onMounted, reactive, toRefs } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
   components: {
-    sHeader,
-    vueImgVerify
+    myheader,
+    myverify,
   },
   setup() {
-    // 定义一个 useRouter 用push方法来进行路由跳转
     const router = useRouter()
-    // const { $http } = getCurrentInstance().appContext.config.globalProperties
-    const verifyRef = ref(null)
     const state = reactive({
       username: '',
       password: '',
-      // 验证码
-      verify: '',
-      // 判断当前类型来 更改header
-      type: 'login',
-      username1: '',
-      password1: '',
-      imgCode: ''
+      rePassword: '',
+      isLogin: true
     })
 
-    const toggle = (v) => {
-      console.log(v);
-      state.type = v
-      state.verify = ''
+    onMounted(() => {
+      console.log(tologin.tologin);
+    })
+
+    const showLoginTip = function(status) {
+      Toast.loading({
+        message: status,
+        forbidClick: true,
+        loadingType: 'spinner',
+        duration: 0
+      })
     }
-    // 登录注册
-    const onSubmit = async(values) => {
-      console.log(verifyRef.value.imgCode); // 通过ref.value可以取到组件内setup函数返回的值
-      state.imgCode = verifyRef.value.imgCode || ''
-      if (state.verify.toLowerCase() !== state.imgCode.toLowerCase()) {
-        Toast.fail('验证码有误');
+
+    const login = function() {
+      tologin.tologin({ 
+        username: state.username,
+        password: state.password
+      }).then(res =>{
+        console.log(res);
+        Toast.clear()
+        router.push({name:'user'})
+      })
+    }
+
+    const handleLogin = function() {
+      if (state.username.trim() === '' || state.password.trim() == '') {
+        Toast.fail('用户名或密码不能为空')
         return
       }
-      if (state.type == 'login') { // 登录
-        const { data } = await login({
-          'loginName': values.username,
-          // md5 加密 密码
-          'passwordMd5': md5(values.password)
+      if (state.isLogin) {
+        showLoginTip('正在登录')
+        login()
+      } else {
+        if(state.rePassword !== state.password) {
+          Toast.fail('两次输入的密码不一致')
+          return
+        }
+        showLoginTip('注册并登录中')
+        register.register({
+          username: state.username,
+          password: state.password
+        }).then(res => {
+          console.log(res);
+          Toast.clear()
+          router.push('/user')
         })
-        // token（data）保存在本地 本地的application中 存入了一个key为token的字段
-        setLocal('token', data)
-        router.push('/home')
-      } else { // 注册
-        console.log(values);
-        await register({
-          "loginName": values.username1,
-          "password": values.password1
-        })
-        // await 导致 后面的代码 进入到微任务队列中 
-        // 如果register函数执行不成功 这整个async就会终止 其后的代码将无法执行
-        Toast.success('注册成功')
-        state.type = 'login'
-        state.verify = ''
       }
     }
 
-    return {
-      ...toRefs(state),
-      verifyRef,
-      toggle,
-      onSubmit
+    const handleRegister = function() {
+      state.isLogin = !state.isLogin
     }
-  }
-}
+
+    return { ...toRefs(state), handleLogin, handleRegister}
+  },
+};
 </script>
 
-<style lang="less" scoped>
-  .login {
-    .logo {
-      width: 120px;
-      height: 120px;
-      display: block;
-      margin: 80px auto 20px;
-    }
-    .login-body {
-      padding: 0 20px;
-    }
-    .login {
-      .link-register {
-        font-size: 14px;
-        margin-bottom: 20px;
-        color: #1989fa;
-        display: inline-block;
-      }
-    }
-    .register {
-      .link-login {
-        font-size: 14px;
-        margin-bottom: 20px;
-        color: #1989fa;
-        display: inline-block;
-      }
-    }
-    .verify-bar-area {
-      margin-top: 24px;
-      .verify-left-bar {
-        border-color: #1baeae;
-      }
-      .verify-move-block {
-        background-color: #1baeae;
-        color: #fff;
-      }
-    }
-    .verify {
-      >div {
-        width: 100%;
-      }
-      display: flex;
-      justify-content: center;
-      .cerify-code-panel {
-        margin-top: 16px;
-      }
-      .verify-code {
-        width: 40%!important;
-        float: left!important;
-      }
-      .verify-code-area {
-        float: left!important;
-        width: 54%!important;
-        margin-left: 14px!important;
-        .varify-input-code {
-          width: 90px;
-          height: 38px!important;
-          border: 1px solid #e9e9e9;
-          padding-left: 10px;
-          font-size: 16px;
-        }
-        .verify-change-area {
-          line-height: 44px;
-        }
-      }
-    }
+<style lang='less' scoped>
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .logo {
+    width: 300px;
+    margin: 100px 0 20px;
   }
+
+  .box {
+    width: 280px;
+    margin-bottom: 20px;
+  }
+
+  .btn-login {
+    margin-left: 20px;
+  }
+}
 </style>
