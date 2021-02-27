@@ -18,6 +18,15 @@
         placeholder="请再次输入密码"
         type="password"
       />
+      <van-field
+          v-model="verify"
+          label="验证码"
+          placeholder="输入验证码"
+        >
+          <template #button>
+            <myverify ref="verifyRef"/>
+          </template>
+        </van-field>
     </van-cell-group>
 
     <van-row>
@@ -39,26 +48,30 @@
 import myheader from "@/components/header";
 import myverify from "@/components/verify";
 import { Toast } from "vant";
+import { setLocal } from '../common/js/utils'
 import  register from "../../axios/interface/register";
 import  tologin from "../../axios/interface/login";
-import { onMounted, reactive, toRefs } from 'vue';
+import { onMounted, reactive, toRefs, ref } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
   components: {
     myheader,
-    myverify,
+    myverify
   },
   setup() {
+    const verifyRef = ref(null)
     const router = useRouter()
     const state = reactive({
       username: '',
       password: '',
       rePassword: '',
-      isLogin: true
+      isLogin: true,
+      verify: '',
+      imgCode: ''
     })
 
     onMounted(() => {
-      console.log(tologin.tologin);
+      // console.log(tologin.tologin);
     })
 
     const showLoginTip = function(status) {
@@ -76,12 +89,20 @@ export default {
         password: state.password
       }).then(res =>{
         console.log(res);
+        setLocal('token', res.data.userId)
+        state.verify = ''
         Toast.clear()
-        router.push({name:'user'})
+        router.push({path:'/user',query:{userInfo: res.data.userId}})
       })
     }
 
     const handleLogin = function() {
+      console.log(verifyRef);
+      state.imgCode = verifyRef.value.imgCode || ''
+      if (state.verify.toLowerCase() !== state.imgCode.toLowerCase()) {
+        Toast.fail('验证码有误');
+        return
+      }
       if (state.username.trim() === '' || state.password.trim() == '') {
         Toast.fail('用户名或密码不能为空')
         return
@@ -100,8 +121,10 @@ export default {
           password: state.password
         }).then(res => {
           console.log(res);
+          state.verify = ''
+          setLocal('token', res.data.userId)
           Toast.clear()
-          router.push('/user')
+          router.push({path:'/user',query:{userInfo: res.data.userId}})
         })
       }
     }
@@ -110,7 +133,7 @@ export default {
       state.isLogin = !state.isLogin
     }
 
-    return { ...toRefs(state), handleLogin, handleRegister}
+    return { ...toRefs(state), handleLogin, handleRegister, verifyRef}
   },
 };
 </script>
@@ -123,17 +146,18 @@ export default {
   flex-direction: column;
 
   .logo {
-    width: 300px;
-    margin: 100px 0 20px;
+    width: 200px;
+    margin: 50px 0 50px;
   }
 
   .box {
-    width: 280px;
+    width: 100%;
     margin-bottom: 20px;
   }
 
   .btn-login {
     margin-left: 20px;
   }
+  
 }
 </style>

@@ -4,13 +4,13 @@
       <img :src="image" @click="goTo" />
     </van-swipe-item>
   </van-swipe>
-
+  
   <div class="header">为你推荐</div>
 
   <div class="container">
     <div
       class="bookItem"
-      v-for="item in bookList"
+      v-for="item in novels"
       :v-lazy="item.cover"
       :key="item.href"
     >
@@ -37,11 +37,17 @@ export default {
   setup(props) {
     const router = useRouter();
     const state = reactive({
-      
+      novels: []
     });
 
     onMounted(() => {
-      
+      // Toast.loading({ message: "正在加载" });
+      const len = props.bookList.length
+      for(let i = 0; i < len ; i++) {
+        props.bookList[i].desc = props.bookList[i].desc.slice(0,40) + '...';
+      }  
+      state.novels = props.bookList
+      // Toast.clear();
     })
 
     const goTo = function (e) {

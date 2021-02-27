@@ -41,34 +41,45 @@
       <div class="desc">{{ booKItem.desc }}</div>
     </div>
   </div>
+  <van-cell title="查看目录" is-link @click="toChapter" />
   <div class="comment">
     <div class="cHeader">书友圈评</div>
     <div class="commentor" v-for="cm in booKItem.commentArr" :key="cm">
       <div class="avator">
-        <img
-          :src= "cm.avatorUrl"
-          alt=""
-        />
-        <div class="name">{{cm.name}}</div>
+        <img :src="cm.avatorUrl" alt="" />
+        <div class="name">{{ cm.name }}</div>
       </div>
-      <div class="commentC">{{cm.content}}</div>
+      <div class="commentC">{{ cm.content }}</div>
     </div>
   </div>
-  <van-button type="primary" size="large" @click="goToRead">开始阅读</van-button>
 
+  <div class="bottom">
+    <div class="downLoad">
+      <i class="iconfont icon-xiazai"></i>
+      下载
+    </div>
+    <van-button type="primary" round size="normal" @click="goToRead"
+      >开始阅读</van-button
+    >
+    <div class="addToShelf">
+      <i class="iconfont icon-jiarushujia" @click="addToShelf"></i>
+      加入书架
+    </div>
+  </div>
 </template>
 
 <script>
 import { onMounted, reactive, toRefs } from "vue";
-import myheader from '@/components/header'
+import myheader from "@/components/header";
 // import getBooksItem from '../../novel-serve/getList/getBooksItem'
 import { useRouter, useRoute } from "vue-router";
 export default {
-  components:{
-    myheader
+  components: {
+    myheader,
   },
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const a = route.query;
     console.log(a);
 
@@ -82,30 +93,50 @@ export default {
           "兵王之王受伤退伍回归都市，与冰山总裁未婚妻同住一个屋檐下，拉手，不准，接吻，不许，那就一起来吧。§和未婚妻闺蜜暧昧，和主妇谈人生，冒充白领丽人男朋友，扮猪吃老虎。§各路高手蜂拥而来，本想过平凡日子的叶轩很无奈，为亲人，为爱人，为兄弟，狂战天下，无所畏惧！§且看一代杀神如何纵横都市，泡妞杀人，破除阴谋，成就无上威名，美女全收，走上人生巅峰！",
         fontNum: "100000",
         bookType: "玄幻小说",
-        newCapter: [],
-        allCapter: [],
+        newChapter: [],
+        allChapter: [
+          {
+            title: "第一章冰山总裁未婚妻",
+            href: "/chapter/6236482528_204356691437896/",
+          },
+          {
+            title: "第二章欢喜冤家",
+            href: "/chapter/6236482528_204356691444672/",
+          },
+          {
+            title: "第三章剽悍的未来岳父",
+            href: "/chapter/6236482528_204356691457042/",
+          },
+        ],
         commentArr: [
           {
-            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
-            name: 'wn',
-            content: '这也太好看了吧'
+            avatorUrl:
+              "https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg",
+            name: "wn",
+            content: "这也太好看了吧",
           },
           {
-            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
-            name: '蜗牛',
-            content: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+            avatorUrl:
+              "https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg",
+            name: "蜗牛",
+            content:
+              "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
           },
           {
-            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
-            name: '蜗牛',
-            content: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+            avatorUrl:
+              "https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg",
+            name: "蜗牛",
+            content:
+              "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
           },
           {
-            avatorUrl: 'https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg',
-            name: '蜗牛',
-            content: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
-          }
-        ]
+            avatorUrl:
+              "https://yue08.sogoucdn.com/cdn/image/book/6236482528_1600423208330.jpg",
+            name: "蜗牛",
+            content:
+              "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+          },
+        ],
       },
     });
 
@@ -114,13 +145,24 @@ export default {
     //     console.log(res);
     //     state.booKItem = res
     //   })
-
     // })
-    function goToRead() {
 
+    function goToRead() {
+      const href = state.booKItem.allChapter[0].href
+      // console.log(href);
+      router.push({
+        name: "bookContent",
+        query: { href:  href},
+      });
     }
 
-    return { ...toRefs(state), goToRead };
+    function toChapter() {
+      router.push({ name: "chapter", query: { ID: a.ID } });
+    }
+
+    function addToShelf() {}
+
+    return { ...toRefs(state), goToRead, addToShelf, toChapter };
   },
 };
 </script>
@@ -242,6 +284,9 @@ export default {
     }
   }
 }
+.van-cell {
+  font-weight: bold;
+}
 .comment {
   height: 250px;
   margin-top: 10px;
@@ -257,7 +302,7 @@ export default {
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 5%;
-    border: 1px solid rgb(163, 160, 157);;
+    border: 1px solid rgb(163, 160, 157);
     .avator {
       display: flex;
       flex-direction: row;
@@ -281,10 +326,27 @@ export default {
       color: rgb(163, 160, 157);
       font-size: 125%;
       margin-bottom: 20px;
-      word-wrap:break-word;
-      word-break:normal;
+      word-wrap: break-word;
+      word-break: normal;
     }
   }
 }
-
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  .downLoad,
+  .addToShelf {
+    font-size: small;
+    color: #1296db;
+  }
+  i {
+    color: #1296db;
+    margin-right: 3px;
+  }
+  .van-button {
+    width: 150px;
+  }
+}
 </style>

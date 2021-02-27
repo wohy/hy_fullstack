@@ -6,10 +6,12 @@ import { Toast } from 'vant'
 
 export default function $axios(options) {
   return new Promise((resolve, reject) => {
+    axios.defaults.headers['token'] = localStorage.getItem('token') || ''
+    
     const instance = axios.create({ //instance 就为配置好路径的接口请求
       baseURL: config.baseURL
     })
-
+    
     // 请求拦截
     instance.interceptors.request.use(
       // 请求成功

@@ -45,7 +45,7 @@ const login = async (ctx) => {  // ctx 代表的就是Koa
     ctx.body = {
       code: 1,
       msg: '登录成功',
-      data:user
+      data: user
     }
     return;
   }

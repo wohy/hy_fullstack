@@ -6,7 +6,7 @@
 import Page from "@/components/Page.vue";
 import { Toast } from "vant";
 // import { getHotBooks } from "@/getList/getRecommend.js";
-import { onMounted, reactive, ref, toRefs } from "vue";
+import { onBeforeMount, onMounted, reactive, ref, toRefs } from "vue";
 export default {
   components: {
     Page,
@@ -17,8 +17,8 @@ export default {
       images: [],
     });
 
-    onMounted(() => {
-      Toast.loading({ message: "正在加载" });
+    onBeforeMount(() => {
+      
       // getHotBooks("nansheng").then((res) => {
         state.bookList = [
           {
@@ -186,8 +186,6 @@ export default {
         for (let i = 0; i < 4; i++) {
           state.images.push(`https:${state.bookList[i].cover}`);
         }
-        // console.log(state.images);
-        Toast.clear();
       // });
       // console.log(getHotBooks);
     });
