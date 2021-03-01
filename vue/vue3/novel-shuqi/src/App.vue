@@ -1,29 +1,15 @@
 <template>
   <div id="app">
-    <!--路由入口 v-slot 定义一个插槽 允许放入组件 -->
-    <!-- 路由中的每一个页面要出现都要经过路由路口 -->
     <router-view class="router-view" v-slot="{Component}">
-      <transition :name="transitionName">
-        <!-- 放入组件 为插槽中接收到的Component -->
-        <!-- 则页面将添加上动画效果 -->
-        <component :is="Component" />
-      </transition>
+      <component :is="Component" />
     </router-view>
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
 export default {
   setup() {
-    const state = reactive({
-      transitionName: 'slide-left'
-    })
 
-    return {
-      // state 解构出来
-      ...toRefs(state)
-    }
   }
 }
 </script>
@@ -51,33 +37,6 @@ html, body {
     bottom: 0;
     margin: 0 auto;
     -webkit-overflow-scrolling: touch;
-}
-
-.slide-right-enter-active,
-.slide-right-leave-active,
-.slide-left-enter-active,
-.slide-left-leave-active{
-    height: 100%;
-    will-change: transform;
-    transition: all 500ms;
-    position: absolute;
-    backface-visibility: hidden;
-}
-.slide-right-enter{
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
-}
-.slide-right-leave-active{
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-}
-.slide-left-enter{
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-}
-.slide-left-leave-active{
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
 }
 
 .van-badge--fixed {

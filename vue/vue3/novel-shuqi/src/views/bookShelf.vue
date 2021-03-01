@@ -1,6 +1,6 @@
 <template>
   <h1>书架</h1>
-  <p class="isLogin" v-show="!isLogin"></p>
+  <van-button class="isLogin" @click="toLogin" type="primary" round v-show="!isLogin">请先前往登录</van-button>
   <div class="shelf" v-show="isLogin">
     <div class="container" v-for="items in bookSelf" :key="items.bookId">
       <img :src="items.imgUrl" alt="">
@@ -15,11 +15,13 @@
 import navbar from '@/components/Navbar.vue'
 import { getLocal } from '../common/js/utils'
 import { onMounted, reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 export default {  
   components: {
     navbar
   },
   setup() {
+    const router = useRouter()
     const userId = getLocal('token')
     console.log(userId);
     const state = reactive({
@@ -49,7 +51,10 @@ export default {
       
     })
 
-    return { ...toRefs(state) }
+    const toLogin = function() {
+      router.push({ name: "login" });
+    }
+    return { ...toRefs(state), toLogin }
   }
 }
 </script>
@@ -59,7 +64,9 @@ h1 {
   margin-left: 10px;
 }
 .isLogin {
-  margin: 50%;
+  margin: 200px 30%;
+  height: 50px;
+  width: 40%;
 }
 .shelf {
   margin-top: 10px;
