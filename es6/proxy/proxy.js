@@ -50,7 +50,7 @@ let handler = {
 }
 let proxy = new Proxy(target, handler)
 // console.log(proxy);
- //{ _bar: 'foo', _prop: 'bar', prop: 'baz' } 只会展现出来，但是是没用的
+//{ _bar: 'foo', _prop: 'bar', prop: 'baz' } 只会展现出来，但是是没用的
 
 for (let key of Object.keys(proxy)) {
   console.log(target[key]);

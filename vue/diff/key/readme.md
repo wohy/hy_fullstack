@@ -14,7 +14,7 @@
     - 旧的vnode有children，新的vnnode没有，直接removeVnode 旧的子节点
 
   ## diff算法
-   同层比较 对比DOM树(新newVNode、旧oldVNode)
+   同层比较 对比 DOM树(新newVNode、旧oldVNode)
    找到变化的节点
    通知页面开始重新渲染该节点，尽可能保留其他相同的节点进行复用
    减少了vue框架的开销

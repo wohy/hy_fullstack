@@ -18,7 +18,7 @@
 // let [x, y, z] = {a:'a', b:'b', c:'c'}
 // console.log(x);  //报错
 // let [x, y, z] = new Set(['a', 'b', 'c'])
-// console.log(x); //a ,Set对象可结构
+// console.log(x); //a ,Set对象可解构
 
 // let [foo = true] = [false]
 // console.log(foo);  //false 解构允许我们指定一个默认值
@@ -39,10 +39,10 @@
 // console.log(foo); //报错，foo未定义
 
 // let obj = {
-//     p: ['hello', { y: 'world'}]
+//     p: ['hello', { y: 'world' }]
 // }
 // let { p: [x, { y }]} = obj
 // console.log(x + y); //helloworld
 
 const [a, b, c, d, e] = 'hello'
-console.log(c); //l 字符串也可以结构
+console.log(c); //l 字符串也可以解构
