@@ -71,7 +71,6 @@
 <script>
 import { onMounted, reactive, toRefs } from "vue";
 import myheader from "@/components/header";
-// import getBooksItem from '../../novel-serve/getList/getBooksItem'
 import { useRouter, useRoute } from "vue-router";
 export default {
   components: {
@@ -149,7 +148,6 @@ export default {
 
     function goToRead() {
       const href = state.booKItem.allChapter[0].href
-      // console.log(href);
       router.push({
         name: "bookContent",
         query: { href:  href},

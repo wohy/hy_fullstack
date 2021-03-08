@@ -25,7 +25,7 @@
 
 <script>
 import navbar from "@/components/Navbar.vue";
-import { getLocal } from "@/common/js/utils";
+import { getLocal, clearLocal } from "@/common/js/utils";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, reactive, toRefs } from "vue";
 export default {
@@ -51,7 +51,10 @@ export default {
       router.push({ name: "login" });
     };
 
-    const outlogin = function () {};
+    const outlogin = function () {
+      clearLocal()
+      state.login = true
+    };
 
     onMounted(() => {
       const token = getLocal("token");

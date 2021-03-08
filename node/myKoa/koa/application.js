@@ -7,13 +7,23 @@ let request = require('./request')
 class Koa {
   constructor() {
     this.callbackFn;
+    this.middlewares = [];
     this.context = context;
     this.request = request;
     this.response = response
   }
 
   use(cb) {
-    this.callbackFn = cb  //将回调函数先存储起来 先不生效 等监听到端口后再生效
+    this.middlewares.push(cb)  //将回调函数先存储起来 先不生效 等监听到端口后再生效
+  }
+
+  compose(ctx, middlewares) {
+    function dispath(index) {
+      if (index === middlewares.length) return Promise.resolve()
+      let middleware = middlewares[index]
+      return Promise.resolve(middleware(ctx, () => dispath(index + 1)))
+    }
+    return dispath(0)
   }
 
   createContext(req, res) {
@@ -32,13 +42,22 @@ class Koa {
     res.statusCode = 404  //默认页面找不到
     let ctx = this.createContext(req, res)  //创建出ctx
     // 被调用时的this 还需指向Koa 所以调用时需绑定好this
-    this.callbackFn(ctx)  //回调执行完后 ctx.body的值 就会发生变化
-    let body = ctx.body
-    if (typeof body === 'undefined') { // 没有ctx.body时 默认为404
-      res.end('Not Found')
-    } else if (typeof body === 'string') {
-      res.end(body)
-    }
+    let composeMiddleware = this.compose(ctx, this.middlewares)
+    // this.callbackFn(ctx)  //回调执行完后 ctx.body的值 就会发生变化
+    // let body = ctx.body
+    // if (typeof body === 'undefined') { // 没有ctx.body时 默认为404
+    //   res.end('Not Found')
+    // } else if (typeof body === 'string') {
+    //   res.end(body)
+    // }
+    composeMiddleware.then(() =>  {
+      let body = ctx.body
+      if (typeof body === 'undefined') {
+        res.end('Not Found')
+      } else if (typeof body === 'string') {
+        res.end(body)
+      }
+    })
 
   }
 
