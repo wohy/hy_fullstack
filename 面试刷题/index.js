@@ -1,40 +1,17 @@
-// let addFun = function() {
-//   args = [...arguments]
-//   if(args.length === 1) {
-//     return args[0]
-//   } else {
-//     return args.reduce((a, b) => a + b)
+// // 实现 (5).add(3).minus
+// Number.prototype.add = function (number) {
+//   if (typeof number !== 'number') {
+//       throw new Error('请输入数字～');
 //   }
-// }
-
-// function curry(cb) {
-//   let arg = [].slice.call(arguments, 1)
-//   return function() {
-//     args = [...arguments].concat(arg)
-//     return cb.apply(this, args)
+//   return this + number;
+// };
+// Number.prototype.minus = function (number) {
+//   if (typeof number !== 'number') {
+//       throw new Error('请输入数字～');
 //   }
-// }
-
-// let add = curry(addFun)
-
-
-
-function add(a) {
-  function sum(b) { // 使用闭包
-    a = a + b; // 累加
-    return sum;
-  }
-  sum.toString = function() { // 重写toString()方法
-      return a;
-  }
-  return sum; // 返回一个函数
-}
-
-
-console.log(add(1)(4)(3));
-
-
-
+//   return this - number;
+// };
+// console.log((5).add(3).minus(2));
 
 
 

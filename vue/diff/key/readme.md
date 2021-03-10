@@ -1,15 +1,15 @@
   # 响应式数据更新
-  1. 会触发渲染 Watcher (观察者)里面的回调 vm._update 函数0，去通知页面更新
-  2. 这个过程中render函数(vm._render()) 生成新的 vnode
+  1. 会触发渲染 Watcher (观察者)里面的回调 vm._update 函数0 ，去通知页面更新
+  2. 这个过程中 render 函数 (vm._render()) 生成新的 vnode
   3. vm._update 函数就会带着新的DOM结构 去触发 __path__ 过程 (虚拟DOM和真实DOM比较)
 
-  不能使用 v-for 中的index 作为 key, __path__ 过程会出问题
+  不能使用 v-for 中的 index 作为 key , __path__ 过程会出问题
 
   ## __path__ 过程
    1. 利用diff算法  对比新旧节点是否是相同的节点 (isSameNode)
     - 不是相同节点 isSameNode = false，直接销毁旧的
     - 如果是相同的节点，要尽可能做节点的复用
-    - 如果新newVNode是文字vnode，就直接调用浏览器的API 替换文字
+    - 如果 新newVNode 是文字vnode，就直接调用浏览器的API 替换文字
     - 如果新的vnode有children子节点，旧的vnode没有，直接addvnode添加子节点
     - 旧的vnode有children，新的vnnode没有，直接removeVnode 旧的子节点
 
