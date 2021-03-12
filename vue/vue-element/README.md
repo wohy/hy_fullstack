@@ -24,7 +24,7 @@
 ## 路由的使用
 1. 终端输入命令 npm install vue-router --save-dev 安装好 vue-router
 2. 在main.js 中引入 ```import Router from 'vue-router' ```，其中Router为自己取的名字，来接收vue-router，从node_modules中引入不需要写路径，脚手架以及构建好了
-3. Router出自vue,则可不用再use，可直接写到new Vue中, 为方便对router进行操作，这里专门在src下建立一个文件夹router，通过里面的index.js对其进行操作，则在index.js中需引入vue和vue-router，Vue.use(Router)
+3. Router出自vue, 则可不用再use，可直接写到new Vue中, 为方便对router进行操作，这里专门在src下建立一个文件夹router，通过里面的index.js对其进行操作，则在index.js中需引入vue和vue-router，Vue.use(Router)
 最后还需抛出Router这个实例化对象， ```export default new Router({})``` 这是在main.js中的引入则需指明router的路径
 4. 这时可在App.vue中使用<router></router>标签
 5. 开始在router的index.js中开始配置router, 指定好其path、component，path设为'/'即为该根目录，打开不做任何操作显示的页面，设置为什么路径，路由入口所在页面的to''就会跳到那个页面
@@ -76,6 +76,6 @@
 12. vue中的this
 - main.js中的
 render: h => h(App),
-使每一个.vue界面都有了一个Vue的实例
+使每一个.vue 界面都有了一个Vue的实例
 所以面向对象的方法中的this会指向Vue实例 
 

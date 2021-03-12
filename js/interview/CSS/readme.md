@@ -92,7 +92,58 @@ BFC 是页面上的一个独立容器，子元素不会影响外面
 
 - CSS选择器有哪些？优先级呢？
 id 选择器，class 选择器，标签选择器，伪元素选择器(::after)，伪类选择器(:hover)，属性选择器
-
 important > 内联样式 > 外部样式 > 浏览器用户自定义 > 浏览器默认样式
-
 行内样式 > id样式 > class样式 > 标签名样式
+
+
+- 三栏布局
+圣杯布局、双飞燕布局
+  三列布局：
+  1. display: flex; flex: 1
+  2. 两列定宽，一列自适应
+  3. diplay：table
+  4. display: grid
+  http://www.ruanyifeng.com/blog/2020/08/five-css-layouts-in-one-line.html
+
+  圣杯布局
+  双飞燕布局
+
+- display：table 和 table 本身 有什么的区别
+  display：table 是把 html元素和它的 子节点 像 table 一样使用，但文件会比 table 小 的格式
+  table 标签不够简洁，层叠过深
+
+- position 的属性有哪些值
+  relative ，abosloute(relative相对定位，相对自己；，abosloute绝对定位，相对于最近的relative属性的元素)；fix(相对windows固定定位)，flex
+
+- 设置一个元素的背景色，背景色会填充那些区域
+  会把 border 即 border之内的 会被填充
+
+- inline-block，inline 和 block 的区别；为什么 img的 display 是 inline 但可以设计宽高
+  block 块集可以设置宽高 padding， margin 都有效，默认前后都会带上换行符，所以会单独占一行
+
+  inline 行内不可以设置宽高，垂直方向上的 padding和margin 失效
+
+  display：inline-block；可以让元素具有块级元素和行内元素的特性：既可以设置长宽，可以让padding和margin生效，又可以和其他行内元素到同一行。
+
+  为什么 img的 display 是 inline 但可以设计宽高？
+  这涉及 CSS 可替换元素 的概念了
+  可替换元素（replaced element）的展现效果不是由 CSS 来控制的。
+  这些元素是一种外部对象，它们外观的渲染，是独立于 CSS 的。
+  简单来说，它们的内容不受当前文档的样式的影响。
+  CSS 可以影响可替换元素的位置，但不会影响到可替换元素自身的内容。
+  例如 <iframe> 元素，可能具有自己的样式表，但它们不会继承父文档的样式。
+  <iframe>、<video>、<embed>、<img>、以及将 input 声明为 image 格式时
+  这些元素有一个共性，就是他们的内容都不是通过在标签内添加文本，而是通过某个属性（src、data（<object>）、label（<option>）或js控制（<canvas>））来显示内容的。
+  可替换元素拥有内置宽高，他们可以设置width和height。他们的性质同设置了display:inline-block的元素一致。
+
+
+- 重绘 和 回流(重排)
+
+- CSS三角形
+  transparent：设置为透明色
+  将容器的宽高设置为 0
+  再设置 border-width：上右下左
+  以及 border-color：不显示的就设置为 transparent 透明色
+
+- 动画
+  

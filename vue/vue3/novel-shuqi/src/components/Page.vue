@@ -40,14 +40,8 @@ export default {
       novels: []
     });
 
-    onMounted(() => {
-      // Toast.loading({ message: "正在加载" });
-      const len = props.bookList.length
-      for(let i = 0; i < len ; i++) {
-        props.bookList[i].desc = props.bookList[i].desc.slice(0,40) + '...';
-      }  
+    onMounted(() => { 
       state.novels = props.bookList
-      // Toast.clear();
     })
 
     const goTo = function (e) {
@@ -89,33 +83,35 @@ export default {
   .bookItem {
     display: flex;
     flex-direction: row;
+    height: 150px;
     margin: 5px 10px 10px 10px;
     border: 1px solid rgb(233, 227, 227);
     border-radius: 5%;
     align-items: center;
     img {
       margin: 0 10px 0 10px;
-      width: 60px;
-      height: 80px;
+      width: 80px;
+      height: 120px;
       border-radius: 5%;
     }
     .bookInfo {
       margin-top: 10px;
       display: flex;
       flex-direction: column;
+      height: 120px;
       .title {
         font-size: 10px;
         font-weight: bolder;
         margin-bottom: 5px;
       }
       .desc {
-        color: rgb(226, 224, 221);
-        margin-bottom: 10px;
-        line-height: 20px;
-        // max-height: 70px;
-        overflow: hidden;
+        height: 60px;
+        overflow-y: scroll;
+        color: rgb(216, 214, 212);
+        margin-bottom: 10px;	
       }
       .auth {
+        margin-top: 5px;
         width: 70px;
         border-radius: 10%;
         background-color: rgb(245, 238, 238);

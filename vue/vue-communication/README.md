@@ -1,7 +1,7 @@
 # vue-communication
 
 ## 组件之间的通信
-- 父组件向子组件通信，将父组件App.vue中的message属性传给子组件中的props
+- 父组件向子组件通信，将父组件 App.vue 中的 message 属性传给子组件中的 props
 - 子组件向父组件通信，子组件中 .$emit('函数名', 数据源中的数据)，抛出该事件
 - 兄弟组件通信，
 

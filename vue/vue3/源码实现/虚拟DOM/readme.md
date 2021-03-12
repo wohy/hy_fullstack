@@ -26,7 +26,7 @@
   所有的模块都导入到一个对象
   源码中的暴露使用的是 export 而非 export defalut 则使用 es6 模块导入方式 import 为
     import { init, h, thunk } from 'snabbdom'
-  - init 高阶函数 返回 patch函数
+  - init 高阶函数 返回 patch 函数
   ``` let patch = init([]) ```
     - patch 函数，作用对比两个 vnode 的差异 更新到真实 DOM
       - 第一个参数：可以是 DOM 元素，内部会把 DOM 元素转换为 VNode
