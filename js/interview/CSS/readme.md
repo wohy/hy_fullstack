@@ -67,7 +67,7 @@ BFC 是页面上的一个独立容器，子元素不会影响外面
 
 - 块级元素 和 行内元素
   块级元素：独占一行 会自动填充满父元素
-  行内元素：能独占一行，width 和 height 会失效，垂直方向上的 padding 和 margin 会失效
+  行内元素：不能独占一行，width 和 height 会失效，垂直方向上的 padding 和 margin 会失效
 
 - 多行文本的省略号
   display: -webkit-box;
@@ -116,9 +116,9 @@ important > 内联样式 > 外部样式 > 浏览器用户自定义 > 浏览器�
   relative ，abosloute(relative相对定位，相对自己；，abosloute绝对定位，相对于最近的relative属性的元素)；fix(相对windows固定定位)，flex
 
 - 设置一个元素的背景色，背景色会填充那些区域
-  会把 border 即 border之内的 会被填充
+  会把 border 及 border之内的 会被填充
 
-- inline-block，inline 和 block 的区别；为什么 img的 display 是 inline 但可以设计宽高
+- inline-block，inline 和 block 的区别；为什么 img 的 display 是 inline 但可以设计宽高
   block 块集可以设置宽高 padding， margin 都有效，默认前后都会带上换行符，所以会单独占一行
 
   inline 行内不可以设置宽高，垂直方向上的 padding和margin 失效
@@ -134,7 +134,8 @@ important > 内联样式 > 外部样式 > 浏览器用户自定义 > 浏览器�
   例如 <iframe> 元素，可能具有自己的样式表，但它们不会继承父文档的样式。
   <iframe>、<video>、<embed>、<img>、以及将 input 声明为 image 格式时
   这些元素有一个共性，就是他们的内容都不是通过在标签内添加文本，而是通过某个属性（src、data（<object>）、label（<option>）或js控制（<canvas>））来显示内容的。
-  可替换元素拥有内置宽高，他们可以设置width和height。他们的性质同设置了display:inline-block的元素一致。
+  可替换元素拥有内置宽高，他们可以设置width和height。
+  他们的性质同设置了display:inline-block的元素一致。
 
 
 - 重绘 和 回流(重排)
