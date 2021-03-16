@@ -38,7 +38,7 @@ addAll(3, 6)
 
 // 栈溢出
 // 调用栈是有大小的
-function division(a, b) {
-  return division(a, b)
-}
-console.log(division(1, 2));  //出现栈溢出
+// function division(a, b) {
+//   return division(a, b)
+// }
+// console.log(division(1, 2));  //出现栈溢出

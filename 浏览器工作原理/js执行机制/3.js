@@ -4,11 +4,11 @@
 // 作用域就是变量和函数的可访问范围
 
 // 块级作用域
-  // if (1) {}
-  // while(1) {}
-  // function foo() {}
-  // for(let i = 0; i < 200; i++) {}
-  // {}
+//   if (1) {}
+//   while(1) {}
+//   function foo() {}
+//   for(let i = 0; i < 200; i++) {}
+//   {}
 
 // function foo() {
 //   for(var i = 0; i < 7; i++) {

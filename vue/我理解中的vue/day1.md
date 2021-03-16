@@ -49,8 +49,16 @@
   https://blog.csdn.net/qq_42072086/article/details/108063281
 
 7. v-model 中的实现原理及如何自定义 v-model
-  双向绑定
-  以 input 为例，input上的 onChange 事件的参数中 可取到 当前 输入框中的值，将值赋予 绑定的属性值，即可改变页面当前属性的值，当然页面也可以通过其他的事件函数来改变该属性值，如此便实现了双向绑定
+    双向绑定
+    v-model 只能作用于一些特定的表单标签如input、select、textarea和自定义的组件使用
+    从v-model绑定在input上开始描述
+    主要实现：
+    1. 在created函数时，传入el为这个input节点的dom对象，和第二个参数binding对象，以及第三个参数vnode为节点的vnode对象
+    函数首先会把v-model绑定的值赋值给el.value，这个就是数据到DOM的单向流动
+    2. 通过定义一个getModelAssigner方法来获取vnode.props中的'onUpdate: modelValue'属性对应的函数，并赋值给el._assign属性
+    3. 最后通过addEventListener来监听input标签的事件，它会根据是否配置lazy这个修饰符来决定监听的是input还是change事件
+    4. 这个事件监听函数，当用户手动输入一些数据，触发事件的时候，会执行函数，并通过 el.value 获取 input 标签新的值，然后调用 el._assign 方法更新数据，这就是DOM到数据的流动。
+    以 input 为例，input上的 onChange 事件的参数中 可取到 当前 输入框中的值，将值赋予 绑定的属性值，即可改变页面当前属性的值，当然页面也可以通过其他的事件函数来改变该属性值，如此便实现了双向绑定
 
 8. 为什么 Vue 采用异步渲染呢？
 vue 是组件级的更新，如果不采用异步渲染的话，数据更新一次，页面又要重新渲染，性能浪费较大
