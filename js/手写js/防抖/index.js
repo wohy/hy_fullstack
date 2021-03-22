@@ -5,7 +5,6 @@ function debounce(fn, delay) {
 
   // 形成一个闭包
   return function() {
-
     let context = this
     let arg = arguments
     clearTimeout(timer)

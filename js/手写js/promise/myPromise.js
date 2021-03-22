@@ -41,7 +41,7 @@ function MyPromise(fn) {
 MyPromise.prototype.then = function (onFullfilled, onRejected) {
   const that = this
   // 若传入的不是一个函数，会给你转换为一个箭头函数
-  onFullfilled = typeof onFullfilled === 'function' ? 6 : res => res  //typeof判断复杂类型只可以判断出function
+  onFullfilled = typeof onFullfilled === 'function' ? onFullfilled : res => res  //typeof判断复杂类型只可以判断出function
   onRejected = typeof onRejected === 'function' ? onRejected : res => { throw res }
 
   // 将回调函数 push到两个数组中

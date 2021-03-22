@@ -1,9 +1,9 @@
 - 方法    
-    insert：在父几点下插入节点，如果指定ref则插入道ref这个子节点的前面。
-    createElm：用来新建一些节点，tag节点存在创建一个标签节点，否则创建一个文本节点。
-    addVnodes：用来批量调用createElm新建节点。
+    insert：在父几点下插入节点，如果指定 ref 则插入道 ref 这个子节点的前面。
+    createElm：用来新建一些节点，tag节点 存在创建一个标签节点，否则创建一个文本节点。
+    addVnodes：用来批量调用 createElm 新建节点。
     removeNode：用来移除一个节点
-    removeVnodes：会批量调用removeNode移除节点
+    removeVnodes：会批量调用 removeNode 移除节点
 
 
 1. 比较 angular react vue
@@ -15,7 +15,7 @@
   2. 数据响应与数据流的不同 
     - react 是一个单项数据流。
     而 vue 中可以支持通过 v-model 来绑定数据，再通过 onChange 等 实现数据的双向绑定。
-    - 同时监听数据的变化，vue 是通过definedpropety中的getter、setter 的方式来拦截数据的改变，而 react 默认是通过 diff 来比较引用 发现数据的改变。
+    - 同时监听数据的变化，vue 是通过 definedpropety 中的 getter、setter 的方式来拦截数据的改变，而 react 默认是通过 diff 来比较引用 发现数据的改变。
     - vue 的数据源是支持直接改变的，而 react 更强调数据的不可变
     - 依赖的状态管理器也不同 redux 和 vuex
   3. 模板渲染方式的不同
@@ -24,27 +24,29 @@
 
 
 2. 对 vue 的理解
-    - vue 是 通过数据驱动页面的一个渐进式的MVVM(model view viewModel)框架。数据驱动页面，让我们，可以专注于操作数据以及关心数据流
-    - vue 是单页应用 最终都是一个 main.js 和 一个 index.html，这让 第三方插件和库 的引入使用十分方便，但首屏加载会需要较长时间
-    - 引入了 虚拟DOM 可维护视图和状态的关系；复杂视图情况下提升渲染性能；支持跨平台，还可以用于SSR(服务器端渲染)，来解决首屏加载会时间较长问题
+    - vue 是 通过数据驱动页面的一个渐进式的 MVVM(model view viewModel) 框架。数据驱动页面，让我们，可以专注于操作数据以及关心数据流
+    - vue 是单页应用 最终都是一个 main.js 和 一个 index.html, 第三方插件和库 的引入使用十分方便，但首屏加载会需要较长时间
+    - 引入了 虚拟DOM 可维护视图和状态的关系；复杂视图情况下提升渲染性能；支持跨平台，还可以用于 SSR(服务器端渲染) ，来解决首屏加载会时间较长问题
 
 3. MVVM(model view viewModel)
  Model 表示数据模型层。 view 表示视图层， ViewModel 是 View 和 Model 层的桥梁，数据绑定到 viewModel 层并自动渲染到页面中，视图变化通知 viewModel 层更新数据。
 
-4. vue是如何实现响应式数据的呢？（响应式数据原理）
+4. **vue是如何实现响应式数据的呢？**（响应式数据原理）
   vue2.0 重新定义了 data 中的属性，通过 definedproperty 进行数据拦截，当数据需要改变时，通过其中 setter 来对值进行改变，watcher 观察者 意识到数据更新，即会触发回调vm._update 函数，去通知页面更新，这个过程中 render 函数 (vm._render()) 生成新的 vnode (newVnode)，vm._update 函数就会带着新的DOM结构 去触发 __path__ 过程(__path__在服务端渲染中，没有真实的浏览器 DOM 环境，所以不需要把 VNode 最终转化成 DOM，因此是一个空函数，而在浏览器端渲染中它指向了 patch 方法)，patch 方法的核心便是 diff 算法了
   具体就是 页面通过 initdata 来初始化用户传入的参数，通过 new Observer 来观察数据，若数据是一个对象，则通过 this.walk(value) 对对象进行处理，内部通过 defineactive 将数据设置为响应式的，实际上就是 通过 definedproperty 重新定义数据
   那么 vue3.0 使用的则是 porxy 来代理数据，这样减少了代码的复杂程度
 
+
+
 5. 那vue中是如何检测数组变化的呢？
-  通过重写数组的 push pop shift unshift reserve splice 方法，让数组中的值需要通过调用这些方法发生变化时，则可同时进行页面更新 updateView()
+  通过重写数组的 push pop shift unshift reverse splice sort方法，让数组中的值需要通过调用这些方法发生变化时，则可同时进行页面更新 updateView()
   重写实质是更改了方法的原型，在执行这些方法的时候，通知页面进行更新
   数组中可能会出现对象，所以会对数组的每一项进行观测
 
 
 6. 那你说说Vue的事件绑定原理吧
   通过 v-on 命令来进行事件绑定，可用 @ 表示。
-  原生 DOM 的绑定：Vue在创建真实DOM时会调用 createElm ，默认会调用 invokeCreateHooks。会遍历当前平台下相对的属性处理代码，其中就有 updateDOMListeners 方法，updateDOMListeners就是用来添加事件的方法，在这方法中会根据vnode判断是否有定义一个点击事件。如果没有点击事件就return。有的话就继续执行，给on进行赋值，然后进行一些赋值操作，将vnode.elm赋值给target，elm这个属性就是指向vnode所对应的真实dom节点，这里就是把我们要绑定事件的dom结点进行缓存，接下来执行updateListeners方法。在接下来执行updateListeners方法中调用了一个add的方法，然后在app方法中通过原生addEventListener把事件绑定到dom上。
+  原生 DOM 的绑定：Vue在创建真实DOM时会调用 createElm ，默认会调用 invokeCreateHooks。会遍历当前平台下相对的属性处理代码，其中就有 updateDOMListeners 方法，updateDOMListeners 就是用来添加事件的方法，在这方法中会根据 vnode 判断是否有定义一个点击事件。如果没有点击事件就return。有的话就继续执行，给on进行赋值，然后进行一些赋值操作，将 vnode.elm 赋值给 target，elm这个属性就是指向vnode所对应的真实dom节点，这里就是把我们要绑定事件的dom结点进行缓存，接下来执行 updateListeners 方法。在接下来执行 updateListeners 方法中调用了一个 add 的方法，然后在 app 方法中通过原生 addEventListener 把事件绑定到 dom 上。
   组件绑定事件，原生事件，自定义事件；组件绑定之间是通过Vue中自定义的 $on 方法实现的。
   https://blog.csdn.net/qq_42072086/article/details/108063281
 
@@ -53,12 +55,12 @@
     v-model 只能作用于一些特定的表单标签如input、select、textarea和自定义的组件使用
     从v-model绑定在input上开始描述
     主要实现：
-    1. 在created函数时，传入el为这个input节点的dom对象，和第二个参数binding对象，以及第三个参数vnode为节点的vnode对象
+    1. 在 created 函数时，传入el为这个 input节点的dom对象，和第二个参数binding对象，以及第三个参数vnode为节点的vnode对象
     函数首先会把v-model绑定的值赋值给el.value，这个就是数据到DOM的单向流动
-    2. 通过定义一个getModelAssigner方法来获取vnode.props中的'onUpdate: modelValue'属性对应的函数，并赋值给el._assign属性
-    3. 最后通过addEventListener来监听input标签的事件，它会根据是否配置lazy这个修饰符来决定监听的是input还是change事件
+    2. 通过定义一个 getModelAssigner 方法来获取 vnode.props 中的'onUpdate: modelValue' 属性对应的函数，并赋值给 el._assign 属性
+    3. 最后通过 addEventListener 来监听 input 标签的事件，它会根据是否配置 lazy 这个修饰符来决定监听的是 input 还是 change 事件
     4. 这个事件监听函数，当用户手动输入一些数据，触发事件的时候，会执行函数，并通过 el.value 获取 input 标签新的值，然后调用 el._assign 方法更新数据，这就是DOM到数据的流动。
-    以 input 为例，input上的 onChange 事件的参数中 可取到 当前 输入框中的值，将值赋予 绑定的属性值，即可改变页面当前属性的值，当然页面也可以通过其他的事件函数来改变该属性值，如此便实现了双向绑定
+    以 input 为例，input 上的 onChange 事件的参数中 可取到 当前 输入框中的值，将值赋予 绑定的属性值，即可改变页面当前属性的值，当然页面也可以通过其他的事件函数来改变该属性值，如此便实现了双向绑定
 
 8. 为什么 Vue 采用异步渲染呢？
 vue 是组件级的更新，如果不采用异步渲染的话，数据更新一次，页面又要重新渲染，性能浪费较大
@@ -73,7 +75,7 @@ vue 是组件级的更新，如果不采用异步渲染的话，数据更新一�
   事件循环到了微任务或者宏任务，执行函数依次执行callbacks数组中的回调(flushCallbacks函数将 callbacks里面的元素复制下来，然后将 callbacks 清空，之后复制过来的回调函数执行)
 
 
-10. 说说Vue的生命周期吧
+10. **说说Vue的生命周期吧**
   前四个 vue 第一次加载页面会触发的几个钩子函数
   beforeCreated： 
     1. 进行初始化事件，把 this 指向创建的实例
@@ -82,14 +84,14 @@ vue 是组件级的更新，如果不采用异步渲染的话，数据更新一�
   Created： 
     1. 实例创建完成
     2. 数据已经和data属性绑定，这个时候放在 data 中的属性值发生改变的同时，视图也会改变
-    3. 可以初始化 ajax 请求，单页面没有出现，如果请求消息太多的话，页面会长时间的处于白屏状态
-    4. 可以访问 data，可以访问 computed，watch，methods及其中的方法和数据
+    3. 可以初始化 ajax 请求，但页面没有出现，如果请求消息太多的话，页面会长时间的处于白屏状态
+    4. 可以访问 data，可以访问 computed ，watch ，methods 及其中的方法和数据
     5. 还没有进行挂载到 DOM 
     6. 不能访问到 ref 属性内容为空的数组
   beforeMount:  
     1. 判断是否有 el 选项，有的话就继续执行，没有就停止编译，除非调用了 vm.$mount(el)；
     2. 判断是否有 template 参数选项，有的话将模板编译为 render 函数，没有template 选项的话，就将外部的 html 作为模板编译，由此看出 template 中的模板优先级要高于 外部的 html 的优先级。
-    3. 如果Vue 对象中还有一个 render 函数的话，那么又会先渲染 render 函数中的内容
+    3. 如果 Vue 对象中还有一个 render 函数的话，那么又会先渲染 render 函数中的内容
   Mounted： 
     1. 在 mounted 之前还依然是 {{}} 包裹的数据，因为没有挂载到页面上，还有JS 中以 虚拟DOM 的形式存在
     2. mounted 之后换成了我们想要的样子
@@ -109,6 +111,7 @@ vue 是组件级的更新，如果不采用异步渲染的话，数据更新一�
   Destoryed：
     1. 实例销毁之后调用，调用后，Vue实例指示的所有东西都会解绑，所有事件侦听器都会被移除，所有子实例也会被销毁
     https://blog.csdn.net/princess_Wuyou/article/details/107515348
+
 
 11. 父子组件生命周期调用顺序
   创建：父组件先开始创建，之后才开始创建子组件，子组件先创建好，之后父组件才创建好
@@ -147,7 +150,7 @@ vue 是组件级的更新，如果不采用异步渲染的话，数据更新一�
   虚拟节点就是用一个对象来描述一个真实的DOM元素。首先将 template （真实DOM）先转成 ast ， ast 树通过 codegen 生成 render 函数， render 函数里的 _c 方法将它转为虚拟dom
 
 16. patch 函数的核心 diff算法
-  时间复杂度：两个DOM树的完全的diff算法的时间复杂度是 O(n^3)，而vue中diff算法通过同层的树节点进行比较而非对树进行逐层搜索遍历的方式，所以时间复杂度只有o(n)，比较高效。
+  时间复杂度：两个DOM树的完全的diff算法的时间复杂度是 O(n^3)，而vue中diff算法通过同层的树节点进行比较，而非对树进行逐层搜索遍历的方式，所以时间复杂度只有o(n)，比较高效。
     - 首先在 oldVnode（老 VNode 节点）不存在的时候，相当于新的 VNode 替代原本没有的节点，所以直接用 addVnodes 将这些节点批量添加到 parentElm 上。
       - 如果 vnode（新 VNode 节点）不存在的时候，相当于要把老的节点删除，所以直接使用 removeVnodes 进行批量的节点删除即可
       - 当 oldVNode 与 vnode 都存在的时候，同层对比新旧 vnode 判断是否是相同的节点 (isSameNode)
