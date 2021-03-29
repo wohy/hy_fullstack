@@ -15,7 +15,7 @@ node1.next = node3
 // 删除3
 node1.next = node3.next
 
-const arr = ['haha', 1, {a: 1}] 
+const arr = ['haha', 1, {a: 1}]
 // 非连续的内存 为链表的形式的数组，真正的数组元素应该在一段连续的内存空间中
 // 链表的插入删除操作 时间复杂度为 O(1)
 

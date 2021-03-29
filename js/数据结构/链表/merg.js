@@ -7,7 +7,7 @@
 
 function ListNode(val) {
   this.val = val;
-  val.next = null;
+  this.next = null;
 }
 
 const mergeTwoLists =  function(l1, l2) {
@@ -37,4 +37,4 @@ const mergeTwoLists =  function(l1, l2) {
 
 let l1 = { val: 1, next: { val: 2, next: {val: 4, next: null}}}
 let l2 = { val: 1, next: { val: 3, next: {val: 4, next: null}}}
-mergeTwoLists(l1, l2)
+console.log(mergeTwoLists(l1, l2));

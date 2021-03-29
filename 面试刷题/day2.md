@@ -81,8 +81,8 @@
     能判断一个对象是否是后面那个构造函数生成的对象
     但 instanceof 只能用来判断对象类型，原始类型不可以。并且所有对象类型 instanceof Object 都是 true
   - Array.isArray()
-    传入一个参数 若为数组返回true 如果不是返回false
-    当传入的为Array.prototype是也会返回true
+    传入一个参数 若为数组返回 true 如果不是返回false
+    当传入的为 Array.prototype 是也会返回 true
   - typeof()
     可以判断出基础数据类型，除了会将null判断为object；
     无法判断分辨出引用类型，除了能正确将function判断为function
@@ -110,7 +110,7 @@
     8. CSS3 硬件加速（GPU加速），使用css3硬件加速，可以让transform、opacity、filters这些动画不会引起回流重绘 。但是对于动画的其它属性，比如background-color这些，还是会引起回流重绘的，不过它还是可以提升这些动画的性能。
 
   - js方面：
-    1. 避免频繁操作样式，最好一次性重写style属性，或者将样式列表定义为class并一次性更改class属性。
+    1. 避免频繁操作样式，最好一次性重写style属性，或者将样式列表定义为 class 并一次性更改class属性。
     2. 避免频繁操作DOM，创建一个documentFragment，在它上面应用所有DOM操作，最后再把它添加到文档中。
     3. 避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。
     
