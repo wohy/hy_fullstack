@@ -105,10 +105,14 @@ export default {
         margin-bottom: 5px;
       }
       .desc {
-        height: 60px;
-        overflow-y: scroll;
+        // height: 60px;
+        // overflow-y: scroll;
         color: rgb(216, 214, 212);
-        margin-bottom: 10px;	
+        // margin-bottom: 10px;	
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
       }
       .auth {
         margin-top: 5px;

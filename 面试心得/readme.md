@@ -71,7 +71,7 @@
 
     3. 是options请求判断 method头部是否存在
 
-    4. 发送 options请求
+    4. 发送 options 请求
 
     5. 判断method字段是否有效
 
@@ -79,7 +79,7 @@
 
     7. 服务端设置method,header,max-age,origin字段
 
-    8. 是否携带cookie ,服务端设置credentials
+    8. 是否携带cookie, 服务端设置credentials
 
     9. response 没有响应体
 
@@ -498,7 +498,7 @@ path这玩意就是先path自己的，再patch孩子进行递归，
 
  1. expriess 路由自身集成
  2. expriess 使用callback 回调 ,koa 使用async promise
- 3. koa 将request,response 集成在ctx上
+ 3. koa 将 request,response 集成在ctx上
  4. 中间件原理不同
 
 # webpack原理

@@ -62,7 +62,7 @@ class Koa {
   }
 
   listen() {
-    // createServer搭建好服务，会返回req 和 res，handleRequest在createServer里面调用，req和res被传入到 handleRequest
+    // createServer 搭建好服务，会返回req 和 res，handleRequest在createServer里面调用，req和res被传入到 handleRequest
     let server = http.createServer(this.handleRequest.bind(this))
     server.listen(...arguments)  //此处的listen为原生node的listen
   }

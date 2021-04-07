@@ -87,8 +87,9 @@
  Model 表示数据模型层。 view 表示视图层， ViewModel 是 View 和 Model 层的桥梁，数据绑定到 viewModel 层，并自动渲染到页面中，视图变化通知 viewModel 层更新数据。
 
 ## **vue是如何实现响应式数据的呢？**（响应式数据原理）
-  vue2.0 重新定义了 data 中的属性，通过 definedproperty 进行数据拦截，当数据需要改变时，通过其中 setter 来对值进行改变，watcher 观察者 意识到数据更新，即会触发回调vm._update 函数，去通知页面更新，这个过程中 render 函数 (vm._render()) 生成新的 vnode (newVnode)，vm._update 函数就会带着新的DOM结构 去触发 __path__ 过程(__path__在服务端渲染中，没有真实的浏览器 DOM 环境，所以不需要把 VNode 最终转化成 DOM，因此是一个空函数，而在浏览器端渲染中它指向了 patch 方法)，patch 方法的核心便是 diff 算法了
+  vue2.0 重新定义了 data 中的属性，通过 definedproperty 进行数据拦截，当数据需要改变时，通过其中 setter 来对值进行改变，watcher 观察者 意识到数据更新，即会触发回调 vm._update 函数，去通知页面更新，这个过程中 render 函数 (vm._render()) 生成新的 vnode (newVnode)，vm._update 函数就会带着新的DOM结构 去触发 __path__ 过程(__path__在服务端渲染中，没有真实的浏览器 DOM 环境，所以不需要把 VNode 最终转化成 DOM，因此是一个空函数，而在浏览器端渲染中它指向了 patch 方法)，patch 方法的核心便是 diff 算法了
   具体就是 页面通过 initdata 来初始化用户传入的参数，通过 new Observer 来观察数据，若数据是一个对象，则通过 this.walk(value) 对对象进行处理，内部通过 defineactive 将数据设置为响应式的，实际上就是 通过 definedproperty 重新定义数据
+
   那么 vue3.0 使用的则是 porxy 来代理数据，这样减少了代码的复杂程度
   - 使用 definedPropty 劫持时需要传入监测的对象的某个属性，这样就需要 definedPropty 递归遍历整个对象来达到拦截数据的目的，导致了很大的性能开销。
   - 注意：Proxy API并不能监听到内部深层次的对象变化，于是便在 getter 中去递归响应式

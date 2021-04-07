@@ -13,14 +13,13 @@
 //   []
 // ]
 
-const subsets = function(nums) {
+const subsets = function (nums) {
   // 初始化结果数组
-  const res = [] 
+  const res = []
   // 数组长度
-  const len = nums.length 
+  const len = nums.length
   // 组合数组
-  const subset = [] 
-
+  const subset = []
   dfs(0)
   // 定义dfs函数，入参是nums中的数字的索引
   function dfs(index) { // 找子集
@@ -36,6 +35,5 @@ const subsets = function(nums) {
       subset.pop()
     }
   }
-
   return res
 }
