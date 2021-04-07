@@ -34,15 +34,17 @@ function deepCopy1(target, map = new WeakMap()) {  // WeakMap 不会被垃圾回
   // 获取到当前值的构造函数，得到它的类型
   let constructor = target.constructor;
   // 若该值的构造函数与 正则 和 时间 匹配上了
-  if (/^(RegExp|Date)$/i.test(construct.name)) {
+  if (/^(RegExp|Date)$/i.test(constructor.name)) {
     // 创建一个新的特殊对象 正则 或 日期类 等等的实例
     return new constructor(target);
   }
   if (isObject(target)) {
+    // 为循环引用的对象做标记
     map.set(target, true);
     const cloneTarget = Array.isArray(target) ? [] : {};
     for (let prop in target) {
       if (target.hasOwnProperty(prop)) {
+        // 递归遍历 该属性的内置属性 直到 map 获取的到该对象都做上标记为 true 则返回该对象
         cloneTarget[prop] = deepCopy1(target[prop], map)
       }
     }
