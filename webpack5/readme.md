@@ -24,8 +24,10 @@ $ npm i webpack webpack-cli -g
 ``
 
 # webpack 只能识别 .js 文件
-  如下载 loader 处理 .css .less .sass 等文件
+  需下载 loader 处理 .css .less .sass 等文件
+
   $ npm i style-loader css-loader
+  
   解析 import 读出引入的 css 生成一个 Array ，style-loader使这个 Array 生效
   在 config.js 中，加入 module ，配置好，说明打包 css 所用的 loader， loader 的调用是链式的 从右到左 
 
