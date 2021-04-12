@@ -21,6 +21,7 @@ JSX语法
       export default (state = defaultState, action) => {
         return state
       }
+
     ```
 
   - createStore 创建 store
@@ -33,6 +34,7 @@ JSX语法
       const store = createStore(reducer)
 
       export default store
+      
     ```
 
   - 数据流
