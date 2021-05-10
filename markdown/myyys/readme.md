@@ -30,3 +30,20 @@ const unique = (arr) => {
 + return [...new Set()]
 }
 ```
+
+## todoList 功能
+项目目标
+- [首页搜索] 待完成
+- [x] 首页 swiper
+- [ ] ~~icon未完成~~
+
+## markdown 的 展开
+- <img src="xxx" width="300"> 加载出图片，支持 html 格式，可以添加行内 width 之类的样式
+![](xxx) 将路径放入到 () 中
+
+- 点击展开
+<details>
+<summary>展开查看规范</summary>
+这是展开后的内容1
+</details>
+
