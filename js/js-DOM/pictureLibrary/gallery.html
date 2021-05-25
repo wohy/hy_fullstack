@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Gallery</title>
+</head>
+<body>
+  <h1>Snapshots</h1>
+  <ul>
+    <li>
+      <a href="./images/1.jpg" onclick = "showPic(this); return false" title="the mountain">mountain</a>
+    </li>
+    <li>
+      <a href="./images/2.jpg" onclick = "showPic(this); return false" title="the river">river</a>
+    </li>
+    <li>
+      <a href="./images/3.jpg" onclick = "showPic(this); return false" title="the Tourist attraction">attraction</a>
+    </li>
+    <li>
+      <a href="./images/4.jpg" onclick = "showPic(this); return false" title="the Beautiful landscape">landscape</a>
+    </li>
+  </ul>
+  <img id="placeholder" src="" alt="my image Gallery" />
+  <p id="description">Choose an image.</p>
+</body>
+<script type="text/javascript" src="script/showPic.js"></script>
+<style lang="less">
+  body {
+    font-family: "Helvetica", "Arial", serif;
+    color: #333;
+    background-color: #ccc;
+    margin: 1em 10%;
+  }
+  h1 {
+    color: #333;
+    background-color: transparent;
+  }
+  a {
+    color: #c60;
+    background-color: transparent;
+    font-weight: bold;
+    text-decoration: none; 
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    float: left;
+    padding: 1em;
+    list-style: none;
+  }
+  img {
+    display: block;
+    clear: both;
+  }
+</style>
+</html>
