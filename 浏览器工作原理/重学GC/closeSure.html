@@ -8,13 +8,16 @@
 </head>
 <body>
   <script>
-    // 相互引用
-    let name1 = {}
-    let name2 = {}
-    name1.name2 = name2
-    name2.name1 = name1
-
-
+    function Person(name) {
+      this.name = name;
+    }
+    let PersonFactory = function() {
+      let p = new Person(name);
+      return function() {
+        console.log(p);
+      }
+    }
+    let p1 = PersonFactory('xiaoming')
   </script>
 </body>
 </html>
