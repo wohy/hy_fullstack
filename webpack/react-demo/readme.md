@@ -15,3 +15,6 @@
   import ReactDom from 'react-dom';
 ```
 npm i react react-dom
+
+3. create-react-app
+npm i create-react-app
