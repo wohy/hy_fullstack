@@ -1,5 +1,8 @@
 import React from 'react';
 import './CommentApp.css'
+import CommentList from './CommentList.js'
+import CommentForm from './CommentForm.js'
+
 
 class CommentApp extends React.Component { // 通过继承快速创建好一个组件
   constructor() {
@@ -12,8 +15,10 @@ class CommentApp extends React.Component { // 通过继承快速创建好一个�
   render() {
     return ( // JSX  react 中有一种 JSX 的语法来方标签 react template XML in JS
       // 用于网页标签的 XML 叫做 HTML
-      <div class="wrapper">
+      <div className="wrapper">
         {this.state.name}
+        <CommentForm />
+        <CommentList />
       </div>
     )
   }

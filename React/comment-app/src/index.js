@@ -6,7 +6,7 @@ import CommentApp from './CommentApp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CommentApp></CommentApp>
+    <CommentApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
