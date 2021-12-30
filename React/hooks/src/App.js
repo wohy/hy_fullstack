@@ -52,7 +52,8 @@ import Robot from './Robot'
 
 
 function Example(props) {
-  // useState(0) 返回一个数组 一个元素为数据源(即状态，state)，还有一个元素为控制该数据的函数(则为一个高阶函数)，useState就是一个 hooks 函数，[] 解构出来
+  // useState(0) 返回一个数组 一个元素为数据源(即状态，state)，
+  // 还有一个元素为控制该数据的函数(则为一个高阶函数)，useState就是一个 hooks 函数，[] 解构出来
   // state 的更新是 异步的
   const [count, setCount] = useState(0)
   const [robotGalley, setRobotGalley] = useState([])

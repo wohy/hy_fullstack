@@ -28,7 +28,7 @@ react 组件输入相同的参数，渲染的 UI 应该永远一样
 官方常用的：useState useEffect useContext useReducer
 
 1. useState
-  ```
+  ```js
   function Example() {
     // useState(0) 返回一个数组 一个元素为数据源(即状态，state)，还有一个元素为控制该数据的函数(则为一个高阶函数)，useState就是一个 hooks 函数，[] 解构出来
     const [count, setCount] = useState(0)
@@ -52,7 +52,7 @@ react 组件输入相同的参数，渲染的 UI 应该永远一样
 3. useContext
 
   react 中传递参数 (即通信)
-    类组件中；
+    组类件中；
       组件标签上绑定 xxx={xxx}
       再通过 this.props.xxx 即可取到该组件的参数
     函数式组件：
@@ -69,7 +69,7 @@ react 组件输入相同的参数，渲染的 UI 应该永远一样
   Robot.js 是子组件
   现在希望可以 让 Robot.js 可以用到 index.js 中的 defaultContextValue 对象的 userName
   1. 在 index.js 中
-  创建一个 appContext 上下文 初始化为 defaultContextValue ，类似于 eventBus，使用 Provider 将 App 包裹起来
+  创建一个 appContext 上下文 初始化为 defaultContextValue ，类似于 eventBus， 使用 Provider 将 App 包裹起来
   2. 在 Robot.js 中
   引入创建的上下文，通过 与 Provider 对应的 Consumer ，将 JSX 模板包裹，并使用一个函数接收参数 value， 返回该 JSX 模板，对应的 index.js 中传出的 defaultContextValue 可在 value 中取到
 

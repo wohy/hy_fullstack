@@ -5,6 +5,7 @@ import { appContext } from './index'
 const Robot = ({ id, name, email }) => {
   const value = useContext(appContext)
   return (
+    // 不使用 useContext 的话
     //  与 Provider 对应的为 Consumer
     // <appContext.Consumer>
     //   {(value) => {
