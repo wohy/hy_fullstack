@@ -50,9 +50,8 @@ react 组件输入相同的参数，渲染的 UI 应该永远一样
   默认页面更新，useEffect就会执行，应尽量避免副作用的默认执行，需要手动控制，用到 第二个参数，[] 状态列表，只有 [] 中的状态发生变化了才会执行
 
 3. useContext
-
   react 中传递参数 (即通信)
-    组类件中；
+    类组件中；
       组件标签上绑定 xxx={xxx}
       再通过 this.props.xxx 即可取到该组件的参数
     函数式组件：
@@ -60,9 +59,7 @@ react 组件输入相同的参数，渲染的 UI 应该永远一样
       再通过 props.xxx 即可取到该组件的参数
   可若要给更深的子组件通信时，就需要将该 props 传递的更深( props 的深度注入)，可传递的越深的话，组件的更新的频率就会越高，UI 渲染的效率就会越慢
   这就是 props 的弊端
-
   - 可以使用 redux 解决，可若项目中的状态不多的话 就没有很大必要 再使用 redux
-  
   - 还可以使用：
   index.js 是入口组件
   App.js 是根组件
@@ -72,7 +69,6 @@ react 组件输入相同的参数，渲染的 UI 应该永远一样
   创建一个 appContext 上下文 初始化为 defaultContextValue ，类似于 eventBus， 使用 Provider 将 App 包裹起来
   2. 在 Robot.js 中
   引入创建的上下文，通过 与 Provider 对应的 Consumer ，将 JSX 模板包裹，并使用一个函数接收参数 value， 返回该 JSX 模板，对应的 index.js 中传出的 defaultContextValue 可在 value 中取到
-
   - 有了 hooks useContext 也可以完成
   引入 useContext
   再 const value = useContext(appContext)

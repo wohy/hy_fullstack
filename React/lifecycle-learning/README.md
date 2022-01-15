@@ -5,3 +5,10 @@
 
 
 # 插槽的使用 this.props.children
+
+
+# app.tsx app组件
+tsx 文件会由 webpack 交给 ts-loader，再交给 babel-loader 进行解析
+
+# index.tsx
+  入口文件 由 webpack 的 entry 进行打理

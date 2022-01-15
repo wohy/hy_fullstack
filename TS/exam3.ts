@@ -38,7 +38,7 @@ export const persons: Person[] = [
 export function logPerson(person: Person) {
   let additionalInformation: string;
   // 原题
-  if (person.role) { 
+  if (person.role) {
       additionalInformation = person.role;
   } else {
       additionalInformation = person.occupation;
