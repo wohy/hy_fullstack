@@ -21,7 +21,7 @@ Page({
     openicon:'../../images/openUp.png',
     comment: [
       {
-        avator: '../../images/ele3.jpg',
+        avator: '../../images/ele2.jpg',
         nickname: '蜗牛大帅哥',
         content: '这个用了多久了？',
         answerContent: [
@@ -37,6 +37,21 @@ Page({
     let shoppingId = e.currentTarget.dataset.shoppingid
     wx.navigateTo({
       url: `../comment/comment?shoppingid=${shoppingId}`
+    })
+  },
+
+  toShopCart(e) {
+    wx.showLoading({
+      title: '正在跳转中'
+    })
+    const _ = db.command
+    db.collection('shopCart').where({
+      _openid: app.globalData.openid
+    }).get().then((res) => {
+      wx.hideLoading();
+      wx.switchTab({
+        url: `../shoppingCart/shoppingCart`
+      })
     })
   },
 

@@ -50,7 +50,7 @@
 
 <van-goods-action>
   <van-goods-action-icon icon="chat-o" text="客服" bind:click="Service" />
-  <van-goods-action-icon icon="cart-o" text="购物车" bind:click="shopCart" />
+  <van-goods-action-icon icon="cart-o" text="购物车" bind:click="toShopCart" />
   <van-goods-action-button
     text="加入购物车"
     type="warning"

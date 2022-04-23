@@ -1,4 +1,8 @@
 # 安装 依赖
+
+  确认全局是否安装 webpack webpack-cli webpack-dev-server 安装好后
+  npm install webpack-dev-server -D
+
   $npm install css-loader style-loader file-loader url-loader html-webpack-plugin awesome-typescript-loader mini-css-extract-plugin --save-dev
 
   --save-dev 只在本地编译时使用

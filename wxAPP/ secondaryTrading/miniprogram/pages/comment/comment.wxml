@@ -6,6 +6,6 @@
 </view>
 <view class="upLoader">
   <van-button size="large" disabled="{{ complete }}" bindtap="sells" color="linear-gradient(to right, #ff4501, #DC143C)">
-    售出
+    发表
   </van-button>
 </view>

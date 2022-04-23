@@ -1,22 +1,25 @@
 <!-- miniprogram/pages/shoppingCart/shoppingCart.wxml -->
 <view class="head">购物车</view>
 <view class="list" wx:for="{{listArray}}" wx:if="{{listNum !== 0}}" wx:key="index">
-  <view class="card">
-    <van-checkbox value="{{item.check}}" data-index="{{index}}" data-checked="{{item.checked}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" bind:change="Change">
-    <!-- <van-checkbox name='{{item}}'></van-checkbox> -->
-    </van-checkbox>
-    <image class="shopImage" src="{{item.imageURL}}"/>
-    <view class="shopInfo" data-shoppingid="{{item._id}}" catchtap="toShopping">
-      <view class="shopName">{{item.shopName}}</view>
-      <view class="shopPrice"><text>￥</text>{{item.price}}</view>
+  <van-swipe-cell right-width="{{ 65 }}">
+    <view class="card">
+      <van-checkbox value="{{item.check}}" data-index="{{index}}" data-checked="{{item.checked}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" bind:change="Change">
+      <!-- <van-checkbox name='{{item}}'></van-checkbox> -->
+      </van-checkbox>
+      <image class="shopImage" src="{{item.imageURL}}"/>
+      <view class="shopInfo" data-shoppingid="{{item._id}}" catchtap="toShopping">
+        <view class="shopName">{{item.shopName}}</view>
+        <view class="shopPrice"><text>￥</text>{{item.price}}</view>
+      </view>
+      <view class="cardBottom" data-index="{{index}}" catchtap="Hidden">
+        <image src="../../images/add.png" wx:if="{{item.hidden}}" bindtap="add" data-index="{{index}}" data-num="{{item.num}}" data-priceSum="{{priceSum}}" data-check="{{item.check}}" data-price="{{item.price}}"/>
+        <text class="shopNum">x{{item.num}}</text>
+        <image src="../../images/reduce.png" wx:if="{{item.hidden}}" bindtap="reduce" data-index="{{index}}" data-num="{{item.num}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" data-check="{{item.check}}"/>
+        <image src="../../images/closs.png" size="mini" color="red" wx:if="{{item.hidden}}" catchtap="reHidden" data-hidden="{{item.hidden}}" data-price="{{priceSum}}" data-index="{{index}}"/>
+      </view>
     </view>
-    <view class="cardBottom" data-index="{{index}}" catchtap="Hidden">
-      <image src="../../images/add.png" wx:if="{{item.hidden}}" bindtap="add" data-index="{{index}}" data-num="{{item.num}}" data-priceSum="{{priceSum}}" data-check="{{item.check}}" data-price="{{item.price}}"/>
-      <text class="shopNum">x{{item.num}}</text>
-      <image src="../../images/reduce.png" wx:if="{{item.hidden}}" bindtap="reduce" data-index="{{index}}" data-num="{{item.num}}" data-price="{{item.price}}" data-priceSum="{{priceSum}}" data-check="{{item.check}}"/>
-      <image src="../../images/closs.png" size="mini" color="red" wx:if="{{item.hidden}}" catchtap="reHidden" data-hidden="{{item.hidden}}" data-price="{{priceSum}}" data-index="{{index}}"/>
-    </view>
-  </view>
+    <view slot="right" class="right" data-num="{{item.num}}" data-price="{{item.price}}" data-index="{{index}}" data-check="{{item.check}}" bind:tap="removeItem">删除</view>
+  </van-swipe-cell>
 </view>
 <view class="bottom">
   没有更多了~

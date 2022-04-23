@@ -184,6 +184,39 @@ Page({
     
   },
 
+  removeItem(e) {
+    console.log(e);
+    let shoppingIndex = e.currentTarget.dataset.index
+    const listArray = this.data.listArray
+    let priceSum = this.data.priceSum
+    let check = e.currentTarget.dataset.check
+    let price = e.currentTarget.dataset.price 
+    listArray.splice(shoppingIndex, 1)
+    db.collection('shopCart').where({
+      _openid: app.globalData.openid,
+    }).get().then(res => {
+      let data = res.data[shoppingIndex]
+      console.log(data);
+      if(data.num >= 1) {
+        db.collection('shopCart').doc(data._id).remove({
+          success() {
+            wx.showToast({
+              title: '删除商品成功',
+            })
+          }
+        })
+      }
+    })
+    if(check === true) {
+      this.setData({
+        priceSum:  priceSum -= price
+      })
+    }
+
+    this.setData({
+      listArray
+    })
+  },
 
   getShopping() {
     wx.showLoading({
@@ -215,7 +248,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getShopping()
+    // this.getShopping()
   },
 
   /**
@@ -229,7 +262,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      listArray: []
+    })
+    this.getShopping()
   },
 
   /**

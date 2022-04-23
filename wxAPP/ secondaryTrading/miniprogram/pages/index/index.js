@@ -19,19 +19,9 @@ Page({
         price: '2000'
       },
       {
-        imageUrl: '../../images/home2.jpg',
-        shopName: '茶壶',
-        price: '300'
-      },
-      {
         imageUrl: '../../images/home3.jpg',
         shopName: '热水壶',
         price: '100'
-      },
-      {
-        imageUrl: '../../images/home4.jpg',
-        shopName: '洗衣机',
-        price: '2000'
       },
       {
         imageUrl: '../../images/home5.jpg',
@@ -49,22 +39,7 @@ Page({
         imageUrl: '../../images/ele2.jpg',
         shopName: '劳力士手表',
         price: '30000'
-      },
-      {
-        imageUrl: '../../images/ele3.jpg',
-        shopName: 'IWC手表',
-        price: '40000'
-      },
-      {
-        imageUrl: '../../images/ele4.jpg',
-        shopName: 'GENEVE手表',
-        price: '43380'
-      },
-      {
-        imageUrl: '../../images/ele5.jpg',
-        shopName: '照相机',
-        price: '3000'
-      },
+      }
     ]
   },
 

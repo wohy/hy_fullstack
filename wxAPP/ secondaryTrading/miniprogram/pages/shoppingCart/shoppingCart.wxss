@@ -13,15 +13,15 @@ page{
 }
 
 .card {
-  width: 92%;
+  width: 100%;
   height: 250rpx;
   display: flex;
   flex-direction: row;
   margin-left: 4%;
   text-align: center;
   border-radius: 10rpx;
-  background-color: rgb(234, 245, 245);
-  border: 2rpx solid rgb(186, 192, 192);
+  /* background-color: rgb(234, 245, 245); */
+  /* border: 2rpx solid rgb(186, 192, 192); */
   align-items: center;
   position: relative;
   margin-bottom: 30rpx;
@@ -34,6 +34,7 @@ page{
   width: 180rpx;
   height: 180rpx;
   margin-right: 20rpx;
+  margin-left: 30rpx;
 }
 .shopInfo {
   position: relative;
@@ -52,6 +53,15 @@ page{
   bottom: 40rpx;
   color: rgb(214, 63, 63);
 }
+.right {
+  width: 180rpx;
+  background-color: red;
+  height: inherit;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
 .cardBottom {
   position: absolute;
   right: 25rpx;
@@ -67,8 +77,10 @@ page{
 }
 .cardBottom .shopNum {
   color:rgb(161, 161, 161);
-  border: solid 2rpx;
-  border-radius: 10rpx;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
+  /* border: solid 2rpx; */
+  /* border-radius: 10rpx; */
 }
 .list:last-child {
 margin-bottom: 20rpx;
