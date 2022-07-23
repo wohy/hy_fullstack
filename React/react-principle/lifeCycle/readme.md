@@ -20,7 +20,7 @@ getDerivedStateFromProps 用途：使用 props 来派生、更新 state。更新
 ### getDerivedStateFromProps 调用
 静态方法，内部访问不到 this
 ```
-statuc getDerivedStateFromProps(props, state) {
+static getDerivedStateFromProps(props, state) {
     <!-- props 挂载阶段为 父组件传入的参数，更新阶段为更新后的参数对象 -->
     <!-- state 为当前组件自身的 state 对象 -->
 

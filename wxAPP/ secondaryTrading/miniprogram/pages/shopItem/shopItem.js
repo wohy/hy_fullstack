@@ -119,6 +119,26 @@ Page({
       }
     })   
   },
+  Buy(e) {
+    db.collection('sellsShopping').where({
+      _id: options.shoppingId
+    }).then((res) => {
+      // let data = res.data[shoppingIndex]
+      // if(data.num >= 1) {
+      //   db.collection('shopCart').doc(data._id).remove({
+      //     success() {
+      //       wx.showToast({
+      //         title: '删除商品成功',
+      //       })
+      //     }
+      //   })
+      // }
+      wx.showToast({
+        title: '购买成功',
+        icon: 'success'
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

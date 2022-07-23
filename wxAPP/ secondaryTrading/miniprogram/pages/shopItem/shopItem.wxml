@@ -56,6 +56,6 @@
     type="warning"
     bind:click="insertCart"
   />
-  <van-goods-action-button text="立即购买" bind:click="Buy" />
+  <van-goods-action-button text="立即购买" data-shoppingid = "{{_id}}" bind:click="Buy" />
 </van-goods-action>
 
