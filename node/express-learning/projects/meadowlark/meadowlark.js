@@ -1,6 +1,7 @@
 // 入口文件
 const express = require('express')
 const { engine } = require('express-handlebars')
+const welcomeText = require('./lib/welcomeTextArr')
 
 const app = express()
 
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
 })
 
 
-const welcomeTextArr = ['欢迎使用', 'Welcome to use', '歡迎使用', 'Velkommen til brug', 'Добро пожаловать в использование', '大歓迎です', 'Bienvenue à utiliser', '오신 것을 환영합니다']
+// const welcomeTextArr = ['欢迎使用', 'Welcome to use', '歡迎使用', 'Velkommen til brug', 'Добро пожаловать в использование', '大歓迎です', 'Bienvenue à utiliser', '오신 것을 환영합니다']
 
 
 app.get('/about', (req, res) => {
@@ -37,8 +38,12 @@ app.get('/about', (req, res) => {
   // res.send('About Meadwark Travel')
 
   // 直接使用 handlebars 引擎渲染，实际渲染文件为 about.handlebars
-  const randomWelcomeText = welcomeTextArr[Math.floor(Math.random() * welcomeTextArr.length)]
-  res.render('about', { welcomeTextArr: randomWelcomeText })
+  // const randomWelcomeText = welcomeTextArr[Math.floor(Math.random() * welcomeTextArr.length)]
+  // res.render('about', { welcomeTextArr: randomWelcomeText })
+
+  // 采用模块化的方式引入 randomWelcomeText
+  res.render('about', { welcomeTextArr: welcomeText.getWelcomeText() })
+
 })
 
 // 定制 404 页面
